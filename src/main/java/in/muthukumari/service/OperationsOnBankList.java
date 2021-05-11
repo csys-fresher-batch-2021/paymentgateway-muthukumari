@@ -8,6 +8,10 @@ import java.util.Set;
 
 public class OperationsOnBankList {
 	
+	private OperationsOnBankList() {
+		//Default Constructor
+	}
+	
 	private static Set<String> bankList = new HashSet<String>();
 	/**
 	 * This method used to add the bank list

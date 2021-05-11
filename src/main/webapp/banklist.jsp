@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <%@page import="in.muthukumari.model.BankDetail"%>
 <%@page import="java.util.Set"%>
-<html>
+<html xml:lang="java">
 <head>
 <title>Bank List</title>
+<meta content="text/html; charset=utf-8" />
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -11,11 +12,11 @@
 <br/>
 		<h4>LIST OF BANKS</h4>
 
-		<table class="table table bordered">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>SNO.</th>
-					<th>Bank Name</th>
+					<th id="sno">SNO.</th>
+					<th id="bankname">Bank Name</th>
 				</tr>
 			</thead>
 			<tbody>
