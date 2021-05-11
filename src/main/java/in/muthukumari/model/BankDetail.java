@@ -9,17 +9,19 @@ public class BankDetail {
 		// Default Constructor
 	}
 
-	private static Set<String> bankName = new HashSet<>();
+	private static Set<String> bankNameList = new HashSet<>();
 	static {
-		bankName.add("Indian Bank");
-		bankName.add("Indian Overseas Bank");
-		bankName.add("Canara Bank");
-		bankName.add("Union Bank of India");
-		bankName.add("Andhra Bank");
+		bankNameList.add("Indian Bank");
+		bankNameList.add("Indian Overseas Bank");
+		bankNameList.add("Canara Bank");
+		bankNameList.add("Union Bank of India");
+		bankNameList.add("Andhra Bank");
 	}
-
+	/*
+	 * This method returns the list of bank name
+	 */
 	public static Set<String> getBankName() {
-		return bankName;
+		return bankNameList;
 	}
 
 }
