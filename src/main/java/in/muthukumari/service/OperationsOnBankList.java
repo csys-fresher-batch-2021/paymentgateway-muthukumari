@@ -7,12 +7,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class OperationsOnBankList {
-	
+
 	private OperationsOnBankList() {
-		//Default Constructor
+		// Default Constructor
 	}
-	
-	private static Set<String> bankList = new HashSet<String>();
+
+	private static Set<String> bankList = new HashSet<>();
+
 	/**
 	 * This method used to add the bank list
 	 * 
@@ -21,18 +22,15 @@ public class OperationsOnBankList {
 	 */
 	public boolean addBankList(String bankName) {
 		boolean addBankName = false;
-		try {
-			if (Validation.nameValidation(bankName)) {
-				bankList.add(bankName);
-				addBankName = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			addBankName = false;
+
+		if (Validation.nameValidation(bankName)) {
+			bankList.add(bankName);
+			addBankName = true;
 		}
+
 		return addBankName;
 	}
-		
+
 	/**
 	 * This method used to get the no of bank list
 	 * 
