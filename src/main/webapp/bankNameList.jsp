@@ -1,3 +1,4 @@
+<%@page import="in.muthukumari.service.OperationsOnBankList"%>
 <%@page import="in.muthukumari.model.BankDetail"%>
 <%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -20,7 +21,7 @@
 				</tr>
 			<tbody>
 				<%
-				Set<String> banksName = BankDetail.getBankName();
+				Set<String> banksName = OperationsOnBankList.getBankList();
 				int i = 0;
 				for (String bankNameList : banksName) {
 					i++;
@@ -34,6 +35,7 @@
 				%>
 			</tbody>
 		</table>
+		<a class="btn btn-primary" href="AddBankName.jsp">Add Bank</a>
 	</main>
 </body>
 </html>

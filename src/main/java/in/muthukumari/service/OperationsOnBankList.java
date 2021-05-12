@@ -20,7 +20,7 @@ public class OperationsOnBankList {
 	 * @param bankName
 	 * @return
 	 */
-	public boolean addBankList(String bankName) {
+	public static boolean addBankList(String bankName) {
 		boolean addBankName = false;
 
 		if (Validation.nameValidation(bankName)) {
