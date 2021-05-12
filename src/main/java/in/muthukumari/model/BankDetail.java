@@ -4,10 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BankDetail {
-	
-	private BankDetail() {
-		// Default Constructor
-	}
 
 	private static Set<String> bankNameList = new HashSet<>();
 	static {
