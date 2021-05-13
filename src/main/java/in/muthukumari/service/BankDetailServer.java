@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BankDetailServer {
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger Logger1 = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	private BankDetailServer() {
 		// Default Constructor
@@ -47,11 +47,10 @@ public class BankDetailServer {
 	 * This method used to display the bank list
 	 */
 	public static void displayBankList() {
-
-		LOGGER.log(Level.INFO, "------------- List of Banks ------------");
+		Logger1.log(Level.INFO, "------------- List of Banks ------------");
 		for (String bankName : bankList) {
 			String name = bankName.trim();
-			LOGGER.log(Level.INFO, name);
+			Logger1.log(Level.INFO, name);
 		}
 	}
 }

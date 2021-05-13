@@ -1,7 +1,6 @@
 package in.muthukumari.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,11 +24,8 @@ public class AddBankServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		PrintWriter out = response.getWriter();
-		
 		// Step 1: Get Form Values
 		String bankName = request.getParameter("bankNameValue");
-		out.write(bankName);
 
 		try {
 			// Step 2: Call Service => Add Bank Name
