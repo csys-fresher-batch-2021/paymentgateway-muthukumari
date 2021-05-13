@@ -6,31 +6,29 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import in.muthukumari.service.OperationsOnBankList;
+import in.muthukumari.service.BankDetailServer;
 
 /**
  * Servlet implementation class AddBankName
  */
-@WebServlet("/AddBankNameServlet")
-public class AddBankNameServlet extends HttpServlet {
+@WebServlet("/AddBankServlet")
+public class AddBankServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter out = response.getWriter();
 		//System.out.println("AddBankNameServlet");
 		// Step 1: Get Form Values
 		String bankName = request.getParameter("bankName");
 		out.println(bankName);
-		// Step 2: Call Service => add Product
-		boolean isAdded = OperationsOnBankList.addBankList(bankName);
+		// Step 2: Call Service => Add Bank Name
+		boolean isAdded = BankDetailServer.addBankList(bankName);
 		// Step 3: Decide to which page we should redirect ?
 		if (isAdded) {
-			
-			String errorMessage = "valid Bank Name";
+			String errorMessage = "Successfully Added";
 			response.sendRedirect("bankNameList.jsp?errorMessage="+errorMessage);
 		} else {
 			String errorMessage = "Invalid Bank Name";
