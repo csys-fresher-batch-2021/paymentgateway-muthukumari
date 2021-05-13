@@ -1,7 +1,12 @@
 package in.muthukumari.validator;
 
 public class Validation {
+
+	private Validation() {
 	
+		// Default Constructor
+	}
+
 	/*
 	 * This method validate the bank name
 	 */

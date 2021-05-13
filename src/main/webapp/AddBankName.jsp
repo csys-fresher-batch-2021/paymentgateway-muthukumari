@@ -8,7 +8,7 @@
 	<main class="container-fluid">
 		<h3>Add Bank Name</h3>
 		<!-- <form action="addproduct_action.jsp">-->
-		<form action="AddBankServlet" method="post">
+		<form action="AddBankServlet" method="get">
 			<label for="bankName">Bank Name</label> <input type="text"
 				name="bankName" placeholder="Enter Bank Name" required autofocus />
 			<br/>
