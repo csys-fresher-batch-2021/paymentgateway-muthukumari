@@ -10,7 +10,7 @@
 		<!-- <form action="addproduct_action.jsp">-->
 		<form action="AddBankServlet" method="get">
 			<label for="bankName">Bank Name</label> <input type="text"
-				name="bankName" placeholder="Enter Bank Name" required autofocus />
+				name="bankNameValue" placeholder="Enter Bank Name" required autofocus />
 			<br/>
 			<button type="submit">Submit</button>
 		</form>

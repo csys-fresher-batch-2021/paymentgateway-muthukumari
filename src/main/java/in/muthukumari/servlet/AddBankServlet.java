@@ -14,7 +14,7 @@ import in.muthukumari.service.BankDetailServer;
  */
 @WebServlet("/AddBankServlet")
 public class AddBankServlet extends HttpServlet {
-	private static final String msg = "bankNameList.jsp?errorMessage=";
+	private static final String MSG = "bankNameList.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,8 +28,8 @@ public class AddBankServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		// Step 1: Get Form Values
-		String bankName = request.getParameter("bankName");
-		out.println(bankName);
+		String bankName = request.getParameter("bankNameValue");
+		out.write(bankName);
 
 		try {
 			// Step 2: Call Service => Add Bank Name
@@ -37,16 +37,16 @@ public class AddBankServlet extends HttpServlet {
 			// Step 3: Decide to which page we should redirect ?
 			if (isAdded) {
 				String errorMessage = "Successfully Added";
-				response.sendRedirect(msg + errorMessage);
+				response.sendRedirect(MSG + errorMessage);
 			}
 			else {
-				String errorMessage = "Invalid Bank Name";
-				response.sendRedirect(msg + errorMessage);
+				String errorMessage = "Invalid Bank Name or The Bank Name Already Added";
+				response.sendRedirect(MSG + errorMessage);
 			}
 		} catch (Exception e) {
 
-			String errorMessage = e.getMessage();
-			response.sendRedirect(msg + errorMessage);
+			e.printStackTrace();
+			throw new IOException("Invalid bank Name");
 
 		}
 	}

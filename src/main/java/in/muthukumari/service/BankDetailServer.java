@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BankDetailServer {
-	static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	private BankDetailServer() {
 		// Default Constructor
@@ -25,8 +25,10 @@ public class BankDetailServer {
 		boolean addBankName = false;
 
 		if (Validation.nameValidation(bankName)) {
+			if(!bankList.contains(bankName)) {
 			bankList.add(bankName);
 			addBankName = true;
+			}
 		}
 
 		return addBankName;
@@ -48,7 +50,8 @@ public class BankDetailServer {
 
 		LOGGER.log(Level.INFO, "------------- List of Banks ------------");
 		for (String bankName : bankList) {
-			LOGGER.log(Level.INFO, bankName.trim());
+			String name = bankName.trim();
+			LOGGER.log(Level.INFO, name);
 		}
 	}
 }
