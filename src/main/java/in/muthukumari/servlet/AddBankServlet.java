@@ -14,12 +14,14 @@ import in.muthukumari.service.BankDetailServer;
  */
 @WebServlet("/AddBankServlet")
 public class AddBankServlet extends HttpServlet {
+	private static final String msg = "bankNameList.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -35,16 +37,16 @@ public class AddBankServlet extends HttpServlet {
 			// Step 3: Decide to which page we should redirect ?
 			if (isAdded) {
 				String errorMessage = "Successfully Added";
-				response.sendRedirect("bankNameList.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(msg + errorMessage);
 			}
 			else {
 				String errorMessage = "Invalid Bank Name";
-				response.sendRedirect("bankNameList.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(msg + errorMessage);
 			}
 		} catch (Exception e) {
 
 			String errorMessage = e.getMessage();
-			response.sendRedirect("bankNameList.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect(msg + errorMessage);
 
 		}
 	}

@@ -1,12 +1,13 @@
 package in.muthukumari.service;
 
 import in.muthukumari.validator.*;
-
 import java.util.HashSet;
-
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BankDetailServer {
+	static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	private BankDetailServer() {
 		// Default Constructor
@@ -30,7 +31,7 @@ public class BankDetailServer {
 
 		return addBankName;
 	}
-	
+
 	/**
 	 * This method used to get the no of bank list
 	 * 
@@ -45,10 +46,9 @@ public class BankDetailServer {
 	 */
 	public static void displayBankList() {
 
-		System.out.println("------------- List of Banks ------------");
+		LOGGER.log(Level.INFO, "------------- List of Banks ------------");
 		for (String bankName : bankList) {
-			System.out.println(bankName.trim());
+			LOGGER.log(Level.INFO, bankName.trim());
 		}
 	}
-
 }
