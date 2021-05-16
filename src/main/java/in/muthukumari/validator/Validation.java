@@ -1,9 +1,11 @@
 package in.muthukumari.validator;
 
+import java.util.regex.Pattern;
+
 public class Validation {
 
 	private Validation() {
-	
+
 		// Default Constructor
 	}
 
@@ -11,10 +13,10 @@ public class Validation {
 	 * This method validate the bank name
 	 */
 	public static boolean nameValidation(String name) {
-		boolean isValid = true;// set isValid variable is true
-		// Check the bank name is equal to null or is an empty space
-		if (name == null || name.trim().equals("")) {
-			isValid = false;// if the condition is false set isValid variable is false
+		boolean isValid = false;// set isValid variable is false
+		// Check the bank name
+		if (!name.equals(null) && !name.trim().equals("") && Pattern.matches("a-zA-Z]{3,}", name)) {
+			isValid = true;// if the condition is true set isValid variable is true
 		}
 
 		return isValid;// return the isValid variable
