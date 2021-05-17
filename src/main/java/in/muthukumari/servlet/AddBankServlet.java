@@ -1,6 +1,8 @@
 package in.muthukumari.servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import in.muthukumari.service.BankDetailServer;
  */
 @WebServlet("/AddBankServlet")
 public class AddBankServlet extends HttpServlet {
+	private static final Logger Logger1 = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final String MSG = "bankNameList.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +26,7 @@ public class AddBankServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// Step 1: Get Form Values
 		String bankName = request.getParameter("bankNameValue");
 
@@ -34,16 +37,13 @@ public class AddBankServlet extends HttpServlet {
 			if (isAdded) {
 				String errorMessage = "Successfully Added";
 				response.sendRedirect(MSG + errorMessage);
-			}
-			else {
+			} else {
 				String errorMessage = "Invalid Bank Name or The Bank Name Already Added";
 				response.sendRedirect(MSG + errorMessage);
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 
-			String errorMessage = "Invalid Bank Name or The Bank Name Already Added";
-			response.sendRedirect(MSG + errorMessage);
-
+			Logger1.info(e.getMessage());
 		}
 	}
 
