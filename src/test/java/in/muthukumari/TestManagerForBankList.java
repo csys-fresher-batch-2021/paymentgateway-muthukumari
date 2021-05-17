@@ -25,7 +25,7 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase1() {
-		System.out.println("testcase1");
+		
 		String bankName = "   Indian bank   ";
 		boolean bankNameValidation = Validation.nameValidation(bankName);
 		assertTrue(bankNameValidation);
@@ -36,7 +36,6 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase2() {
-		System.out.println("testcase2");
 
 		String bankName = "";
 		boolean bankNameValidation = Validation.nameValidation(bankName);
@@ -48,7 +47,7 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase3() {
-		System.out.println("testcase3");
+	
 		String bankName = "Indian Bank";
 		boolean bankNameValidation = BankDetailServer.addBankList(bankName);
 		assertTrue(bankNameValidation);
@@ -59,7 +58,6 @@ public class TestManagerForBankList {
 	 */
 	@Test
 	public void TestCase4() {
-		System.out.println("testcase4");
 
 		String bankName = null;
 		boolean bankNameValidation = BankDetailServer.addBankList(bankName);
@@ -71,7 +69,6 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase5() {
-		System.out.println("testcase5");
 
 		Set<String> bankList = BankDetailServer.getBankList();
 		assertEquals(3, bankList.size());
@@ -83,8 +80,7 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase6() {
-		System.out.println("testcase6");
-
+		
 		BankDetailServer.displayBankList();
 
 	}
@@ -94,7 +90,6 @@ public class TestManagerForBankList {
 	 */
 	@Before
 	public void TestCase7() {
-		System.out.println("testcase7");
 		boolean bankNameValidation = BankDetailServer.addBankList("Indian Overseas Bank");
 		assertFalse(bankNameValidation);
 	}
@@ -104,7 +99,7 @@ public class TestManagerForBankList {
 	 */
 	@Before
 	public void TestCase8() {
-		System.out.println("testcase8");
+		
 		BankDetailServer.addBankList("Canara Bank");
 		BankDetailServer.addBankList("Indian Overseas Bank");
 	}

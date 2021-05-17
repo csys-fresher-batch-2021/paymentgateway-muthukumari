@@ -42,7 +42,6 @@ public class AddBankServlet extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			throw new IOException("Invalid bank Name");
 
 		}
 	}

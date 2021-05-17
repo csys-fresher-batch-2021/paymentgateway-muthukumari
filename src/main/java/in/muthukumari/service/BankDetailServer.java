@@ -3,17 +3,16 @@ package in.muthukumari.service;
 import in.muthukumari.validator.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BankDetailServer {
-	private final static Logger Logger1 = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final Logger Logger1 = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	private BankDetailServer() {
 		// Default Constructor
 	}
 
-	private static Set<String> bankList = new HashSet<String>();
+	private static Set<String> bankList = new HashSet<>();
 
 	/**
 	 * This method used to add the bank list
@@ -24,12 +23,11 @@ public class BankDetailServer {
 	public static boolean addBankList(String bankName) {
 		boolean addBankName = false;
 
-		if (Validation.nameValidation(bankName)) {
-			if(!bankList.contains(bankName)) {
+		if ((Validation.nameValidation(bankName)) && (!bankList.contains(bankName))) {
 			bankList.add(bankName);
 			addBankName = true;
-			}
 		}
+
 		return addBankName;
 	}
 
@@ -46,10 +44,9 @@ public class BankDetailServer {
 	 * This method used to display the bank list
 	 */
 	public static void displayBankList() {
-		System.out.println( "------------- List of Banks ------------");
+		Logger1.info("------------- List of Banks ------------");
 		for (String bankName : bankList) {
-			//String name = bankName.trim();
-			System.out.println( bankName.trim());
+			Logger1.info(bankName.trim());
 		}
 	}
 }
