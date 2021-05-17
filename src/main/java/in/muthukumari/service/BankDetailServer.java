@@ -13,7 +13,7 @@ public class BankDetailServer {
 		// Default Constructor
 	}
 
-	private static Set<String> bankList = new HashSet<>();
+	private static Set<String> bankList = new HashSet<String>();
 
 	/**
 	 * This method used to add the bank list
@@ -30,7 +30,6 @@ public class BankDetailServer {
 			addBankName = true;
 			}
 		}
-
 		return addBankName;
 	}
 
@@ -47,10 +46,10 @@ public class BankDetailServer {
 	 * This method used to display the bank list
 	 */
 	public static void displayBankList() {
-		Logger1.log(Level.INFO, "------------- List of Banks ------------");
+		System.out.println( "------------- List of Banks ------------");
 		for (String bankName : bankList) {
-			String name = bankName.trim();
-			Logger1.log(Level.INFO, name);
+			//String name = bankName.trim();
+			System.out.println( bankName.trim());
 		}
 	}
 }
