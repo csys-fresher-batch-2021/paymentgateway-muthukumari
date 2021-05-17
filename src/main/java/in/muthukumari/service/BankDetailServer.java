@@ -1,14 +1,14 @@
 package in.muthukumari.service;
 
 import in.muthukumari.validator.*;
-
 import java.util.HashSet;
-
 import java.util.Set;
+import java.util.logging.Logger;
 
-public class OperationsOnBankList {
+public class BankDetailServer {
+	private static final Logger Logger1 = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-	private OperationsOnBankList() {
+	private BankDetailServer() {
 		// Default Constructor
 	}
 
@@ -20,10 +20,10 @@ public class OperationsOnBankList {
 	 * @param bankName
 	 * @return
 	 */
-	public boolean addBankList(String bankName) {
+	public static boolean addBankList(String bankName) {
 		boolean addBankName = false;
 
-		if (Validation.nameValidation(bankName)) {
+		if ((Validation.nameValidation(bankName)) && (!bankList.contains(bankName))) {
 			bankList.add(bankName);
 			addBankName = true;
 		}
@@ -44,11 +44,10 @@ public class OperationsOnBankList {
 	 * This method used to display the bank list
 	 */
 	public static void displayBankList() {
-
-		System.out.println("------------- List of Banks ------------");
+		Logger1.info("------------- List of Banks ------------");
 		for (String bankName : bankList) {
-			System.out.println(bankName.trim());
+			String name=bankName.trim();
+			Logger1.info(name);
 		}
 	}
-
 }

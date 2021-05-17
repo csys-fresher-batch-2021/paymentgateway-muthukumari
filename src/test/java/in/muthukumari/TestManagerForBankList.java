@@ -1,5 +1,6 @@
-package in.muthukumari.service;
+package in.muthukumari;
 
+import in.muthukumari.service.BankDetailServer;
 import in.muthukumari.validator.*;
 import static org.junit.Assert.*;
 
@@ -18,13 +19,13 @@ import org.junit.After;
 import org.junit.Before;
 
 public class TestManagerForBankList {
-	OperationsOnBankList add = new OperationsOnBankList();
-
+	
 	/**
 	 * Test case for valid bank name
 	 */
-	@Before
+	@After
 	public void TestCase1() {
+		
 		String bankName = "   Indian bank   ";
 		boolean bankNameValidation = Validation.nameValidation(bankName);
 		assertTrue(bankNameValidation);
@@ -33,8 +34,9 @@ public class TestManagerForBankList {
 	/**
 	 * Test case for Invalid bank name
 	 */
-	@Before
+	@After
 	public void TestCase2() {
+
 		String bankName = "";
 		boolean bankNameValidation = Validation.nameValidation(bankName);
 		assertFalse(bankNameValidation);
@@ -43,20 +45,22 @@ public class TestManagerForBankList {
 	/*
 	 * Test case for add valid bank name
 	 */
-	@Test
+	@After
 	public void TestCase3() {
+	
 		String bankName = "Indian Bank";
-		boolean bankNameValidation = add.addBankList(bankName);
+		boolean bankNameValidation = BankDetailServer.addBankList(bankName);
 		assertTrue(bankNameValidation);
 	}
 
 	/*
 	 * Test case for add Invalid bank name
 	 */
-	@After
+	@Test
 	public void TestCase4() {
+
 		String bankName = null;
-		boolean bankNameValidation = add.addBankList(bankName);
+		boolean bankNameValidation = BankDetailServer.addBankList(bankName);
 		assertFalse(bankNameValidation);
 	}
 
@@ -65,7 +69,8 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase5() {
-		Set<String> bankList = OperationsOnBankList.getBankList();
+
+		Set<String> bankList = BankDetailServer.getBankList();
 		assertEquals(3, bankList.size());
 
 	}
@@ -75,7 +80,8 @@ public class TestManagerForBankList {
 	 */
 	@After
 	public void TestCase6() {
-		OperationsOnBankList.displayBankList();
+		
+		BankDetailServer.displayBankList();
 
 	}
 	
@@ -84,8 +90,8 @@ public class TestManagerForBankList {
 	 */
 	@Before
 	public void TestCase7() {
-		boolean bankNameValidation = add.addBankList("Indian Overseas Bank");
-		assertTrue(bankNameValidation);
+		boolean bankNameValidation = BankDetailServer.addBankList("Indian Overseas Bank");
+		assertFalse(bankNameValidation);
 	}
 	/*
 	 * Test case for add valid bank name 
@@ -93,8 +99,9 @@ public class TestManagerForBankList {
 	 */
 	@Before
 	public void TestCase8() {
-		add.addBankList("Canara Bank");
-		add.addBankList("Indian Overseas Bank");
+		
+		BankDetailServer.addBankList("Canara Bank");
+		BankDetailServer.addBankList("Indian Overseas Bank");
 	}
 
 }

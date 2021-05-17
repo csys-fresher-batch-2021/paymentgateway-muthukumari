@@ -1,4 +1,4 @@
-<%@page import="in.muthukumari.model.BankDetail"%>
+<%@page import="in.muthukumari.service.BankDetailServer"%>
 <%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -15,15 +15,15 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th id="sno">SNO.</th>
-					<th id="bankName">BANK NAME</th>
+					<th scope="col">SNO.</th>
+					<th scope="col">BANK NAME</th>
 				</tr>
 			<tbody>
 				<%
-				Set<String> banksName = BankDetail.getBankName();
-				int i = 0;
-				for (String bankNameList : banksName) {
-					i++;
+				Set<String> banks = BankDetailServer.getBankList();
+								int i = 0;
+								for (String bankNameList : banks) {
+									i++;
 				%>
 				<tr>
 					<td><%=i%></td>
@@ -34,6 +34,7 @@
 				%>
 			</tbody>
 		</table>
+		<a class="btn btn-primary" href="AddBankName.jsp">Add Bank</a>
 	</main>
 </body>
 </html>
