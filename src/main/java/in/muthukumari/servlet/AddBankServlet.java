@@ -41,7 +41,8 @@ public class AddBankServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			String errorMessage = "Invalid Bank Name or The Bank Name Already Added";
+			response.sendRedirect(MSG + errorMessage);
 
 		}
 	}

@@ -46,7 +46,8 @@ public class BankDetailServer {
 	public static void displayBankList() {
 		Logger1.info("------------- List of Banks ------------");
 		for (String bankName : bankList) {
-			Logger1.info(bankName.trim());
+			String name=bankName.trim();
+			Logger1.info(name);
 		}
 	}
 }
