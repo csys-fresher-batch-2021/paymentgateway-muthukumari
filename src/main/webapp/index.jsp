@@ -9,7 +9,13 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<form action="AddBankName.jsp">
-			<h1>Online Money Transfer</h1>
+
+			<img
+				src="https://www.justrechargenow.com/wp-content/uploads/2018/06/money-transfer-services.png"
+				width=60 height=60 />
+			<h1>
+				Welcome<br /> to<br />Online Money Transfer
+			</h1>
 			<button class="color:blue">Add Bank</button>
 		</form>
 	</main>

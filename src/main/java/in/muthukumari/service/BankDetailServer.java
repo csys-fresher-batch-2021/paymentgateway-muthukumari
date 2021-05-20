@@ -23,7 +23,7 @@ public class BankDetailServer {
 	public static boolean addBankList(String bankName) {
 		boolean addBankName = false;
 
-		if ((Validation.nameValidation(bankName)) && (!bankList.contains(bankName))) {
+		if ((CustomerDetailValidation.nameValidation(bankName)) && (!bankList.contains(bankName))) {
 			bankList.add(bankName);
 			addBankName = true;
 		}
