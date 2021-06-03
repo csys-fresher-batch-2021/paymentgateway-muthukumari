@@ -57,10 +57,19 @@ public class CustomerDetailServlet extends HttpServlet {
 		customer.setBankName(bankName);
 		customer.setBranchName(branchName);
 		customer.setIfscCode(ifsc);
-		
-		response.sendRedirect("DisplayCustomerBankDetail.jsp?" + "name=" + name + "&bankName=" + bankName
-				+ "&branchName=" + branchName + "&ifsc=" + ifsc + "&accNumber=" + accNumber + "&atmNum=" + atmNum
-				+ "&atmPinNum=" + atmPinNumber + "&mobileNum=" + mobileNumber + "&balanceAmount=" + balanceAmount);
+		 String whiteList = "http://localhost/safe";
+		 String location = request.getParameter("DisplayCustomerBankDetail.jsp?" + "name=" + name + "&bankName=" + bankName
+					+ "&branchName=" + branchName + "&ifsc=" + ifsc + "&accNumber=" + accNumber + "&atmNum=" + atmNum
+					+ "&atmPinNum=" + atmPinNumber + "&mobileNum=" + mobileNumber + "&balanceAmount=" + balanceAmount);
+
+		 if (!location.startsWith(whiteList)) {
+		      throw new IOException();
+		 }
+		    response.sendRedirect(location); 
+		 
+//		response.sendRedirect("DisplayCustomerBankDetail.jsp?" + "name=" + name + "&bankName=" + bankName
+//				+ "&branchName=" + branchName + "&ifsc=" + ifsc + "&accNumber=" + accNumber + "&atmNum=" + atmNum
+//				+ "&atmPinNum=" + atmPinNumber + "&mobileNum=" + mobileNumber + "&balanceAmount=" + balanceAmount);
 
 	}
 
