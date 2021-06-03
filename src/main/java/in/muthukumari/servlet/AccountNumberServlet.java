@@ -46,7 +46,7 @@ public class AccountNumberServlet extends HttpServlet {
 			// validate the account number length
 			isValidAccountNumber = BankDetailValidator.isValidAccountNumber(customer);
 		} catch (DBException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		if (isValidAccountNumber) {
 			errorMessage = "Account number validated successfully";
@@ -56,7 +56,7 @@ public class AccountNumberServlet extends HttpServlet {
 				out.print(json);
 				out.flush();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 		} else {
 			errorMessage = "Invalid Account Number";
