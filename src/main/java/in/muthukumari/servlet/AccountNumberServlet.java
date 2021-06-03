@@ -32,11 +32,10 @@ public class AccountNumberServlet extends HttpServlet {
 			throws ServletException, IOException {
 		CustomerBankDetail customer = new CustomerBankDetail();
 		try {
-		String accountNumber = request.getParameter("accountNumber");
-		long accountNumberLong = Long.parseLong(accountNumber);
-		customer.setAccountNumber(accountNumberLong);
-		}
-		catch(Exception e) {
+			String accountNumber = request.getParameter("accountNumber");
+			long accountNumberLong = Long.parseLong(accountNumber);
+			customer.setAccountNumber(accountNumberLong);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		String bankName = request.getParameter("bankName");
@@ -45,7 +44,7 @@ public class AccountNumberServlet extends HttpServlet {
 		Gson gson = new Gson();
 		boolean isValidAccountNumber = false;
 		try {
-			//validate the account number length
+			// validate the account number length
 			isValidAccountNumber = BankDetailValidator.isValidAccountNumber(customer);
 		} catch (DBException e) {
 			e.printStackTrace();
@@ -53,16 +52,24 @@ public class AccountNumberServlet extends HttpServlet {
 		if (isValidAccountNumber) {
 			errorMessage = "Account number validated successfully";
 			String json = gson.toJson(errorMessage);
-			PrintWriter out = response.getWriter();
-			out.print(json);
-			out.flush();
+			try {
+				PrintWriter out = response.getWriter();
+				out.print(json);
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			errorMessage = "Invalid Account Number";
 			String json = gson.toJson(errorMessage);
-			PrintWriter out = response.getWriter();
-			out.print(json);
-			out.flush();
+			try {
+				PrintWriter out = response.getWriter();
+				out.print(json);
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+		}
 
 	}
 

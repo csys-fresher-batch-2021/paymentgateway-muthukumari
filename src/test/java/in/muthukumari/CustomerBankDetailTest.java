@@ -3,10 +3,8 @@ package in.muthukumari;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.model.CustomerBankDetail;
-import in.muthukumari.service.CustomerBankDetailService;
 import in.muthukumari.validator.BankDetailValidator;
 import in.muthukumari.validator.CustomerDetailValidator;
 
