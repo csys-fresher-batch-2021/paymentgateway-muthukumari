@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import java.util.logging.Logger;
+
 import in.muthukumari.exception.DBException;
 import in.muthukumari.validator.BankDetailValidator;
 
@@ -18,7 +20,7 @@ import in.muthukumari.validator.BankDetailValidator;
 @WebServlet("/AccountNumberServlet")
 public class AccountNumberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	final Logger logger =  Logger.getLogger(this.getClass().getName());
 	/**
 	 * @return
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -63,9 +65,8 @@ public class AccountNumberServlet extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.print(json);
 				out.flush();
-			} catch (IOException e) {
-				Logger.println(e.getMessage());
-				
+			} catch (IOException e) {				
+				logger.info(e.getMessage());
 			}
 		}
 

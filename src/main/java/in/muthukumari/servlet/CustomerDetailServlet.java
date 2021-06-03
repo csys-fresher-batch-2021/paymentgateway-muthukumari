@@ -1,6 +1,7 @@
 package in.muthukumari.servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,8 @@ import in.muthukumari.model.CustomerBankDetail;
 @WebServlet("/CustomerDetailServlet")
 public class CustomerDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	final Logger logger =  Logger.getLogger(this.getClass().getName());
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -50,7 +52,7 @@ public class CustomerDetailServlet extends HttpServlet {
 		customer.setMobileNumber(mobileNumberLong);
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		// set customer bank details to the CustomerBankDetail class
 		customer.setUserName(name);
