@@ -23,6 +23,7 @@ public class CustomerDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		CustomerBankDetail customer = new CustomerBankDetail();
@@ -47,7 +48,7 @@ public class CustomerDetailServlet extends HttpServlet {
 		customer.setBranchName(branchName);
 		customer.setIfscCode(ifsc);
 		customer.setBalanceAmount(balanceAmonuDob);
-		customer.setAccountNumber(atmNumberLong);
+		customer.setAccountNumber(accNumberLong);
 		customer.setAtmNumber(atmNumberLong);
 		customer.setAtmPinNumber(atmPinNumberInt);
 		customer.setMobileNumber(mobileNumberLong);

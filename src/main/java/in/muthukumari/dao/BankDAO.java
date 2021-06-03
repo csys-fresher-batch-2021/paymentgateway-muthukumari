@@ -13,6 +13,10 @@ import in.muthukumari.exception.DBException;
 import in.muthukumari.util.ConnectionUtil;
 
 public class BankDAO {
+	
+	private BankDAO() {
+		//Default constructor
+	}
 
 	static Set<String> bankNameList = new HashSet<>();
 

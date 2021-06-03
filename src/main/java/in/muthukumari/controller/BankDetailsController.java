@@ -9,6 +9,10 @@ import in.muthukumari.exception.InvalidException;
 
 public class BankDetailsController {
 	
+	private BankDetailsController() {
+		//Default constructor
+	}
+	
 	/**
 	 * This method used to get the branch name list of each bank
 	 * @param bankName

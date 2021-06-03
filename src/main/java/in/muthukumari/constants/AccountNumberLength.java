@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AccountNumberLength {
+	
+	private AccountNumberLength() {
+		//Default Constructor
+	}
 	/**
 	 * This method used to declare the account number length of each bank
 	 * 

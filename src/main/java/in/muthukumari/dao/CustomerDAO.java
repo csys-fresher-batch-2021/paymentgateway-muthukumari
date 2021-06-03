@@ -12,6 +12,10 @@ import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.util.ConnectionUtil;
 
 public class CustomerDAO {
+	
+	private CustomerDAO() {
+		//Default constructor
+	}
 	static Connection connection = null;
 	static PreparedStatement pst = null;
 

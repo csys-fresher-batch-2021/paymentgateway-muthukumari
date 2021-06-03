@@ -1,17 +1,13 @@
 package in.muthukumari.validator;
 
-import java.sql.SQLException;
 import java.util.Map;
-import java.util.Set;
 import in.muthukumari.constants.AccountNumberLength;
-import in.muthukumari.dao.BankDAO;
 import in.muthukumari.exception.DBException;
-import in.muthukumari.exception.InvalidException;
 import in.muthukumari.model.CustomerBankDetail;
 
 public class BankDetailValidator {
 
-	public BankDetailValidator() {
+	private BankDetailValidator() {
 		// Default constructor
 	}
 

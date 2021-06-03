@@ -128,14 +128,7 @@ body {
 				method="post">
 				<br />
 				<h2>Customer Bank Detail</h2>
-				<%
-				String errorMsg = request.getParameter("errorMessage");
-				if (errorMsg != null) {
-					out.println("<p style='font-size:20px'><font colour ='#008000'>" + errorMsg + "</font>");
-				}
-				%>
-
-				<label>Name :</label> <input type="text" name="name"
+					<label>Name :</label> <input type="text" name="name"
 					placeholder="Enter your name" pattern="[a-zA-Z\s.]{3,}" required
 					autofocus> <em>Note: Name must be valid doesn't
 					contains<br> number and special characters

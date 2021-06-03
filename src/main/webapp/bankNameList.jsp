@@ -168,6 +168,7 @@ body {
 
 		<div class="table-wrapper">
 			<table class="fl-table">
+			<caption>List of Banks</caption>
 				<thead>
 					<tr>
 						<th scope="col">SNO.</th>

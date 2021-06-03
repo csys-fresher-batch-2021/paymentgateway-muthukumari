@@ -23,7 +23,7 @@ public class ConnectionUtil {
 		Class.forName(DRIVER_CLASS_NAME);
 		// Step 2: Get the connection
 		Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-		// System.out.println("Connection Created");
+		
 		return connection;
 	}
 	
