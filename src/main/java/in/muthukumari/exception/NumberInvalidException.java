@@ -1,12 +1,12 @@
 package in.muthukumari.exception;
 
-public class numberException extends Exception {
+public class NumberInvalidException extends Exception {
 	/**
 	 * this method raise the number exception
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public numberException(String message) {
+	public NumberInvalidException(String message) {
 		super(message);
 
 	}

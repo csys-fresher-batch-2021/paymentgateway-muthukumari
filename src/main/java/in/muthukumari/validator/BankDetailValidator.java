@@ -22,8 +22,8 @@ public class BankDetailValidator {
 	public static boolean isValidAccountNumber(CustomerBankDetail customer) throws DBException {
 
 		boolean isValidAccountNumber = false;
-		String AccountNumberStr = Long.toString(customer.getAccountNumber());
-		int lengthOfAccountNumberStr=AccountNumberStr.length();
+		String accountNumberStr = Long.toString(customer.getAccountNumber());
+		int lengthOfAccountNumberStr=accountNumberStr.length();
 		Map<String, Integer> bankAndAccountNumberLengthList = AccountNumberLength.getAccountNumberLength();
 		if (bankAndAccountNumberLengthList.containsKey(customer.getBankName())) {
 			int accountNumberLength = bankAndAccountNumberLengthList.get(customer.getBankName());
