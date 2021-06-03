@@ -2,17 +2,14 @@ package in.muthukumari.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import in.muthukumari.model.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
-
 import in.muthukumari.exception.DBException;
-import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.validator.BankDetailValidator;
 
 /**
@@ -67,7 +64,8 @@ public class AccountNumberServlet extends HttpServlet {
 				out.print(json);
 				out.flush();
 			} catch (IOException e) {
-				e.printStackTrace();
+				Logger.println(e.getMessage());
+				
 			}
 		}
 
