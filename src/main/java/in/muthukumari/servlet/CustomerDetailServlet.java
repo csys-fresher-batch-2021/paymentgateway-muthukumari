@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import in.muthukumari.exception.CustomerRepeatedException;
-import in.muthukumari.exception.DBException;
 import in.muthukumari.model.CustomerBankDetail;
-import in.muthukumari.service.CustomerBankDetailService;
 
 /**
  * Servlet implementation class CustomerDetailServlet
@@ -33,25 +30,34 @@ public class CustomerDetailServlet extends HttpServlet {
 		String branchName = request.getParameter("branchName");
 		String ifsc = request.getParameter("ifsc");
 		String accNumber = request.getParameter("accNumber");
-		long accNumberLong = Long.parseLong(accNumber);
 		String mobileNumber = request.getParameter("mobileNum");
-		long mobileNumberLong = Long.parseLong(mobileNumber);
+
 		String atmPinNumber = request.getParameter("atmPinNum");
-		int atmPinNumberInt = Integer.parseInt(atmPinNumber);
+
 		String atmNum = request.getParameter("atmNum");
-		long atmNumberLong = Long.parseLong(atmNum);
+
 		String balanceAmount = request.getParameter("balanceAmount");
+		try {
+		long accNumberLong = Long.parseLong(accNumber);
+		long mobileNumberLong = Long.parseLong(mobileNumber);
+		int atmPinNumberInt = Integer.parseInt(atmPinNumber);
+		long atmNumberLong = Long.parseLong(atmNum);
 		double balanceAmonuDob = Double.parseDouble(balanceAmount);
-		// set customer bank details to the CustomerBankDetail class
-		customer.setUserName(name);
-		customer.setBankName(bankName);
-		customer.setBranchName(branchName);
-		customer.setIfscCode(ifsc);
 		customer.setBalanceAmount(balanceAmonuDob);
 		customer.setAccountNumber(accNumberLong);
 		customer.setAtmNumber(atmNumberLong);
 		customer.setAtmPinNumber(atmPinNumberInt);
 		customer.setMobileNumber(mobileNumberLong);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		// set customer bank details to the CustomerBankDetail class
+		customer.setUserName(name);
+		customer.setBankName(bankName);
+		customer.setBranchName(branchName);
+		customer.setIfscCode(ifsc);
+		
 		response.sendRedirect("DisplayCustomerBankDetail.jsp?" + "name=" + name + "&bankName=" + bankName
 				+ "&branchName=" + branchName + "&ifsc=" + ifsc + "&accNumber=" + accNumber + "&atmNum=" + atmNum
 				+ "&atmPinNum=" + atmPinNumber + "&mobileNum=" + mobileNumber + "&balanceAmount=" + balanceAmount);

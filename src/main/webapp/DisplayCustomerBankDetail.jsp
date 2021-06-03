@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
 <meta charset="ISO-8859-1">
 <title>Customer Bank Detail</title>
 </head>
@@ -14,7 +14,7 @@
 		<caption>Customer bank Detail</caption>
 			<thead>
 				<tr>
-					<td scope="col">Customer Bank Detail</td>
+					<th scope="col">Customer Bank Detail</th>
 				</tr>
 			</thead>
 			<tbody>

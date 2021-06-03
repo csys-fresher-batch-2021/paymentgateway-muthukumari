@@ -32,9 +32,14 @@ public class AccountNumberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		CustomerBankDetail customer = new CustomerBankDetail();
+		try {
 		String accountNumber = request.getParameter("accountNumber");
 		long accountNumberLong = Long.parseLong(accountNumber);
 		customer.setAccountNumber(accountNumberLong);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		String bankName = request.getParameter("bankName");
 		customer.setBankName(bankName);
 		String errorMessage;

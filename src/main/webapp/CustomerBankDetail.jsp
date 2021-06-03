@@ -132,11 +132,12 @@ body {
 					placeholder="Enter your name" pattern="[a-zA-Z\s.]{3,}" required
 					autofocus> <em>Note: Name must be valid doesn't
 					contains<br> number and special characters
-				</em><br /> <label>Bank Name :</label>
-				<%
-				//Get the bank name from bankNameList.jsp file
+				</em><br /> 
+				<%		
 				String bankName = request.getParameter("bankName");
 				%>
+				<label>Bank Name :</label>
+				
 				<input type="text" value="<%=bankName%>" name="bankName"
 					id="bankName" readonly><br /> <label>Branch Name :</label>
 				<select id="branchName" name="branchName" onchange="getIfscCode()"
