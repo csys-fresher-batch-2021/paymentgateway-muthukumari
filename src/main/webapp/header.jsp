@@ -17,12 +17,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="bankNameList.jsp">Banks</a>
 			</ul>
-			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link"
-					href="mainpage.jsp">Login</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="CustomerDetail.jsp">Register</a></li>
-			</ul>
+			
 		</div>
 	</nav>
 </header>

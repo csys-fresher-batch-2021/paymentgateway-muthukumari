@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.muthukumari.exception.CustomerRepeatedException;
+import in.muthukumari.exception.DBException;
 import in.muthukumari.model.CustomerBankDetail;
-import in.muthukumari.model.CustomerDetail;
-import in.muthukumari.service.CustomerDetailServer;
+import in.muthukumari.service.CustomerBankDetailService;
 
 /**
  * Servlet implementation class CustomerDetailServlet
@@ -19,36 +20,41 @@ public class CustomerDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * This servlet usd to get all the user details
-	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		CustomerDetail customer = new CustomerDetail();
-		CustomerBankDetail bank = new CustomerBankDetail();
-		String userName = request.getParameter("name");
-		String mobileNumber = request.getParameter("number");
-		String password = request.getParameter("password");
+		CustomerBankDetail customer = new CustomerBankDetail();
+		// Declare customer bank details
+		String name = request.getParameter("name");
 		String bankName = request.getParameter("bankName");
-		String accountNumber = request.getParameter("accountNumber");
-		String ifsc = request.getParameter("ifscCode");
-		CustomerDetail.customerName = userName;
-		CustomerDetail.mobileNumber = Long.parseLong(mobileNumber);
-		CustomerDetail.password = password;
-		CustomerBankDetail.bankName = bankName;
-		CustomerBankDetail.accountNumber = Long.parseLong(accountNumber);
-		CustomerBankDetail.ifscCode = ifsc;
-		boolean isAdded = CustomerDetailServer.addCustomerDetail(customer, bank);
-		// Check d the Customer details is added or not
-		if (isAdded) {
-			String errorMessage = "Successfully Added";
-			response.sendRedirect("AtmCardDetail.jsp?" + errorMessage);
-		} else {
-			String errorMessage = "Invalid Data";
-			response.sendRedirect("CustomerDetail.jsp?" + errorMessage);
-		}
+		String branchName = request.getParameter("branchName");
+		String ifsc = request.getParameter("ifsc");
+		String accNumber = request.getParameter("accNumber");
+		long accNumberLong = Long.parseLong(accNumber);
+		String mobileNumber = request.getParameter("mobileNum");
+		long mobileNumberLong = Long.parseLong(mobileNumber);
+		String atmPinNumber = request.getParameter("atmPinNum");
+		int atmPinNumberInt = Integer.parseInt(atmPinNumber);
+		String atmNum = request.getParameter("atmNum");
+		long atmNumberLong = Long.parseLong(atmNum);
+		String balanceAmount = request.getParameter("balanceAmount");
+		double balanceAmonuDob = Double.parseDouble(balanceAmount);
+		// set customer bank details to the CustomerBankDetail class
+		customer.setUserName(name);
+		customer.setBankName(bankName);
+		customer.setBranchName(branchName);
+		customer.setIfscCode(ifsc);
+		customer.setBalanceAmount(balanceAmonuDob);
+		customer.setAccountNumber(atmNumberLong);
+		customer.setAtmNumber(atmNumberLong);
+		customer.setAtmPinNumber(atmPinNumberInt);
+		customer.setMobileNumber(mobileNumberLong);
+		response.sendRedirect("DisplayCustomerBankDetail.jsp?" + "name=" + name + "&bankName=" + bankName
+				+ "&branchName=" + branchName + "&ifsc=" + ifsc + "&accNumber=" + accNumber + "&atmNum=" + atmNum
+				+ "&atmPinNum=" + atmPinNumber + "&mobileNum=" + mobileNumber + "&balanceAmount=" + balanceAmount);
+
 	}
 
 }

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>Welcome to ATM card Details Section</h2>
+
 </body>
 </html>
