@@ -10,4 +10,4 @@ Feature 2:
 
 Registration
 -->Get customer Detail and validation 
--->Gt Customr Bank Detail and validation
+-->Get Customr Bank Detail and validation
