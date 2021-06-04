@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.owasp.encoder.Encode;
+
 import com.google.gson.Gson;
 import java.util.logging.Logger;
 
@@ -51,7 +54,8 @@ public class AccountNumberServlet extends HttpServlet {
 		}
 		if (isValidAccountNumber) {
 			errorMessage = "Account number validated successfully";
-			String json = gson.toJson(errorMessage);
+			String encodeMsg=Encode.forHtml(errorMessage);
+			String json = gson.toJson(encodeMsg);
 			try {
 				PrintWriter out = response.getWriter();
 				out.print(json);
@@ -61,7 +65,8 @@ public class AccountNumberServlet extends HttpServlet {
 			}
 		} else {
 			errorMessage = "Invalid Account Number";
-			String json = gson.toJson(errorMessage);
+			String encodeMsg=Encode.forHtml(errorMessage);
+			String json = gson.toJson(encodeMsg);
 			try {
 				PrintWriter out = response.getWriter();
 				out.print(json);
