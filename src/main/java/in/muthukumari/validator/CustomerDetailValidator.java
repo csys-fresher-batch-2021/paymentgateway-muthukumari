@@ -51,7 +51,7 @@ public class CustomerDetailValidator {
 	 * @throws SQLException
 	 */
 	public static boolean isValidCustomer(CustomerBankDetail customer)
-			throws DBException, CustomerRepeatedException, ClassNotFoundException, SQLException {
+			throws DBException, ClassNotFoundException, SQLException {
 		boolean isValidCustomer = true;
 		List<String> errorList = new ArrayList<>();
 		boolean isUserRepeated = CustomerDetailValidator.isUserNotRepeated(customer);

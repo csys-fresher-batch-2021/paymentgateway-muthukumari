@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import in.muthukumari.exception.CustomerRepeatedException;
+import in.muthukumari.exception.ServiceException;
 import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.service.CustomerBankDetailService;
 
@@ -82,7 +81,7 @@ public class CustomerDetailServlet extends HttpServlet {
 				String errorMsg = "Invalid Data";
 				response.sendRedirect("CustomerBankDetail.jsp?errorMsg=" + errorMsg);
 			}
-		} catch (IOException | CustomerRepeatedException e) {
+		} catch (IOException | ServiceException e) {
 
 			logger.info(e.getMessage());
 		}
