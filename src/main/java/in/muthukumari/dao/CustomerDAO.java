@@ -25,7 +25,7 @@ public class CustomerDAO {
 			// To Get the connection
 			connection = ConnectionUtil.getConnection();
 			// Query
-			String sql = "INSERT INTO customerbankdetails(customername, bankname, branchname, ifsccode, account_no, balanceamount,atm_no,atmpin_no,mobile_no) VALUES(?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO customerbankdetails(customername, bankname, branchname, ifsccode, account_no, balanceamount, atm_no, atmpin_no, mobile_no) VALUES(?,?,?,?,?,?,?,?,?)";
 			// To Execute
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, customer.getUserName());
@@ -73,12 +73,16 @@ public class CustomerDAO {
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
+				
 				String name = rs.getString("customername");
 				String bankName = rs.getString("bankname");
 				String branchName = rs.getString("branchname");
 				String ifscCode = rs.getString("ifsccode");
-				long accountNumber = rs.getInt("account_no");
+				long accountNumber = rs.getLong("account_no");
 				Double balanceAmount = rs.getDouble("balanceamount");
+				long atmNumber=rs.getLong("atm_no");
+				int atmPinNumber=rs.getInt("atmpin_no");
+				long mobileNumber=rs.getLong("mobile_no");
 				CustomerBankDetail customer = new CustomerBankDetail();
 				customer.setUserName(name);
 				customer.setBankName(bankName);
@@ -86,6 +90,9 @@ public class CustomerDAO {
 				customer.setIfscCode(ifscCode);
 				customer.setAccountNumber(accountNumber);
 				customer.setBalanceAmount(balanceAmount);
+				customer.setAtmNumber(atmNumber);
+				customer.setAtmPinNumber(atmPinNumber);
+				customer.setMobileNumber(mobileNumber);
 				customerBankDetails.add(customer);
 			}
 		} catch (ClassNotFoundException | SQLException e) {

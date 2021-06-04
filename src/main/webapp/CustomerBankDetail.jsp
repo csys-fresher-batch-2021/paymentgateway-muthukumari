@@ -124,24 +124,29 @@ body {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<div class="pagewrap">
+			<%
+			String errorMsg = request.getParameter("errorMsg");
+			if (errorMsg != null) {
+				out.println("<p style='font-size:10px'>	&#128542<font colour ='#008000'>" + errorMsg + "</font>");
+			}
+			%>
 			<form class="form" id="form" action="CustomerDetailServlet"
 				method="post">
 				<br />
 				<h2>Customer Bank Detail</h2>
-					<label>Name :</label> <input type="text" name="name"
+
+				<label>Name :</label> <input type="text" name="name"
 					placeholder="Enter your name" pattern="[a-zA-Z\s.]{3,}" required
 					autofocus> <em>Note: Name must be valid doesn't
 					contains<br> number and special characters
-				</em><br /> 
+				</em><br />
 				<%		
 				String bankName = request.getParameter("bankName");
 				%>
-				<label>Bank Name :</label>
-				
-				<input type="text" value="<%=bankName%>" name="bankName"
-					id="bankName" readonly><br /> <label>Branch Name :</label>
-				<select id="branchName" name="branchName" onchange="getIfscCode()"
-					required>
+				<label>Bank Name :</label> <input type="text" value="<%=bankName%>"
+					name="bankName" id="bankName" readonly><br /> <label>Branch
+					Name :</label> <select id="branchName" name="branchName"
+					onchange="getIfscCode()" required>
 
 					<option disabled selected>--------SELECT--------</option>
 					<%
@@ -155,44 +160,35 @@ body {
 					<%
 					}
 					%>
-				</select><br />
-				<label>IFSC Code :</label>
+				</select><br /> <label>IFSC Code :</label>
 				<%
 				//Get the ifsc code
 				String ifsc = request.getParameter("ifsc");
 				%>
 				<input type="text" id="ifsc" name="ifsc" value="<%=ifsc%>" readonly
 					required><br /> <label>Account Number :</label> <input
-					type="tel" id="accountNumber" pattern="^\d{5,}$" onkeyup="validate()"
+					type="tel" id="accountNumber" pattern="^\d{5,}$"
+					onkeyup="accountNumberValidation()"
 					title="Enter Valid Account Number" name="accNumber" required
 					autofocus><br />
 				<%
 				String infoMessage = request.getParameter("MSG");
 				%>
-				<input id="MSG" value="<%=infoMessage%>" size="40" readonly disabled><br />
-				<br /> <br />
-				<br /> <label>ATM Card Number :</label> <input type="tel"
-					pattern="^\d{16}$" name="atmNum" placeholder="ATM card number"required> <em>Note:
-					ATM card number must be 16 digits</em><br />
-				<br /> <label>ATM Pin Number :</label> <input type="tel"
-					pattern="^\d{4}$" name="atmPinNum" placeholder="ATM pin number" required> <em>Note:
-					ATM pin number must be 4 digits</em><br />
-				<br /> <label>Mobile Number :</label> <input type="tel"
-					id="mobileNum" name="mobileNum" placeholder="Mobile number" pattern="^\d{10}$" required>
-				<em>Note: Mobile number must be 10 digits</em><br />
-				<br /> <label>Balance Amount :</label> <input type="text"
-					name="balanceAmount" placeholder="Balance Amount" pattern="[0-9.]{1,}" required> <em>Note:
-					Enter Balance amount in your account</em> <br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
+				<input id="MSG" style="color:red" value="<%=infoMessage%>" size="40" readonly disabled><br />
+				<br /> <br /> <br /> <label>ATM Card Number :</label> <input
+					type="tel" pattern="^\d{16}$" name="atmNum"
+					placeholder="ATM card number" required> <em>Note: ATM
+					card number must be 16 digits</em><br /> <br /> <label>ATM Pin
+					Number :</label> <input type="tel" pattern="^\d{4}$" name="atmPinNum"
+					placeholder="ATM pin number" required> <em>Note: ATM
+					pin number must be 4 digits</em><br /> <br /> <label>Mobile
+					Number :</label> <input type="tel" id="mobileNum" name="mobileNum"
+					placeholder="Mobile number" pattern="^\d{10}$" required> <em>Note:
+					Mobile number must be 10 digits</em><br /> <br /> <label>Balance
+					Amount :</label> <input type="text" name="balanceAmount"
+					placeholder="Balance Amount" pattern="[0-9.]{1,}" required>
+				<em>Note: Enter Balance amount in your account</em> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 				<div class="wrap">
 					<button type="submit" class="button">submit</button>
@@ -219,7 +215,7 @@ body {
 			});			
 			
 		}
-		function validate(){
+		function accountNumberValidation(){
 			let bankName=document.querySelector("#bankName").value;
 			let accountNumber=document.querySelector("#accountNumber").value;	
 			let url="AccountNumberServlet?bankName="+bankName+"&accountNumber="+accountNumber;

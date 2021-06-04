@@ -1,5 +1,7 @@
 package in.muthukumari.service;
 
+import java.sql.SQLException;
+
 import in.muthukumari.dao.CustomerDAO;
 import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.DBException;
@@ -17,13 +19,14 @@ public class CustomerBankDetailService {
 	 * @return
 	 * @throws DBException
 	 * @throws CustomerRepeatedException
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public static boolean addCustomerDetail(CustomerBankDetail customer) throws DBException, CustomerRepeatedException {
+	public static boolean addCustomerDetail(CustomerBankDetail customer) throws DBException, CustomerRepeatedException, ClassNotFoundException, SQLException {
 		boolean isAdded = false;
-		if (CustomerDetailValidator.isUserNotRepeated(customer)) {
+		if (CustomerDetailValidator.isValidCustomer(customer)) {
 			CustomerDAO.addUser(customer);
 			isAdded = true;
-
 		} else {
 			isAdded=false;
 		}
