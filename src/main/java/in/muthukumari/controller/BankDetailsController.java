@@ -44,12 +44,12 @@ public class BankDetailsController {
 	 * @throws DBException 
 	 */
 	public String getIfscCode(String bankName, String branchName)
-			throws SQLException, InvalidException {
+			throws InvalidException {
 		
 		String ifscCode = null;
 		try {
 			ifscCode = BankDetailService.getIfscCode(bankName, branchName);
-		} catch (ClassNotFoundException | InvalidException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			
 			logger.info(e.getMessage());
 		}

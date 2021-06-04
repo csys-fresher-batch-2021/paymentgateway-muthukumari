@@ -21,9 +21,10 @@ public class BankDetailValidator {
 	 * 
 	 * @param customer
 	 * @return
+	 * @throws ClassNotFoundException 
 	 * @throws DBException
 	 */
-	public static boolean isValidAccountNumber(CustomerBankDetail customer) throws DBException {
+	public static boolean isValidAccountNumber(CustomerBankDetail customer) throws ClassNotFoundException  {
 
 		boolean isValidAccountNumber = false;
 		String accountNumberStr = Long.toString(customer.getAccountNumber());
@@ -35,7 +36,7 @@ public class BankDetailValidator {
 				isValidAccountNumber = true;
 			}
 		} else {
-			throw new DBException("Bank Name Not Exists");
+			throw new ClassNotFoundException("Bank Name Not Exists");
 		}
 		return isValidAccountNumber;
 	}

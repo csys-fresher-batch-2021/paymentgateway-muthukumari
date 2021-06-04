@@ -14,7 +14,7 @@ public class CustomerDetailValidator {
 		// Default Constructor
 	}
 
-	public static boolean isUserNotRepeated(CustomerBankDetail customer) throws DBException, CustomerRepeatedException {
+	public static boolean isUserNotRepeated(CustomerBankDetail customer) throws DBException {
 		// Declaration
 		boolean valid = false;
 		// To get user details

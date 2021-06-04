@@ -6,6 +6,10 @@ import java.util.Map;
 import in.muthukumari.dao.BankDAO;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.exception.InvalidException;
+import in.muthukumari.exception.ServiceException;
+import in.muthukumari.model.CustomerBankDetail;
+import in.muthukumari.validator.BankDetailValidator;
+
 public class BankDetailService {
 
 	private BankDetailService() {
@@ -21,7 +25,7 @@ public class BankDetailService {
 	 * @throws DBException
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
-	 * @throws InvalidException 
+	 * @throws InvalidException
 	 */
 	public static String getIfscCode(String bankName, String branchName)
 			throws ClassNotFoundException, SQLException, InvalidException {
@@ -38,5 +42,23 @@ public class BankDetailService {
 			throw new InvalidException("Invalid branch name");
 		}
 		return ifscCode;
+	}
+
+	/**
+	 * This method used to check the account number is valid or not
+	 * 
+	 * @param customer
+	 * @return
+	 * @throws ServiceException
+	 */
+	public static boolean isValidAccountNumber(CustomerBankDetail customer) throws ServiceException {
+		boolean isValidAccountNumber = false;
+		try {
+			isValidAccountNumber = BankDetailValidator.isValidAccountNumber(customer);
+		} catch (ClassNotFoundException e) {
+			throw new ServiceException("Invalid Account Number");
+		}
+
+		return isValidAccountNumber;
 	}
 }

@@ -22,13 +22,16 @@ public class CustomerBankDetailService {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public static boolean addCustomerDetail(CustomerBankDetail customer) throws DBException, CustomerRepeatedException, ClassNotFoundException, SQLException {
+	public static boolean addCustomerDetail(CustomerBankDetail customer) throws  CustomerRepeatedException {
 		boolean isAdded = false;
-		if (CustomerDetailValidator.isValidCustomer(customer)) {
-			CustomerDAO.addUser(customer);
-			isAdded = true;
-		} else {
-			isAdded=false;
+		try {
+			if (CustomerDetailValidator.isValidCustomer(customer)) {
+				CustomerDAO.addUser(customer);
+				isAdded = true;
+			} 
+		} catch (ClassNotFoundException | DBException | SQLException e) {
+			
+			e.printStackTrace();
 		}
 
 		return isAdded;

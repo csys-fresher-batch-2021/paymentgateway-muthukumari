@@ -1,7 +1,6 @@
 package in.muthukumari.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import in.muthukumari.exception.CustomerRepeatedException;
-import in.muthukumari.exception.DBException;
 import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.service.CustomerBankDetailService;
 
@@ -29,7 +27,7 @@ public class CustomerDetailServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException{
 		HttpSession session=request.getSession();
 		CustomerBankDetail customer = new CustomerBankDetail();
 		// Declare customer bank details
@@ -84,7 +82,7 @@ public class CustomerDetailServlet extends HttpServlet {
 				String errorMsg = "Invalid Data";
 				response.sendRedirect("CustomerBankDetail.jsp?errorMsg=" + errorMsg);
 			}
-		} catch (IOException | DBException | CustomerRepeatedException | ClassNotFoundException | SQLException e) {
+		} catch (IOException | CustomerRepeatedException e) {
 
 			logger.info(e.getMessage());
 		}

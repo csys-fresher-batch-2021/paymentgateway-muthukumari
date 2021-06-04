@@ -5,16 +5,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Customer Bank Detail</title>
-<SCRIPT type="text/javascript">
-	
-	function noBack() { window.history.forward(); }
-</SCRIPT>
 </head>
-<body onload="noBack()" 
-	onpageshow="if (event.persisted) noBack();">
+<body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h2>Account Created successfully!</h2>
+		<h2><%out.println("&#129321"); %>Account Created successfully!</h2>
 		<table>
 			<caption>Customer bank Detail</caption>
 			<thead>
