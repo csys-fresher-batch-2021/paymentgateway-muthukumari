@@ -17,7 +17,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="bankNameList.jsp">Banks</a>
 			</ul>
-			
+
 		</div>
 	</nav>
 </header>
