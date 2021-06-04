@@ -138,8 +138,9 @@ body {
 				</em><br />
 				<%		
 				String bankName = request.getParameter("bankName");
+				String encodedName = org.owasp.encoder.Encode.forHtml(bankName);
 				%>
-				<label>Bank Name :</label> <input type="text" value="<%=bankName%>"
+				<label>Bank Name :</label> <input type="text" value="<%=encodedName%>"
 					name="bankName" id="bankName" readonly><br /> <label>Branch
 					Name :</label> <select id="branchName" name="branchName"
 					onchange="getIfscCode()" required>
@@ -160,8 +161,9 @@ body {
 				<%
 				//Get the ifsc code
 				String ifsc = request.getParameter("ifsc");
+				String encodedIfsc = org.owasp.encoder.Encode.forHtml(ifsc);
 				%>
-				<input type="text" id="ifsc" name="ifsc" value="<%=ifsc%>" readonly
+				<input type="text" id="ifsc" name="ifsc" value="<%=encodedIfsc%>" readonly
 					required><br /> <label>Account Number :</label> <input
 					type="tel" id="accountNumber" pattern="^\d{5,}$"
 					onkeyup="accountNumberValidation()"
@@ -191,8 +193,9 @@ body {
 				</div>
 				<%
 				String errorMsg = request.getParameter("errorMsg");
+				String encodedErrorMsg = org.owasp.encoder.Encode.forHtml(errorMsg);
 				if (errorMsg != null) {
-					out.println("<br/><p style='font-size:25px'>&#128542" + errorMsg);
+					out.println("<br/><p style='font-size:25px'>&#128542" + encodedErrorMsg);
 				}
 				%>
 			</form>
