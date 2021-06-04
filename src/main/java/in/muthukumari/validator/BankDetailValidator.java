@@ -31,7 +31,7 @@ public class BankDetailValidator {
 		Map<String, Integer> bankAndAccountNumberLengthList = AccountNumberLength.getAccountNumberLength();
 		if (bankAndAccountNumberLengthList.containsKey(customer.getBankName())) {
 			int accountNumberLength = bankAndAccountNumberLengthList.get(customer.getBankName());
-			if (accountNumberLength == lengthOfAccountNumberStr) {
+			if (accountNumberLength == lengthOfAccountNumberStr &&  accountNumberStr.matches(regex)) {
 				isValidAccountNumber = true;
 			}
 		} else {
