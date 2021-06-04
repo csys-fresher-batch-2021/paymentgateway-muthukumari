@@ -41,8 +41,8 @@ public class CustomerBankDetailTest {
 	public void testCase3() throws DBException {
 		customer.setBankName("Indian Bank");
 		customer.setAccountNumber(99876456767876787L);
-		boolean isValidBank=BankDetailValidator.isValidAccountNumber(customer);
-		assertTrue(isValidBank);
+		boolean isValidAccountNum=BankDetailValidator.isValidAccountNumber(customer);
+		assertTrue(isValidAccountNum);
 	}
 	/**
 	 * Invalid account number
@@ -76,7 +76,7 @@ public class CustomerBankDetailTest {
 	 */
 	@Test
 	public void testcase6() throws ClassNotFoundException, SQLException, DBException {
-		customer.setBankName("United Bank");
+		customer.setBankName("United&Bank");
 		boolean isValidBank=BankDetailValidator.isValidBank(customer);
 		assertFalse(isValidBank);		
 	}
@@ -122,14 +122,76 @@ public class CustomerBankDetailTest {
 	}
 	
 	/**
-	 * Invalid ATM pin number
+	 * Valid mobile number
 	 */
 	@Test
 	public void testcase11() {
-		customer.setAtmPinNumber(12934);
-		boolean isValidPinNumber=BankDetailValidator.isValidMobileNumber(customer);
-		assertFalse(isValidPinNumber);
+		customer.setMobileNumber(9878878678L);;
+		boolean isValidMobileNumber=BankDetailValidator.isValidMobileNumber(customer);
+		assertTrue(isValidMobileNumber);
+	}
+	
+	/**
+	 * Invalid mobile number
+	 */
+	@Test
+	public void testcase12() {
+		customer.setMobileNumber(988888899999938L);;
+		boolean isValidMobileNumber=BankDetailValidator.isValidMobileNumber(customer);
+		assertFalse(isValidMobileNumber);
 	}
 
+	/**
+	 * Valid ifsc code
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	@Test
+	public void testcase13() throws ClassNotFoundException, SQLException {
+		customer.setBankName("Indian Bank");
+		customer.setIfscCode("IDIB000T035");
+		customer.setBranchName("Tirunelveli Town");
+		boolean isValidIfscCode=BankDetailValidator.isValidIfscCode(customer);
+		assertTrue(isValidIfscCode);
+	}
 	
+	/**
+	 * Invalid ifsc code
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	@Test
+	public void testcase14() throws ClassNotFoundException, SQLException {
+		customer.setBankName("Indian Bank");
+		customer.setIfscCode("IDIB000T034");
+		customer.setBranchName("Tirunelveli Town");
+		boolean isValidIfscCode=BankDetailValidator.isValidIfscCode(customer);
+		assertFalse(isValidIfscCode);
+	}
+	
+	/**
+	 * Valid ifsc code
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	@Test
+	public void testcase15() throws ClassNotFoundException, SQLException {
+		customer.setBankName("Indian Bank");
+		customer.setBranchName("Tirunelveli Town");
+		boolean isValidBranchName=BankDetailValidator.isValidBranchName(customer);
+		assertTrue(isValidBranchName);
+	}
+	
+	/**
+	 * Invalid ifsc code
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	@Test
+	public void testcase16() throws ClassNotFoundException, SQLException {
+		customer.setBankName("Indian Bank");
+		customer.setBranchName("Tirunelveli1");
+		boolean isValidBranchName=BankDetailValidator.isValidBranchName(customer);
+		assertFalse(isValidBranchName);
+	}	
 }
