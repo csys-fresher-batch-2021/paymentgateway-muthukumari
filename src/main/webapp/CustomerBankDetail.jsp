@@ -171,8 +171,9 @@ body {
 					autofocus><br />
 				<%
 				String infoMessage = request.getParameter("MSG");
+				String encodedInfoMsg = org.owasp.encoder.Encode.forHtml(infoMessage);
 				%>
-				<input id="MSG" style="color:red" value="<%=infoMessage%>" size="40" readonly disabled><br />
+				<input id="MSG" style="color:red" value="<%=encodedInfoMsg%>" size="40" readonly disabled><br />
 				<br /> <br /> <br /> <label>ATM Card Number :</label> <input
 					type="tel" pattern="^\d{16}$" name="atmNum"
 					placeholder="ATM card number" required> <em>Note: ATM
