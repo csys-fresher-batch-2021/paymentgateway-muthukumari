@@ -124,17 +124,13 @@ body {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<div class="pagewrap">
-			<%
-			String errorMsg = request.getParameter("errorMsg");
-			if (errorMsg != null) {
-				out.println("<p style='font-size:10px'>	&#128542<font colour ='#008000'>" + errorMsg + "</font>");
-			}
-			%>
+			
+			
 			<form class="form" id="form" action="CustomerDetailServlet"
 				method="post">
 				<br />
 				<h2>Customer Bank Detail</h2>
-
+				
 				<label>Name :</label> <input type="text" name="name"
 					placeholder="Enter your name" pattern="[a-zA-Z\s.]{3,}" required
 					autofocus> <em>Note: Name must be valid doesn't
@@ -193,6 +189,12 @@ body {
 				<div class="wrap">
 					<button type="submit" class="button">submit</button>
 				</div>
+				<%
+				String errorMsg = request.getParameter("errorMsg");
+				if (errorMsg != null) {
+					out.println("<br/><p style='font-size:25px'>&#128542" + errorMsg);
+				}
+				%>
 			</form>
 		</div>
 

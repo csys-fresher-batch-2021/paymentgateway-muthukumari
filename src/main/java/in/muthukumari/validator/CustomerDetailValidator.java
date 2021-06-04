@@ -25,9 +25,7 @@ public class CustomerDetailValidator {
 					&& ((customerBankDetail.getAtmNumber()) != (customer.getAtmNumber()))) {
 				valid = true;
 			} else {
-				throw new CustomerRepeatedException(
-						"Sorry! This account number and ATM number is already used by another customer please, try again using another account and ATM number");
-			}
+				valid=false;}
 		}
 		return valid;
 	}

@@ -3,13 +3,18 @@ package in.muthukumari.controller;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import in.muthukumari.dao.BankDAO;
+import in.muthukumari.exception.DBException;
 import in.muthukumari.exception.InvalidException;
+import in.muthukumari.service.BankDetailService;
 
 public class BankDetailsController {
 	
-	private BankDetailsController() {
+	final Logger logger =  Logger.getLogger(this.getClass().getName());
+	
+	public BankDetailsController() {
 		//Default constructor
 	}
 	
@@ -36,21 +41,17 @@ public class BankDetailsController {
 	 * @throws InvalidException
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
+	 * @throws DBException 
 	 */
-	public static String getIfscCode(String bankName, String branchName)
-			throws InvalidException, ClassNotFoundException, SQLException {
-
+	public String getIfscCode(String bankName, String branchName)
+			throws SQLException, InvalidException {
+		
 		String ifscCode = null;
-
-		Map<String, String> branchAndIfscList = BankDAO.getBranchNameAndIfscList(bankName);
-
-		if (branchAndIfscList.containsKey(branchName)) {
-
-			ifscCode = branchAndIfscList.get(branchName); //get the ifsc code for the particular branch
-
-		} else {
-
-			throw new InvalidException("Invalid branch name");
+		try {
+			ifscCode = BankDetailService.getIfscCode(bankName, branchName);
+		} catch (ClassNotFoundException | InvalidException | SQLException e) {
+			
+			logger.info(e.getMessage());
 		}
 		return ifscCode;
 	}

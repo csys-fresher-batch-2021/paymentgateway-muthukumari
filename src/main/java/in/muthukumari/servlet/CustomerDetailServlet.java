@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.model.CustomerBankDetail;
@@ -28,6 +30,7 @@ public class CustomerDetailServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session=request.getSession();
 		CustomerBankDetail customer = new CustomerBankDetail();
 		// Declare customer bank details
 		String name = request.getParameter("name");
@@ -66,10 +69,17 @@ public class CustomerDetailServlet extends HttpServlet {
 			boolean isAdded = CustomerBankDetailService.addCustomerDetail(customer);
 			
 			if (isAdded) {
-				response.sendRedirect("DisplayCustomerBankDetail.jsp?name=" + name + "&bankName=" + bankName
-						+ "&branchName=" + branchName + "&ifsc=" + ifsc + "&accNumber=" + accNumber + "&atmNum="
-						+ atmNum + "&atmPinNum=" + atmPinNumber + "&mobileNum=" + mobileNumber + "&balanceAmount="
-						+ balanceAmount);
+				session.setAttribute("name", name);
+				session.setAttribute("bankName", bankName);
+				session.setAttribute("branchName", branchName);
+				session.setAttribute("ifsc", ifsc);
+				session.setAttribute("accNumber", accNumber);
+				session.setAttribute("atmNum", atmNum);
+				session.setAttribute("atmPinNum", atmPinNumber);
+				session.setAttribute("mobileNum", mobileNumber);
+				session.setAttribute("balanceAmount", balanceAmount);
+				response.sendRedirect("DisplayCustomerBankDetail.jsp");
+				
 			} else {
 				String errorMsg = "Invalid Data";
 				response.sendRedirect("CustomerBankDetail.jsp?errorMsg=" + errorMsg);

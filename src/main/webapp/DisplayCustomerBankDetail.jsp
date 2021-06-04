@@ -5,11 +5,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Customer Bank Detail</title>
+<SCRIPT type="text/javascript">
+	
+	function noBack() { window.history.forward(); }
+</SCRIPT>
 </head>
-<body>
+<body onload="noBack()" 
+	onpageshow="if (event.persisted) noBack();">
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h2><%out.println("&#129321");%>Account Created successfully!</h2>
+		<h2>Account Created successfully!</h2>
 		<table>
 			<caption>Customer bank Detail</caption>
 			<thead>
@@ -22,14 +27,14 @@
 					<td>Name :</td>
 					<td>
 						<%
-						String name = request.getParameter("name");
-						String bankName = request.getParameter("bankName");
-						String branchName = request.getParameter("branchName");
-						String ifsc = request.getParameter("ifsc");
-						String accNumber = request.getParameter("accNumber");
-						String atmNum = request.getParameter("atmNum");
-						String atmPinNum = request.getParameter("atmPinNum");
-						String mobileNum = request.getParameter("mobileNum");
+						String name = (String)session.getAttribute("name");
+						String bankName = (String)session.getAttribute("bankName");
+						String branchName = (String)session.getAttribute("branchName");
+						String ifsc = (String)session.getAttribute("ifsc");
+						String accNumber =(String)session.getAttribute("accNumber");
+						String atmNum = (String)session.getAttribute("atmNum");
+						String atmPinNum =(String)session.getAttribute("atmPinNum");
+						String mobileNum = (String)session.getAttribute("mobileNum");
 						%> <%=name%></td>
 				</tr>
 				<tr>
