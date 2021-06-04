@@ -64,7 +64,7 @@ public class BankDetailValidator {
 	public static boolean isValidAtmCardNumber(CustomerBankDetail customer) {
 		boolean isValidNum=false;
 		String atmNumStr=Long.toString(customer.getAtmNumber());
-		String regex=".*[0-9].*";
+		String regex="[0-9]";
 		if(atmNumStr.length()==16 && atmNumStr.matches(regex)) {
 			isValidNum=true;
 		}
