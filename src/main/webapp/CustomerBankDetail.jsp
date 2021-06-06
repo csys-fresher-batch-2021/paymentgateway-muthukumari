@@ -171,6 +171,7 @@ body {
 					autofocus><br />
 				<%
 				String infoMessage = request.getParameter("MSG");
+				
 				String encodedInfoMsg = org.owasp.encoder.Encode.forHtml(infoMessage);
 				%>
 				<input id="MSG" style="color:red" value="<%=encodedInfoMsg%>" size="40" readonly disabled><br />
@@ -184,13 +185,13 @@ body {
 					Number :</label> <input type="tel" id="mobileNum" name="mobileNum"
 					placeholder="Mobile number" pattern="^\d{10}$" required> <em>Note:
 					Mobile number must be 10 digits</em><br /> <br /> <label>Balance
-					Amount :</label> <input type="text" name="balanceAmount"
+					Amount :</label> <input type="tel" name="balanceAmount"
 					placeholder="Balance Amount" pattern="[0-9.]{1,}" required>
-				<em>Note: Enter Balance amount in your account</em> <br /> <br />
+				<em>Note: Enter Balance amount in your account()</em> <br /> <br />
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
 				<div class="wrap">
-					<button type="submit" class="button">submit</button>
+					<button type="submit" class="button" id="submit" disabled>submit</button>
 				</div>
 				<%
 				String errorMsg = request.getParameter("errorMsg");
@@ -226,9 +227,12 @@ body {
 			let accountNumber=document.querySelector("#accountNumber").value;	
 			let url="AccountNumberServlet?bankName="+bankName+"&accountNumber="+accountNumber;
 			fetch(url).then(res=> res.json()).then(res=>{
-				let accNum = res;				
-				if(res!=null){				
-				document.querySelector("#MSG").value = accNum;
+				let accNum = res;	
+				if(res!=null){
+					if(res=="Account number validated successfully"){
+						document.querySelector("#submit").disabled=false;							
+					}
+				document.querySelector("#MSG").value = accNum;	
 				}
 				else{
 				alert("unable to validate account number");

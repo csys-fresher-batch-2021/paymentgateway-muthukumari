@@ -45,7 +45,7 @@ public class CustomerDAO {
 
 		finally {
 			// Release the connection
-			ConnectionUtil.close(connection, pst);
+			ConnectionUtil.close(pst, connection);
 		}
 	}
 
@@ -94,6 +94,7 @@ public class CustomerDAO {
 				customer.setAtmPinNumber(atmPinNumber);
 				customer.setMobileNumber(mobileNumber);
 				customerBankDetails.add(customer);
+				System.out.println(customer.getAccountNumber());
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new DBException("Sorry! Unable to get User details");

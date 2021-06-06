@@ -13,9 +13,9 @@ import in.muthukumari.exception.DBException;
 import in.muthukumari.util.ConnectionUtil;
 
 public class BankDAO {
-	
+
 	private BankDAO() {
-		//Default constructor
+		// Default constructor
 	}
 
 	static Set<String> bankNameList = new HashSet<>();
@@ -32,6 +32,7 @@ public class BankDAO {
 
 	/**
 	 * This method used to get the bank name list
+	 * 
 	 * @return
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
@@ -49,7 +50,7 @@ public class BankDAO {
 			// Step 4: Iterate the result
 			while (rs.next()) {
 				bankName = rs.getString("bankname");
-				bankNameList.add(bankName); //add the bank name list to the Set
+				bankNameList.add(bankName); // add the bank name list to the Set
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -64,6 +65,7 @@ public class BankDAO {
 
 	/**
 	 * This method used to get the branch and ifsc code list
+	 * 
 	 * @param bankName
 	 * @return
 	 * @throws ClassNotFoundException
@@ -71,6 +73,7 @@ public class BankDAO {
 	 */
 	public static Map<String, String> getBranchNameAndIfscList(String bankName)
 			throws ClassNotFoundException, SQLException {
+			branchAndIfscCodeList.clear(); //Clear the old Hash Map value
 
 		try {
 			// Step 1: Get Connection
@@ -82,7 +85,7 @@ public class BankDAO {
 			rs = pst.executeQuery();
 			// Step 4: Iterate the result
 			while (rs.next()) {
-				String branchName = rs.getString("branchname");
+				String branchName = rs.getString("branchname");				
 				String ifscCode = rs.getString("IFSCcode");
 				branchAndIfscCodeList.put(branchName, ifscCode);
 			}
@@ -92,7 +95,7 @@ public class BankDAO {
 
 		} finally {
 			// Step 5: Release the connection
-			ConnectionUtil.close(rs, pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 		return branchAndIfscCodeList;
 

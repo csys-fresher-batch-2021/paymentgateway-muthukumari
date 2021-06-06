@@ -16,16 +16,18 @@ public class CustomerDetailValidator {
 
 	public static boolean isUserNotRepeated(CustomerBankDetail customer) throws DBException {
 		// Declaration
-		boolean valid = false;
+		boolean valid = true;
 		// To get user details
 		List<CustomerBankDetail> customerDetail = CustomerDAO.getCustomrBankDetails();
-
+		
 		for (CustomerBankDetail customerBankDetail : customerDetail) {
-			if ((customerBankDetail.getAccountNumber()) != (customer.getAccountNumber())
-					&& ((customerBankDetail.getAtmNumber()) != (customer.getAtmNumber()))) {
-				valid = true;
+			System.out.println(customerBankDetail.getAccountNumber());
+			System.out.println(customer.getAccountNumber());
+			if ((customerBankDetail.getAccountNumber()) == (customer.getAccountNumber())
+					|| ((customerBankDetail.getAtmNumber()) == (customer.getAtmNumber()))) {
+				valid = false;
 			} else {
-				valid=false;}
+				valid=true;}
 		}
 		return valid;
 	}

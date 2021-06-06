@@ -56,7 +56,7 @@ public class ConnectionUtil {
 	 * @param connection
 	 * @param preparedStatement
 	 */
-	public static void close(Connection connection, PreparedStatement preparedStatement) {
+	public static void close(PreparedStatement preparedStatement, Connection connection) {
 		try {
 			if (preparedStatement != null) {
 				preparedStatement.close();
