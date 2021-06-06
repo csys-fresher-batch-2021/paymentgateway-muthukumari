@@ -93,8 +93,7 @@ public class CustomerDAO {
 				customer.setAtmNumber(atmNumber);
 				customer.setAtmPinNumber(atmPinNumber);
 				customer.setMobileNumber(mobileNumber);
-				customerBankDetails.add(customer);
-				System.out.println(customer.getAccountNumber());
+				customerBankDetails.add(customer);				
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new DBException("Sorry! Unable to get User details");

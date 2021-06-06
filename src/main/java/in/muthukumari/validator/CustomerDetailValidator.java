@@ -21,8 +21,6 @@ public class CustomerDetailValidator {
 		List<CustomerBankDetail> customerDetail = CustomerDAO.getCustomrBankDetails();
 		
 		for (CustomerBankDetail customerBankDetail : customerDetail) {
-			System.out.println(customerBankDetail.getAccountNumber());
-			System.out.println(customer.getAccountNumber());
 			if ((customerBankDetail.getAccountNumber()) == (customer.getAccountNumber())
 					|| ((customerBankDetail.getAtmNumber()) == (customer.getAtmNumber()))) {
 				valid = false;
