@@ -71,7 +71,7 @@ public class BankDAO {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public static Map<String, String> getBranchNameAndIfscList(String bankName)
+	public static  Map<String, String> getBranchNameAndIfscList(String bankName)
 			throws ClassNotFoundException, SQLException {
 			branchAndIfscCodeList.clear(); //Clear the old Hash Map value
 
@@ -98,6 +98,5 @@ public class BankDAO {
 			ConnectionUtil.close(pst, con);
 		}
 		return branchAndIfscCodeList;
-
 	}
 }

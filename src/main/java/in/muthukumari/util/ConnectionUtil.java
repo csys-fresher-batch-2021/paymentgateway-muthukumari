@@ -52,7 +52,7 @@ public class ConnectionUtil {
 	}
 
 	/**
-	 * This method used to close the connection
+	 * This method used to close the connection(connection,prepared stmt)
 	 * @param connection
 	 * @param preparedStatement
 	 */

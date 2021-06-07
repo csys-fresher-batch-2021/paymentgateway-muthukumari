@@ -24,6 +24,7 @@ public class AccountNumberServlet extends HttpServlet {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
+	 * This servlet used to get the account number and transfer the validation rsult to the jsp page
 	 * @return
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)

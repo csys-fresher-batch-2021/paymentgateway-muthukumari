@@ -196,7 +196,7 @@ caption {
 						<td><%=i%></td>
 						<td><%=bankNameList%></td>
 						<td><a
-							href="CustomerBankDetail.jsp?bankName=<%=bankNameList%>"
+							href="customerbankdetail.jsp?bankName=<%=bankNameList%>"
 							class="button">Create Account</a>
 					</tr>
 					<%

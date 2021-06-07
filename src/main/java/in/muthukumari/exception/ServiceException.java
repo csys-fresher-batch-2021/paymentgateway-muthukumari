@@ -8,9 +8,7 @@ public class ServiceException extends Exception {
 	 * 
 	 * @param message
 	 */
-
 	public ServiceException(String message) {
 		super(message);
 	}
-
 }

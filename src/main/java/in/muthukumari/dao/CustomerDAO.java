@@ -16,6 +16,7 @@ public class CustomerDAO {
 	private CustomerDAO() {
 		//Default constructor
 	}
+	
 	static Connection connection = null;
 	static PreparedStatement pst = null;
 

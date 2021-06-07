@@ -14,22 +14,36 @@ public class CustomerDetailValidator {
 		// Default Constructor
 	}
 
+	/**
+	 * This method used to check the user is already given or not
+	 * 
+	 * @param customer
+	 * @return
+	 * @throws DBException
+	 */
 	public static boolean isUserNotRepeated(CustomerBankDetail customer) throws DBException {
 		// Declaration
 		boolean valid = true;
 		// To get user details
 		List<CustomerBankDetail> customerDetail = CustomerDAO.getCustomrBankDetails();
-		
+
 		for (CustomerBankDetail customerBankDetail : customerDetail) {
 			if ((customerBankDetail.getAccountNumber()) == (customer.getAccountNumber())
 					|| ((customerBankDetail.getAtmNumber()) == (customer.getAtmNumber()))) {
 				valid = false;
 			} else {
-				valid=true;}
+				valid = true;
+			}
 		}
 		return valid;
 	}
 
+	/**
+	 * This method used to validate the name
+	 * 
+	 * @param userName
+	 * @return
+	 */
 	public static boolean isValidName(String userName) {
 		boolean isValid = false;
 		String regex = ".*[0-9@$%^=()./#&+-].*";
