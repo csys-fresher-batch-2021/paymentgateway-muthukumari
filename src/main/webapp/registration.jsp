@@ -74,7 +74,7 @@
 				let ifscCode = res;
 				if(res!=null){
 					if(res=="valid"){
-						document.getElementById("userNameMsg").innerHTML = "Paragraph changed!";
+						document.getElementById("userNameMsg").innerHTML = "Valid";
 					}
 				}
 		}</script>

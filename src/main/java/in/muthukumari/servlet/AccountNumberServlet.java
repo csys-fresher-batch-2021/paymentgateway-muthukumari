@@ -61,7 +61,7 @@ public class AccountNumberServlet extends HttpServlet {
 				logger.info(e.getMessage());
 			}
 		} else {
-			errorMessage = "Invalid Account Number";			
+			errorMessage ="Invalid Account Number";			
 			String json = gson.toJson(errorMessage);
 			try {
 				PrintWriter out = response.getWriter();

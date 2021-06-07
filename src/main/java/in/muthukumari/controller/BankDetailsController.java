@@ -2,7 +2,6 @@ package in.muthukumari.controller;
 
 import java.util.Set;
 import java.util.logging.Logger;
-import in.muthukumari.exception.InvalidException;
 import in.muthukumari.exception.ServiceException;
 import in.muthukumari.service.BankDetailService;
 
@@ -14,7 +13,6 @@ public class BankDetailsController {
 	 * This method used to get the branch name list of each bank
 	 * @param bankName
 	 * @return
-	 * @throws InvalidException 
 	 */
 	public Set<String> getBranchNameList(String bankName) {		
 		Set<String> branchNameList = null;
