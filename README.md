@@ -1,6 +1,7 @@
-# maven-web-project-template
-Feature 1:
+**###Online Payment Gateway###**
 
-List Of Banks
--->Add Bank List
--->Display Bank List
+Feature 2:
+
+Customer Registration:
+
+-->Customer Detail are Validated (Customer Name, Mobile Number, Mail id, Password, Username)
