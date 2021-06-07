@@ -1,13 +1,10 @@
 # maven-web-project-template
+
+#######ONLINE PAYMENT GATEWAY#######
+
 Feature 1:
 
-List Of Banks
--->Add Bank List
--->Display Bank List
+Customer Bank Detail:
+-->Add Customer Bank Detail (Bank Name Validated, Bank Branch Name Validated, Account Number Validated, ATM Card Number Validated, ATM Pin Number Validated, Mobile Number Validated)
+-->Display Customer Bank Detail
 
-
-Feature 2:
-
-Registration
--->Get customer Detail and validation 
--->Get Customr Bank Detail and validation
