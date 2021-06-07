@@ -10,8 +10,8 @@ _Customer Bank Detail:_
 -->Display Customer Bank Detail
 
 **Feature 2:**
- _
-_Customer Registration:
+
+_Customer Registration:_
 
 -->Customer Detail are Validated (Customer Name, Mobile Number, Mail id, Password, Username)
 
