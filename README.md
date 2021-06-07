@@ -16,3 +16,21 @@ Customer Registration:
 -->Customer Detail are Validated (Customer Name, Mobile Number, Mail id, Password, Username)
 
 -->Add Customer Detail to the DB
+
+Feature 3:
+
+Customer Login:
+
+-->Username and password validated
+
+-->Allow the user to the money transfer page
+
+Feature 4:
+  
+Money Transfer:
+
+-->Set the sender account 
+
+-->Get the Recipient account from sender
+
+-->Transfer Money(checking amount)
