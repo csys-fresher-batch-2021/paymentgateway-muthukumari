@@ -52,11 +52,11 @@ public class ConnectionUtil {
 	}
 
 	/**
-	 * This method used to close the connection
+	 * This method used to close the connection(connection,prepared stmt)
 	 * @param connection
 	 * @param preparedStatement
 	 */
-	public static void close(Connection connection, PreparedStatement preparedStatement) {
+	public static void close(PreparedStatement preparedStatement, Connection connection) {
 		try {
 			if (preparedStatement != null) {
 				preparedStatement.close();

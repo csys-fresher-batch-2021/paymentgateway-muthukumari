@@ -2,10 +2,6 @@ package in.muthukumari.model;
 
 public class CustomerBankDetail {
 
-	public CustomerBankDetail() {
-		// Default Constructor
-	}
-
 	// Declare variables for storing customer bank details
 	private String userName;
 	private String bankName;
@@ -126,7 +122,7 @@ public class CustomerBankDetail {
 	}
 
 	/**
-	 * This mthod used to get Atm number
+	 * This method used to get Atm number
 	 * 
 	 * @return
 	 */

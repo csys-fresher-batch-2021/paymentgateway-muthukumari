@@ -2,6 +2,7 @@ package in.muthukumari.service;
 
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Set;
 
 import in.muthukumari.dao.BankDAO;
 import in.muthukumari.exception.DBException;
@@ -27,20 +28,19 @@ public class BankDetailService {
 	 * @throws SQLException
 	 * @throws InvalidException
 	 */
-	public static String getIfscCode(String bankName, String branchName)
-			throws ClassNotFoundException, SQLException, InvalidException {
-
-		String ifscCode;
-		Map<String, String> branchAndIfscList = BankDAO.getBranchNameAndIfscList(bankName);
-
-		if (branchAndIfscList.containsKey(branchName)) {
-
-			ifscCode = branchAndIfscList.get(branchName); // get the ifsc code for the particular branch
-
-		} else {
-
-			throw new InvalidException("Invalid branch name");
+	public static String getIfscCode(String bankName, String branchName) throws ServiceException {
+		String ifscCode = null;
+		Map<String, String> branchAndIfscList;
+		try {
+			branchAndIfscList = BankDAO.getBranchNameAndIfscList(bankName);
+			if (branchAndIfscList.containsKey(branchName)) {
+				ifscCode = branchAndIfscList.get(branchName); // get the ifsc code for the particular branch
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			throw new ServiceException("Invalid branch name");
 		}
+
 		return ifscCode;
 	}
 
@@ -60,5 +60,25 @@ public class BankDetailService {
 		}
 
 		return isValidAccountNumber;
+	}
+	
+	/**
+	 * This method used to get the branch name list of each bank
+	 * @param bankName
+	 * @return
+	 * @throws ServiceException 
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public static Set<String> getBranchNameList(String bankName) throws ServiceException{
+		Set<String> branchNameList = null;
+		Map<String, String> branchAndIfscList = null;
+		try {
+			branchAndIfscList = BankDAO.getBranchNameAndIfscList(bankName);
+			branchNameList = branchAndIfscList.keySet(); //get branch name list only
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new ServiceException("Unable to get branch name list");
+		}		
+		return branchNameList;
 	}
 }

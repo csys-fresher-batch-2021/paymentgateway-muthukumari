@@ -44,6 +44,7 @@ button::before {
 	opacity: 0;
 	transition: all .3s ease-in-out 0s;
 }
+
 .button:hover, .button:focus {
 	color: #313133;
 	transform: translateY(-6px);
@@ -71,6 +72,7 @@ button:hover::after, button:focus::after {
 	animation: none;
 	display: none;
 }
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -99,24 +101,36 @@ body {
 }
 
 .form {
-	width: 800px;
-	height: 650px;
-	top:0px;
+	width: 1000px;
+	height: 580px;
+	top: 0px;
 	display: flex;
-	align-items: center;	
+	align-items: center;
 	flex-flow: column wrap;
 	background-color: #ecedee;
 	border-radius: 5px;
 	@media
-	(min-width:600px)
+	(
+	min-width
+	:600px)
 {
-	max-width:380px;
-}
-}
-@media ( min-width : 980px) and (max-width: 1400px) {
-	width:35%;
+	max-width
+	:
+	380px
+	;
+	
+
 }
 
+}
+@media ( min-width : 980px) and (max-width: 1400px) {
+	width
+	:
+	35
+	%;
+	
+
+}
 </style>
 <title>Customer Bank Detail</title>
 </head>
@@ -124,31 +138,30 @@ body {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<div class="pagewrap">
-			
-			
 			<form class="form" id="form" action="CustomerDetailServlet"
 				method="post">
 				<br />
 				<h2>Customer Bank Detail</h2>
-				
+
 				<label>Name :</label> <input type="text" name="name"
 					placeholder="Enter your name" pattern="[a-zA-Z\s.]{3,}" required
 					autofocus> <em>Note: Name must be valid doesn't
 					contains<br> number and special characters
 				</em><br />
-				<%		
+				<%
 				String bankName = request.getParameter("bankName");
 				String encodedName = org.owasp.encoder.Encode.forHtml(bankName);
 				%>
-				<label>Bank Name :</label> <input type="text" value="<%=encodedName%>"
-					name="bankName" id="bankName" readonly><br /> <label>Branch
-					Name :</label> <select id="branchName" name="branchName"
-					onchange="getIfscCode()" required>
+				<label>Bank Name :</label> <input type="text"
+					value="<%=encodedName%>" name="bankName" id="bankName" readonly><br />
+				<label>Branch Name :</label> <select id="branchName"
+					name="branchName" onchange="getIfscCode()" required>
 
 					<option disabled selected>--------SELECT--------</option>
 					<%
+					BankDetailsController bank=new BankDetailsController();
 					//Get the branch name list
-					Set<String> branchNameList = BankDetailsController.getBranchNameList(bankName);
+					Set<String> branchNameList = bank.getBranchNameList(bankName);
 					int i = 0;
 					for (String brachNames : branchNameList) {
 						i++;
@@ -163,34 +176,32 @@ body {
 				String ifsc = request.getParameter("ifsc");
 				String encodedIfsc = org.owasp.encoder.Encode.forHtml(ifsc);
 				%>
-				<input type="text" id="ifsc" name="ifsc" value="<%=encodedIfsc%>" readonly
-					required><br /> <label>Account Number :</label> <input
+				<input type="text" id="ifsc" name="ifsc" value="<%=encodedIfsc%>"
+					readonly required><br /> <label>Account Number :</label> <input
 					type="tel" id="accountNumber" pattern="^\d{5,}$"
-					onkeyup="accountNumberValidation()"
+					onkeyup="accountNumberValidation()" placeholder="Account Number"
 					title="Enter Valid Account Number" name="accNumber" required
-					autofocus><br />
-				<%
-				String infoMessage = request.getParameter("MSG");
-				String encodedInfoMsg = org.owasp.encoder.Encode.forHtml(infoMessage);
-				%>
-				<input id="MSG" style="color:red" value="<%=encodedInfoMsg%>" size="40" readonly disabled><br />
-				<br /> <br /> <br /> <label>ATM Card Number :</label> <input
-					type="tel" pattern="^\d{16}$" name="atmNum"
-					placeholder="ATM card number" required> <em>Note: ATM
-					card number must be 16 digits</em><br /> <br /> <label>ATM Pin
-					Number :</label> <input type="tel" pattern="^\d{4}$" name="atmPinNum"
-					placeholder="ATM pin number" required> <em>Note: ATM
-					pin number must be 4 digits</em><br /> <br /> <label>Mobile
-					Number :</label> <input type="tel" id="mobileNum" name="mobileNum"
-					placeholder="Mobile number" pattern="^\d{10}$" required> <em>Note:
-					Mobile number must be 10 digits</em><br /> <br /> <label>Balance
-					Amount :</label> <input type="text" name="balanceAmount"
-					placeholder="Balance Amount" pattern="[0-9.]{1,}" required>
-				<em>Note: Enter Balance amount in your account</em> <br /> <br />
-				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+					autofocus><br /> <span id="MSG"></span><br />
 				<br />
+				<label>ATM Card Number :</label> <input type="tel"
+					pattern="^\d{16}$" name="atmNum" placeholder="ATM card number"
+					required> <em>Note: ATM card number must be 16 digits</em><br />
+				<br /> <label>ATM Pin Number :</label> <input type="tel"
+					pattern="^\d{4}$" name="atmPinNum" placeholder="ATM pin number"
+					required> <em>Note: ATM pin number must be 4 digits</em><br />
+				<br /> <label>Mobile Number :</label> <input type="tel"
+					id="mobileNum" name="mobileNum" placeholder="Mobile number"
+					pattern="^\d{10}$" required> <em>Note: Mobile number
+					must be 10 digits</em><br /> <br /> <label>Balance Amount :</label> <input
+					type="tel" name="balanceAmount" placeholder="Balance Amount"
+					pattern="[0-9.]{1,}" required> <em>Note: Enter Balance
+					amount in your account</em> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br />
 				<div class="wrap">
-					<button type="submit" class="button">submit</button>
+					<button type="submit" class="button" id="submit" disabled>submit</button>
+					<em><br />
+					<br />If the account number<br /> is not validatd successfully,<br />
+						The button is not clickable</em>
 				</div>
 				<%
 				String errorMsg = request.getParameter("errorMsg");
@@ -203,6 +214,7 @@ body {
 		</div>
 
 		<script>
+		//This method used to get the ifsc code of the particular branch
 		function getIfscCode()
 		{
 			let bankName=document.querySelector("#bankName").value;
@@ -221,19 +233,32 @@ body {
 			});			
 			
 		}
+		//This method used to validate the account number
 		function accountNumberValidation(){
 			let bankName=document.querySelector("#bankName").value;
-			let accountNumber=document.querySelector("#accountNumber").value;	
+			let accountNumber=document.getElementById("accountNumber").value;
+			let goodColor="#66cc66";
+			let badColor="#ff6666";
 			let url="AccountNumberServlet?bankName="+bankName+"&accountNumber="+accountNumber;
 			fetch(url).then(res=> res.json()).then(res=>{
-				let accNum = res;				
-				if(res!=null){				
-				document.querySelector("#MSG").value = accNum;
+				let accNum = res;	
+				if(res!=null){
+					if(res=="Account number validated successfully"){
+						document.getElementById("accountNumber").style.backgroundColor=goodColor;
+						document.getElementById("MSG").style.color=goodColor;
+						document.getElementById("MSG").innerHTML= accNum;
+						document.querySelector("#submit").disabled=false;						
+					}
+					else{
+						document.getElementById("accountNumber").style.backgroundColor=badColor;
+						document.getElementById("MSG").style.color=badColor;
+						document.getElementById("MSG").innerHTML = accNum;
+					}
 				}
 				else{
 				alert("unable to validate account number");
 				}
-				});					
+			});					
 		}	
 		
 		</script>

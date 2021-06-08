@@ -1,12 +1,11 @@
 package in.muthukumari.exception;
 
 public class DBException extends Exception{
+	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * This method is used to define DB exceptions
+	 * This method is used to define DB exception
 	 */
-	private static final long serialVersionUID = 1L;
-
 	public DBException(String message) {
 		super(message);
 	}

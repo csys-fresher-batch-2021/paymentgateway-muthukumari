@@ -21,6 +21,8 @@ public class CustomerDetailServlet extends HttpServlet {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
+	 * This servlet used to get the customer bank detail and
+	 * transfer it to the display page
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -75,11 +77,11 @@ public class CustomerDetailServlet extends HttpServlet {
 				session.setAttribute("atmPinNum", atmPinNumber);
 				session.setAttribute("mobileNum", mobileNumber);
 				session.setAttribute("balanceAmount", balanceAmount);
-				response.sendRedirect("DisplayCustomerBankDetail.jsp");
+				response.sendRedirect("displaycustomerbankdetail.jsp");
 				
 			} else {
 				String errorMsg = "Invalid Data";
-				response.sendRedirect("CustomerBankDetail.jsp?errorMsg=" + errorMsg);
+				response.sendRedirect("customerbankdetail.jsp?errorMsg=" + errorMsg);
 			}
 		} catch (IOException | ServiceException e) {
 

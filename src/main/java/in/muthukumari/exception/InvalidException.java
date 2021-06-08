@@ -1,7 +1,6 @@
 package in.muthukumari.exception;
 
-public class InvalidException extends Exception {
-	
+public class InvalidException extends Exception {	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -9,7 +8,6 @@ public class InvalidException extends Exception {
 	 * 
 	 * @param message
 	 */
-
 	public InvalidException(String message) {
 		super(message);
 	}

@@ -9,11 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
-
 import in.muthukumari.controller.BankDetailsController;
-import in.muthukumari.exception.InvalidException;
 
 /**
  * Servlet implementation class getIfscservlet
@@ -22,9 +19,9 @@ import in.muthukumari.exception.InvalidException;
 public class GetIfscServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger =  Logger.getLogger(this.getClass().getName());
-	
 
 	/**
+	 * This servlet used to get the ifsc code and transfer it to the jsp page
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -42,7 +39,7 @@ public class GetIfscServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(json);
 			out.flush();
-		} catch (InvalidException | IOException e) {
+		} catch (IOException e) {
 			logger.info(e.getMessage());
 		}
 
