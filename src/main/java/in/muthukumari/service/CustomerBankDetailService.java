@@ -1,11 +1,11 @@
 package in.muthukumari.service;
 
 import in.muthukumari.dao.CustomerDAO;
-import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.exception.InvalidException;
 import in.muthukumari.exception.NumberInvalidException;
 import in.muthukumari.exception.ServiceException;
+import in.muthukumari.exception.ValidatorException;
 import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.validator.CustomerDetailValidator;
 
@@ -27,7 +27,7 @@ public class CustomerBankDetailService {
 				CustomerDAO.addCustomerBankDetail(customer);
 				isAdded = true;
 			} 
-		} catch (InvalidException | CustomerRepeatedException | NumberInvalidException | DBException e) {
+		} catch (InvalidException | ValidatorException | NumberInvalidException | DBException e) {
 			
 			throw new ServiceException("Unable to add customer");
 		}

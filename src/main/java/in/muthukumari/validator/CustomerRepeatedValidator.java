@@ -1,8 +1,8 @@
 package in.muthukumari.validator;
 
 import in.muthukumari.dao.ExistDAO;
-import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.DBException;
+import in.muthukumari.exception.ValidatorException;
 
 public class CustomerRepeatedValidator {
 
@@ -15,9 +15,9 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws CustomerRepeatedException
+	 * @throws ValidatorException 
 	 */
-	public static boolean isRepeatedAccountNumber(long accountNum) throws CustomerRepeatedException {
+	public static boolean isRepeatedAccountNumber(long accountNum) throws ValidatorException {
 		boolean isRepeatedAccNum = true;
 		try {
 			boolean isExists = ExistDAO.isRepeatedAccountNumber(accountNum);
@@ -25,7 +25,7 @@ public class CustomerRepeatedValidator {
 				isRepeatedAccNum = false;
 			}
 		} catch (DBException e) {
-			throw new CustomerRepeatedException("The account detail is already given in the DB");
+			throw new ValidatorException("The account detail is already given in the DB");
 		}
 		return isRepeatedAccNum;
 	}
@@ -35,9 +35,9 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws CustomerRepeatedException
+	 * @throws ValidatorException 
 	 */
-	public static boolean isRepeatedAtmNumber(long atmNum) throws CustomerRepeatedException {
+	public static boolean isRepeatedAtmNumber(long atmNum) throws ValidatorException{
 		boolean isRepeatedAtmNum = true;
 		try {
 			boolean isExists = ExistDAO.isRepeatedAtmNumber(atmNum);
@@ -45,7 +45,7 @@ public class CustomerRepeatedValidator {
 				isRepeatedAtmNum = false;
 			}
 		} catch (DBException e) {
-			throw new CustomerRepeatedException("The atm number is already given in the DB");
+			throw new ValidatorException("The atm number is already given in the DB");
 		}
 		return isRepeatedAtmNum;
 	}
@@ -55,9 +55,9 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param userName
 	 * @return
-	 * @throws CustomerRepeatedException
+	 * @throws ValidatorException 
 	 */
-	public static boolean isRepeatedUserName(String userName) throws CustomerRepeatedException {
+	public static boolean isRepeatedUserName(String userName) throws ValidatorException {
 		boolean isRepeatedUser = false;
 		try {
 			boolean isValid = CustomerDetailValidator.isValidUserName(userName);
@@ -68,7 +68,7 @@ public class CustomerRepeatedValidator {
 				}
 			}
 		} catch (DBException e) {
-			throw new CustomerRepeatedException("The user name is already given in the DB");
+			throw new ValidatorException("The user name is already given in the DB");
 		}
 		return isRepeatedUser;
 	}
@@ -78,9 +78,9 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param email
 	 * @return
-	 * @throws CustomerRepeatedException
+	 * @throws ValidatorException 
 	 */
-	public static boolean isRepeatedEmail(String email) throws CustomerRepeatedException {
+	public static boolean isRepeatedEmail(String email) throws ValidatorException {
 		boolean isRepeatedEmail = true;
 		try {
 			boolean isExists = ExistDAO.isExistEmail(email);
@@ -89,7 +89,7 @@ public class CustomerRepeatedValidator {
 			}
 
 		} catch (DBException e) {
-			throw new CustomerRepeatedException("The email id is already given");
+			throw new ValidatorException("The email id is already given");
 		}
 		return isRepeatedEmail;
 	}
@@ -99,9 +99,9 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param userName
 	 * @return
-	 * @throws CustomerRepeatedException
+	 * @throws ValidatorException 
 	 */
-	public static boolean isUserNameExists(String userName) throws CustomerRepeatedException {
+	public static boolean isUserNameExists(String userName) throws ValidatorException  {
 		boolean isRepeatedUser = false;
 		boolean isExists = false;
 		try {
@@ -110,7 +110,7 @@ public class CustomerRepeatedValidator {
 				isRepeatedUser = true;
 			}
 		} catch (DBException e) {
-			throw new CustomerRepeatedException("The user name is already given in the DB");
+			throw new ValidatorException("The user name is already given in the DB");
 		}
 		return isRepeatedUser;
 	}

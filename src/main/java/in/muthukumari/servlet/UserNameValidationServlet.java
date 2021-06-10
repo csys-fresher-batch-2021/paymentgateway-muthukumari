@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
-import in.muthukumari.exception.CustomerRepeatedException;
+import in.muthukumari.exception.ValidatorException;
 import in.muthukumari.validator.CustomerRepeatedValidator;
 
 /**
@@ -43,7 +43,7 @@ public class UserNameValidationServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(json);
 			out.flush();
-		} catch (IOException | CustomerRepeatedException e) {
+		} catch (IOException | ValidatorException e) {
 			logger.info(e.getMessage());
 		}		
 	}

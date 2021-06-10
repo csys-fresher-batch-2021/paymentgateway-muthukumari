@@ -151,7 +151,7 @@ public class ExistDAO {
 		}
 		return isRepeated;
 	}
-	
+
 	/**
 	 * This method used to chck if the atm number is exists or not
 	 * 

@@ -92,7 +92,5 @@ public class CustomerDetailServlet extends HttpServlet {
 
 			logger.info(e.getMessage());
 		}
-
 	}
-
 }

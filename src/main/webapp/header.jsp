@@ -19,12 +19,8 @@
 					href="banknamelist.jsp">Banks</a>
 			</ul>
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-				<% if(loggedInUserName ==null){ %>
-				<li class="nav-item active"><a class="nav-link"
-					href="login.jsp">Login</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="registration.jsp">Register</a></li>
-				<% } %>
 			</ul>
 		</div>
 	</nav>

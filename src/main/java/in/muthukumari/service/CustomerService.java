@@ -3,9 +3,9 @@ package in.muthukumari.service;
 import java.util.ArrayList;
 import java.util.List;
 import in.muthukumari.dao.CustomerDAO;
-import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.exception.ServiceException;
+import in.muthukumari.exception.ValidatorException;
 import in.muthukumari.model.Customer;
 import in.muthukumari.validator.BankDetailValidator;
 import in.muthukumari.validator.CustomerDetailValidator;
@@ -42,7 +42,7 @@ public class CustomerService {
 		try {
 			isRepeatedUserName = CustomerRepeatedValidator.isRepeatedUserName(customer.getUserName());
 			isRepeatedEmail = CustomerRepeatedValidator.isRepeatedEmail(customer.getEmail());
-		} catch (CustomerRepeatedException e1) {
+		} catch (ValidatorException e1) {
 			throw new ServiceException("The user name is already given");
 		}
 		errorList.add(isRepeatedUserName);
@@ -60,4 +60,5 @@ public class CustomerService {
 		}
 		return isAdded;
 	}
+
 }

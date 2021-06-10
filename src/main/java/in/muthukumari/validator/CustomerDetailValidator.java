@@ -2,9 +2,9 @@ package in.muthukumari.validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import in.muthukumari.exception.CustomerRepeatedException;
 import in.muthukumari.exception.InvalidException;
 import in.muthukumari.exception.NumberInvalidException;
+import in.muthukumari.exception.ValidatorException;
 import in.muthukumari.model.CustomerBankDetail;
 
 public class CustomerDetailValidator {
@@ -76,7 +76,7 @@ public class CustomerDetailValidator {
 	 * @throws NumberInvalidException
 	 */
 	public static boolean isValidCustomer(CustomerBankDetail customer)
-			throws InvalidException, CustomerRepeatedException, NumberInvalidException {
+			throws InvalidException, ValidatorException, NumberInvalidException {
 		boolean isValidCustomer = true;
 		List<String> errorList = new ArrayList<>();
 		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer.getAccountNumber(),
