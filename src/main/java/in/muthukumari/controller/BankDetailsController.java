@@ -35,11 +35,9 @@ public class BankDetailsController {
 		String ifscCode = null;
 		try {
 			ifscCode = BankDetailService.getIfscCode(bankName, branchName);
-		} catch (ServiceException e) {
-			
+		} catch (ServiceException e) {			
 			logger.info(e.getMessage());
 		}
 		return ifscCode;
 	}
-
 }

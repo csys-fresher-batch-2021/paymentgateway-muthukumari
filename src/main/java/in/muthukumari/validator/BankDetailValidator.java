@@ -1,11 +1,12 @@
 package in.muthukumari.validator;
 
-import java.sql.SQLException;
 import java.util.Map;
 import java.util.Set;
-import in.muthukumari.constants.AccountNumberLength;
+import in.muthukumari.dao.BankRulesDAO;
 import in.muthukumari.dao.BankDAO;
 import in.muthukumari.exception.DBException;
+import in.muthukumari.exception.InvalidException;
+import in.muthukumari.exception.NumberInvalidException;
 import in.muthukumari.model.CustomerBankDetail;
 
 public class BankDetailValidator {
@@ -19,24 +20,26 @@ public class BankDetailValidator {
 	/**
 	 * This method validate the account number
 	 * 
-	 * @param customer
+	 * @param accountNum
 	 * @return
-	 * @throws ClassNotFoundException 
-	 * @throws DBException
+	 * @throws NumberInvalidException
 	 */
-	public static boolean isValidAccountNumber(CustomerBankDetail customer) throws ClassNotFoundException  {
+	public static boolean isValidAccountNumber(long accountNum,String bankName) throws NumberInvalidException {
 
 		boolean isValidAccountNumber = false;
-		String accountNumberStr = Long.toString(customer.getAccountNumber());
+		String accountNumberStr = Long.toString(accountNum);
 		int lengthOfAccountNumberStr = accountNumberStr.length();
-		Map<String, Integer> bankAndAccountNumberLengthList = AccountNumberLength.getAccountNumberLength();
-		if (bankAndAccountNumberLengthList.containsKey(customer.getBankName())) {
-			int accountNumberLength = bankAndAccountNumberLengthList.get(customer.getBankName());
-			if (accountNumberLength == lengthOfAccountNumberStr &&  accountNumberStr.matches(regex)) {
-				isValidAccountNumber = true;
+		Map<String, Integer> bankAndAccountNumberLengthList = null;
+		try {
+			bankAndAccountNumberLengthList = BankRulesDAO.getAccountNumberLength();
+			if (bankAndAccountNumberLengthList.containsKey(bankName)) {
+				int accountNumberLength = bankAndAccountNumberLengthList.get(bankName);
+				if (accountNumberLength == lengthOfAccountNumberStr && accountNumberStr.matches(regex)) {
+					isValidAccountNumber = true;
+				}
 			}
-		} else {
-			throw new ClassNotFoundException("Bank Name Not Exists");
+		} catch (DBException e) {
+			throw new NumberInvalidException("Account number length not valid");
 		}
 		return isValidAccountNumber;
 	}
@@ -46,16 +49,18 @@ public class BankDetailValidator {
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 * @throws DBException
+	 * @throws InvalidException
 	 */
-	public static boolean isValidBank(CustomerBankDetail customer)
-			throws ClassNotFoundException, SQLException, DBException {
-		Set<String> bankNameList = BankDAO.getBankNameList();
+	public static boolean isValidBank(CustomerBankDetail customer) throws InvalidException {
+		Set<String> bankNameList = null;
 		boolean isValid = false;
-		if (bankNameList.contains(customer.getBankName())) {
-			isValid = true;
+		try {
+			bankNameList = BankDAO.getBankNameList();
+			if (bankNameList.contains(customer.getBankName())) {
+				isValid = true;
+			}
+		} catch (DBException e) {
+			throw new InvalidException(e.getMessage());
 		}
 		return isValid;
 	}
@@ -92,15 +97,16 @@ public class BankDetailValidator {
 	}
 
 	/**
-	 * Thismethod used to validate the mobile number
+	 * This method used to validate the mobile number
 	 * 
 	 * @param customer
 	 * @return
 	 */
-	public static boolean isValidMobileNumber(CustomerBankDetail customer) {
+	public static boolean isValidMobileNumber(long mobilNo) {
 		boolean isValidNum = false;
-		String mobileNumStr = Long.toString(customer.getMobileNumber());
-		if (mobileNumStr.length() == 10 && mobileNumStr.charAt(0) != '0' && mobileNumStr.matches(regex)) {
+		String mobileNumStr = Long.toString(mobilNo);
+		String regex1="^[6-9]+[0-9]{9}";
+		if (mobileNumStr.matches(regex1)) {
 			isValidNum = true;
 		}
 		return isValidNum;
@@ -111,20 +117,25 @@ public class BankDetailValidator {
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws InvalidException
 	 */
-	public static boolean isValidIfscCode(CustomerBankDetail customer) throws ClassNotFoundException, SQLException {
+	public static boolean isValidIfscCode(CustomerBankDetail customer) throws InvalidException {
 		boolean isValidIfsc = false;
-		Map<String, String> branchAndIfscList = BankDAO.getBranchNameAndIfscList(customer.getBankName());
-		if (branchAndIfscList.containsKey(customer.getBranchName())) {
-			String ifsc = branchAndIfscList.get(customer.getBranchName());
-			if (ifsc.equals(customer.getIfscCode())) {
-				isValidIfsc = true;
-			} else {
-				isValidIfsc = false;
+		Map<String, String> branchAndIfscList = null;
+		try {
+			branchAndIfscList = BankDAO.getBranchNameAndIfscList(customer.getBankName());
+			if (branchAndIfscList.containsKey(customer.getBranchName())) {
+				String ifsc = branchAndIfscList.get(customer.getBranchName());
+				if (ifsc.equals(customer.getIfscCode())) {
+					isValidIfsc = true;
+				} else {
+					isValidIfsc = false;
+				}
 			}
+		} catch (DBException e) {
+			throw new InvalidException("Unable to validate the ifsc code");
 		}
+
 		return isValidIfsc;
 	}
 
@@ -133,15 +144,20 @@ public class BankDetailValidator {
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws InvalidException
 	 */
-	public static boolean isValidBranchName(CustomerBankDetail customer) throws ClassNotFoundException, SQLException {
+	public static boolean isValidBranchName(CustomerBankDetail customer) throws InvalidException {
 		boolean isValidIfsc = false;
-		Map<String, String> branchAndIfscList = BankDAO.getBranchNameAndIfscList(customer.getBankName());
-		if (branchAndIfscList.containsKey(customer.getBranchName())) {
-			isValidIfsc = true;
+		Map<String, String> branchAndIfscList = null;
+		try {
+			branchAndIfscList = BankDAO.getBranchNameAndIfscList(customer.getBankName());
+			if (branchAndIfscList.containsKey(customer.getBranchName())) {
+				isValidIfsc = true;
+			}
+		} catch (DBException e) {
+			throw new InvalidException("Unable to validate the branch name");
 		}
+
 		return isValidIfsc;
 	}
 

@@ -11,7 +11,7 @@
 	<main class="container-fluid">
 		<h2><%out.println("&#129321"); %>Account Created successfully!</h2>
 		<table>
-			<caption>Customer bank Detail</caption>
+			<caption>**Customer Bank Detail**</caption>
 			<thead>
 				<tr>
 					<th scope="col">Customer Bank Detail</th>

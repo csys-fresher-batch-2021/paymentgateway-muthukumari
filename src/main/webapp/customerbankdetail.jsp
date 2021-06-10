@@ -110,26 +110,14 @@ body {
 	background-color: #ecedee;
 	border-radius: 5px;
 	@media
-	(
-	min-width
-	:600px)
+	(min-width:600px)
 {
-	max-width
-	:
-	380px
-	;
-	
-
+	max-width:380px;
 }
 
 }
 @media ( min-width : 980px) and (max-width: 1400px) {
-	width
-	:
-	35
-	%;
-	
-
+	width:35%;
 }
 </style>
 <title>Customer Bank Detail</title>
@@ -142,9 +130,8 @@ body {
 				method="post">
 				<br />
 				<h2>Customer Bank Detail</h2>
-
 				<label>Name :</label> <input type="text" name="name"
-					placeholder="Enter your name" pattern="[a-zA-Z\s.]{3,}" required
+					placeholder="Enter your name" pattern="^[a-zA-Z\s.]{3,}$" required
 					autofocus> <em>Note: Name must be valid doesn't
 					contains<br> number and special characters
 				</em><br />
@@ -181,33 +168,32 @@ body {
 					type="tel" id="accountNumber" pattern="^\d{5,}$"
 					onkeyup="accountNumberValidation()" placeholder="Account Number"
 					title="Enter Valid Account Number" name="accNumber" required
-					autofocus><br /> <span id="MSG"></span><br />
+					autofocus><br /> <span id="MSG"></span><br /> <br /> <label>ATM
+					Card Number :</label> <input type="tel" pattern="^\d{16}$" name="atmNum"
+					placeholder="ATM card number" required> <em>Note: ATM
+					card number must be 16 digits</em><br /> <br /> <label>ATM Pin
+					Number :</label> <input type="tel" pattern="^\d{4}$" name="atmPinNum"
+					placeholder="ATM pin number" required> <em>Note: ATM
+					pin number must be 4 digits</em><br /> <br /> <label>Mobile
+					Number :</label> <input type="tel" id="mobileNum" name="mobileNum"
+					placeholder="Mobile number" pattern="^\d{10}$" required> <em>Note:
+					Mobile number must be 10 digits</em><br /> <br /> <label>Balance
+					Amount :</label> <input type="tel" name="balanceAmount"
+					placeholder="Balance Amount" pattern="[0-9.]{1,}" required>
+				<em>Note: Enter Balance amount in your account</em> <br /> <br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
-				<label>ATM Card Number :</label> <input type="tel"
-					pattern="^\d{16}$" name="atmNum" placeholder="ATM card number"
-					required> <em>Note: ATM card number must be 16 digits</em><br />
-				<br /> <label>ATM Pin Number :</label> <input type="tel"
-					pattern="^\d{4}$" name="atmPinNum" placeholder="ATM pin number"
-					required> <em>Note: ATM pin number must be 4 digits</em><br />
-				<br /> <label>Mobile Number :</label> <input type="tel"
-					id="mobileNum" name="mobileNum" placeholder="Mobile number"
-					pattern="^\d{10}$" required> <em>Note: Mobile number
-					must be 10 digits</em><br /> <br /> <label>Balance Amount :</label> <input
-					type="tel" name="balanceAmount" placeholder="Balance Amount"
-					pattern="[0-9.]{1,}" required> <em>Note: Enter Balance
-					amount in your account</em> <br /> <br /> <br /> <br /> <br /> <br />
-				<br /> <br /> <br /> <br /> <br /> <br />
-				<div class="wrap">
-					<button type="submit" class="button" id="submit" disabled>submit</button>
-					<em><br />
-					<br />If the account number<br /> is not validatd successfully,<br />
-						The button is not clickable</em>
+				<div class="wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="button" id="submit" disabled>submit</button><br/><br/>
+					<p style="text-align:center">If the account number<br/> is not
+						validated successfully,<br/>The button is not clickable</p>
 				</div>
 				<%
 				String errorMsg = request.getParameter("errorMsg");
 				String encodedErrorMsg = org.owasp.encoder.Encode.forHtml(errorMsg);
 				if (errorMsg != null) {
-					out.println("<br/><p style='font-size:25px'>&#128542" + encodedErrorMsg);
+					out.println("<br/><p style='font-size:25px'>&#128542"
+					+ encodedErrorMsg);
 				}
 				%>
 			</form>
@@ -219,11 +205,9 @@ body {
 		{
 			let bankName=document.querySelector("#bankName").value;
 			let branchName=document.querySelector("#branchName").value;
-			alert(branchName);
 			let url="getIfscServlet?bankName="+ bankName+"&branchName="+branchName;
 			fetch(url).then(res=> res.json()).then(res=>{
 			let ifscCode = res;
-			alert(res);
 			if(res!=null){
 			document.querySelector("#ifsc").value = ifscCode;
 			}
@@ -240,19 +224,19 @@ body {
 			let goodColor="#66cc66";
 			let badColor="#ff6666";
 			let url="AccountNumberServlet?bankName="+bankName+"&accountNumber="+accountNumber;
-			fetch(url).then(res=> res.json()).then(res=>{
-				let accNum = res;	
+			fetch(url).then(res=> res.json()).then(res=>{	
 				if(res!=null){
-					if(res=="Account number validated successfully"){
+					if(res==true){
 						document.getElementById("accountNumber").style.backgroundColor=goodColor;
 						document.getElementById("MSG").style.color=goodColor;
-						document.getElementById("MSG").innerHTML= accNum;
+						document.getElementById("MSG").innerHTML="Account Number validated Successfully";
 						document.querySelector("#submit").disabled=false;						
 					}
 					else{
 						document.getElementById("accountNumber").style.backgroundColor=badColor;
 						document.getElementById("MSG").style.color=badColor;
-						document.getElementById("MSG").innerHTML = accNum;
+						document.getElementById("MSG").innerHTML = "Invalid Account Number";
+						document.querySelector("#submit").disabled=true;
 					}
 				}
 				else{
@@ -260,7 +244,11 @@ body {
 				}
 			});					
 		}	
-		
+		function preventBack(){
+			window.history.forward();
+		}
+		setTimeout("preventBack()",0);
+		window.onunload=function(){null};
 		</script>
 	</main>
 </body>

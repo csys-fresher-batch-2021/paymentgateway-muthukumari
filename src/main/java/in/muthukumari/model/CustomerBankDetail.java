@@ -1,5 +1,8 @@
 package in.muthukumari.model;
 
+import lombok.ToString;
+
+@ToString
 public class CustomerBankDetail {
 
 	// Declare variables for storing customer bank details
@@ -23,7 +26,7 @@ public class CustomerBankDetail {
 	}
 
 	/**
-	 * This method used to set the username
+	 * This method used to set the user name
 	 * 
 	 * @param username
 	 */
@@ -122,7 +125,7 @@ public class CustomerBankDetail {
 	}
 
 	/**
-	 * This method used to get Atm number
+	 * This method used to get atm number
 	 * 
 	 * @return
 	 */
@@ -140,7 +143,7 @@ public class CustomerBankDetail {
 	}
 
 	/**
-	 * This method used to get atm pin number
+	 * This method used to get the atm pin number
 	 * 
 	 * @return
 	 */
@@ -173,14 +176,6 @@ public class CustomerBankDetail {
 	 */
 	public void setMobileNumber(long mobileNumber) {
 		this.mobileNumber = mobileNumber;
-	}
-
-	@Override
-	public String toString() {
-		return "CustomerBankDetail [userName=" + userName + ", bankName=" + bankName + ", branchName=" + branchName
-				+ ", ifscCode=" + ifscCode + ", accountNumber=" + accountNumber + ", atmNumber=" + atmNumber
-				+ ", atmPinNumber=" + atmPinNumber + ", mobileNumber=" + mobileNumber + ", balanceAmount="
-				+ balanceAmount + "]";
 	}
 
 }

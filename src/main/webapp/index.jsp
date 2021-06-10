@@ -13,7 +13,13 @@ h1 {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-
+		<%
+		String infoMsg = request.getParameter("infoMsg");
+		String infoStr= org.owasp.encoder.Encode.forHtml(infoMsg);
+		if (infoStr != null) {
+			out.println("<p><font style=color:green>" + infoStr + "</font>");
+		}
+		%>
 		<br /> <br /> <br /> <br /> <br /> <br />
 		<p style="text-align: center;">
 			<img
