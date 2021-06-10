@@ -23,7 +23,7 @@ public class CustomerDetailTest {
 	 */
 	@Test
 	public void testcase2() {
-		String email = "a";
+		String email = "aaaa";
 		boolean isValid = CustomerDetailValidator.isValidEmail(email);
 		assertFalse(isValid);
 	}

@@ -136,7 +136,7 @@ public class CustomerBankDetailTest {
 	 */
 	@Test
 	public void testcase12() {
-		customer.setMobileNumber(900000000000L);		
+		customer.setMobileNumber(90000L);		
 		boolean isValidMobileNumber = BankDetailValidator.isValidMobileNumber(customer.getMobileNumber());
 		assertFalse(isValidMobileNumber);
 	}
