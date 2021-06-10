@@ -21,8 +21,8 @@ public class CustomerDetailValidator {
 	 */
 	public static boolean isValidName(String userName) {
 		boolean isValid = false;
-		String regex = ".*[0-9@$%^=()./#&+-].*";
-		if (userName.length() > 2 && (!userName.matches(regex))) {
+		String regex = "^[a-zA-Z]";
+		if (userName.length() > 2 && (userName.matches(regex))) {
 			isValid = true;
 		}
 		return isValid;
@@ -34,7 +34,7 @@ public class CustomerDetailValidator {
 	 */
 	public static boolean isValidEmail(String email) {
 		boolean isValid = false;
-		String regex = ".*[A-Za-z0-9+_.-]+@(.+).*";
+		String regex = "^[A-Za-z0-9+_.-]+@(.+)";
 		if ((email.matches(regex))) {
 			isValid = true;
 		}
