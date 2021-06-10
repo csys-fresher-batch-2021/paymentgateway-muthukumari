@@ -15,8 +15,9 @@ h1 {
 	<main class="container-fluid">
 		<%
 		String infoMsg = request.getParameter("infoMsg");
-		if (infoMsg != null) {
-			out.println("<p><font style=color:green>" + infoMsg + "</font>");
+		String infoStr= org.owasp.encoder.Encode.forHtml(infoMsg);
+		if (infoStr != null) {
+			out.println("<p><font style=color:green>" + infoStr + "</font>");
 		}
 		%>
 		<br /> <br /> <br /> <br /> <br /> <br />

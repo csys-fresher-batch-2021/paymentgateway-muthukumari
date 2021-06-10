@@ -32,7 +32,6 @@ public class BankNameListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		try {
 			Set<String> bankNameList = BankDetailService.getBankNameList();
-			System.out.println(bankNameList);
 			Gson gson = new Gson();
 			String json = gson.toJson(bankNameList);
 			PrintWriter out = response.getWriter();

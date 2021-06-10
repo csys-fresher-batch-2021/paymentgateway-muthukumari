@@ -11,9 +11,13 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<form action="RegistrationServlet" method="post">
-			<%String errMsg=request.getParameter("errMsg");
-		if(errMsg!=null){
-		out.println("<p><font style=color:red>"+errMsg+"</font>");}%>
+			<%
+			String errMsg = request.getParameter("errMsg");
+			String errStr = org.owasp.encoder.Encode.forHtml(errMsg);
+			if (errStr != null) {
+				out.println("<p><font style=color:red>" + errStr + "</font>");
+			}
+			%>
 			<article class="card-body mx-auto" style="max-width: 500px;">
 				<div class="form-group">
 					<h3>Registration Page</h3>
