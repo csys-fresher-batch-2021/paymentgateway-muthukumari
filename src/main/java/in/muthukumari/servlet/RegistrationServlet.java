@@ -1,6 +1,8 @@
 package in.muthukumari.servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ import in.muthukumari.service.CustomerService;
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -30,7 +33,7 @@ public class RegistrationServlet extends HttpServlet {
 		try {
 			mobileNo = Long.parseLong(mobileNoStr);
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -54,7 +57,7 @@ public class RegistrationServlet extends HttpServlet {
 				response.sendRedirect("registration.jsp?errMsg=" + errMsg);
 			}
 		} catch (IOException | ServiceException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 	}
 

@@ -3,6 +3,7 @@ package in.muthukumari.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ import in.muthukumari.service.BankDetailService;
 @WebServlet("/BankNameListServlet")
 public class BankNameListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	final Logger logger = Logger.getLogger(this.getClass().getName());
 	/**
 	 * This servlet used to get the bank name list
 	 * 
@@ -38,7 +39,7 @@ public class BankNameListServlet extends HttpServlet {
 			out.print(json);
 			out.flush();
 		} catch (ServiceException | IOException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 	}
 }

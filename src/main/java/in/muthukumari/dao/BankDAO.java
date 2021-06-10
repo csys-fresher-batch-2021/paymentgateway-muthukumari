@@ -46,7 +46,6 @@ public class BankDAO {
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Unable to display bank name list");
 		} finally {
 			// Step 5: Release the connection

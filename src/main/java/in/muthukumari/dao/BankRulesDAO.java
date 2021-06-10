@@ -44,7 +44,6 @@ public class BankRulesDAO {
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Unable to display bank name list and Account Number length");
 		} finally {
 			// Step 5: Release the connection

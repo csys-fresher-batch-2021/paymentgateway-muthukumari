@@ -11,7 +11,7 @@ import in.muthukumari.model.CustomerBankDetail;
 
 public class BankDetailValidator {
 
-	static String regex = ".*[0-9].*";// Declare regex for number
+	static String regex = "[0-9]*";// Declare regex for number
 
 	private BankDetailValidator() {
 		// Default constructor
@@ -105,7 +105,7 @@ public class BankDetailValidator {
 	public static boolean isValidMobileNumber(long mobilNo) {
 		boolean isValidNum = false;
 		String mobileNumStr = Long.toString(mobilNo);
-		String regex1="^([6-9]{1})+([0-9]{9})+$";
+		String regex1="([6-9]{1})+([0-9]{9})*";
 		if (mobileNumStr.matches(regex1)) {
 			isValidNum = true;
 		}
