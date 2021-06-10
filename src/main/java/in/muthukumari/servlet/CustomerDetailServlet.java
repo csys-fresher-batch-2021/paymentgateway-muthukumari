@@ -21,22 +21,27 @@ public class CustomerDetailServlet extends HttpServlet {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
-	 * This servlet used to get the customer bank detail and
-	 * transfer it to the display page
+	 * This servlet used to get the customer bank detail and transfer it to the
+	 * display page
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException{
-		HttpSession session=request.getSession();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		HttpSession session = request.getSession();
 		CustomerBankDetail customer = new CustomerBankDetail();
 		// Declare customer bank details
 		String name = request.getParameter("name");
+
 		String bankName = request.getParameter("bankName");
+
 		String branchName = request.getParameter("branchName");
+
 		String ifsc = request.getParameter("ifsc");
+
 		String accNumber = request.getParameter("accNumber");
+
 		String mobileNumber = request.getParameter("mobileNum");
 
 		String atmPinNumber = request.getParameter("atmPinNum");
@@ -66,7 +71,7 @@ public class CustomerDetailServlet extends HttpServlet {
 
 		try {
 			boolean isAdded = CustomerBankDetailService.addCustomerDetail(customer);
-			
+
 			if (isAdded) {
 				session.setAttribute("name", name);
 				session.setAttribute("bankName", bankName);
@@ -78,10 +83,10 @@ public class CustomerDetailServlet extends HttpServlet {
 				session.setAttribute("mobileNum", mobileNumber);
 				session.setAttribute("balanceAmount", balanceAmount);
 				response.sendRedirect("displaycustomerbankdetail.jsp");
-				
+
 			} else {
-				String errorMsg = "Invalid Data";
-				response.sendRedirect("customerbankdetail.jsp?errorMsg=" + errorMsg);
+				String errorMsg = "Invalid Account/Atm number";
+				response.sendRedirect("customerbankdetail.jsp?errorMsg=" + errorMsg + "&bankName=" + bankName);
 			}
 		} catch (IOException | ServiceException e) {
 

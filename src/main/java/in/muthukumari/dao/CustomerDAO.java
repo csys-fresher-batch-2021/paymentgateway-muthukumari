@@ -2,26 +2,27 @@ package in.muthukumari.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import in.muthukumari.exception.DBException;
+import in.muthukumari.model.Customer;
 import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.util.ConnectionUtil;
 
 public class CustomerDAO {
-	
+
 	private CustomerDAO() {
-		//Default constructor
+		// Default constructor
 	}
-	
-	static Connection connection = null;
-	static PreparedStatement pst = null;
 
-	public static void addUser(CustomerBankDetail customer) throws DBException {
-
+	/**
+	 * This method used to add the customer bank details to the DB
+	 * 
+	 * @param customer
+	 * @throws DBException
+	 */
+	public static void addCustomerBankDetail(CustomerBankDetail customer) throws DBException {
+		Connection connection = null;
+		PreparedStatement pst = null;
 		try {
 			// To Get the connection
 			connection = ConnectionUtil.getConnection();
@@ -51,59 +52,37 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * This method used to get customer bank details from database It will add
-	 * customer bank details in a ArrayList and it will return that ArrayList
+	 * This method used to add the customer detail in DB
 	 * 
-	 * @return
+	 * @param customer
 	 * @throws DBException
 	 */
-	public static List<CustomerBankDetail> getCustomrBankDetails() throws DBException {
-
-		ResultSet rs = null;
-		List<CustomerBankDetail> customerBankDetails;
+	public static void addCustomerDetail(Customer customer) throws DBException {
+		Connection connection = null;
+		PreparedStatement pst = null;
 		try {
-			customerBankDetails = new ArrayList<>();
-			// To establish connection
+			// To Get the connection
 			connection = ConnectionUtil.getConnection();
-
-			// SQl commands
-			String sql = "SELECT * FROM customerbankdetails";
-
-			// Execute query
+			// Query
+			String sql = "INSERT INTO customerdetails(mobile_no,first_name,last_name,email,username,password) VALUES(?,?,?,?,?,?)";
+			// To Execute
 			pst = connection.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.setLong(1, customer.getMobileNo());
+			pst.setString(2, customer.getFirstName());
+			pst.setString(3, customer.getLastName());
+			pst.setString(4, customer.getEmail());
+			pst.setString(5, customer.getUserName());
+			pst.setString(6, customer.getPassword());
+			pst.executeUpdate();
 
-			while (rs.next()) {
-				
-				String name = rs.getString("customername");
-				String bankName = rs.getString("bankname");
-				String branchName = rs.getString("branchname");
-				String ifscCode = rs.getString("ifsccode");
-				long accountNumber = rs.getLong("account_no");
-				Double balanceAmount = rs.getDouble("balanceamount");
-				long atmNumber=rs.getLong("atm_no");
-				int atmPinNumber=rs.getInt("atmpin_no");
-				long mobileNumber=rs.getLong("mobile_no");
-				CustomerBankDetail customer = new CustomerBankDetail();
-				customer.setUserName(name);
-				customer.setBankName(bankName);
-				customer.setBranchName(branchName);
-				customer.setIfscCode(ifscCode);
-				customer.setAccountNumber(accountNumber);
-				customer.setBalanceAmount(balanceAmount);
-				customer.setAtmNumber(atmNumber);
-				customer.setAtmPinNumber(atmPinNumber);
-				customer.setMobileNumber(mobileNumber);
-				customerBankDetails.add(customer);				
-			}
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new DBException("Sorry! Unable to get User details");
+			throw new DBException("Sorry! Something went wrong, Unable to add customer details");
 		}
 
 		finally {
-			// Close the connection
-			ConnectionUtil.close(rs, pst, connection);
+			// Release the connection
+			ConnectionUtil.close(pst, connection);
 		}
-		return customerBankDetails;
 	}
+
 }

@@ -18,27 +18,19 @@ public class BankDAO {
 		// Default constructor
 	}
 
-	static Set<String> bankNameList = new HashSet<>();
-
-	static Map<String, String> branchAndIfscCodeList = new HashMap<>();
-
 	static String sql;
-
-	static Connection con;
-
-	static ResultSet rs;
-
-	static PreparedStatement pst;
 
 	/**
 	 * This method used to get the bank name list
 	 * 
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
 	 * @throws DBException
 	 */
-	public static Set<String> getBankNameList() throws ClassNotFoundException, SQLException, DBException {
+	public static Set<String> getBankNameList() throws DBException {
+		Set<String> bankNameList = new HashSet<>();
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement pst = null;
 		String bankName;
 		try {
 			// Step 1: Get Connection
@@ -68,13 +60,13 @@ public class BankDAO {
 	 * 
 	 * @param bankName
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws DBException
 	 */
-	public static  Map<String, String> getBranchNameAndIfscList(String bankName)
-			throws ClassNotFoundException, SQLException {
-			branchAndIfscCodeList.clear(); //Clear the old Hash Map value
-
+	public static Map<String, String> getBranchNameAndIfscList(String bankName) throws DBException {
+		Map<String, String> branchAndIfscCodeList = new HashMap<>();
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement pst = null;
 		try {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
@@ -85,13 +77,13 @@ public class BankDAO {
 			rs = pst.executeQuery();
 			// Step 4: Iterate the result
 			while (rs.next()) {
-				String branchName = rs.getString("branchname");				
+				String branchName = rs.getString("branchname");
 				String ifscCode = rs.getString("IFSCcode");
 				branchAndIfscCodeList.put(branchName, ifscCode);
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			throw new DBException("Unable to get the data from DB");
 
 		} finally {
 			// Step 5: Release the connection

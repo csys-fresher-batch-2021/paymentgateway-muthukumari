@@ -17,3 +17,8 @@ create table banknamelist(bankname varchar(20) primary key);
 ---Branch and Ifsc Code List---
 create table branchandifsclist(brachname varchar(30), ifsccode varchar(20),
 bankname varchar(20) foreign key(bankname) references banknamelist(bankname));
+
+---Customer Registration Details---
+create table customerdetails(mobile_no bigint,first_name varchar(20),
+last_name varchar(20), email varchar(50) unique,
+username varchar(10) primary key, password varchar(10));

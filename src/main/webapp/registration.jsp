@@ -10,7 +10,10 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<form action="" method="post">
+		<form action="RegistrationServlet" method="post">
+			<%String errMsg=request.getParameter("errMsg");
+		if(errMsg!=null){
+		out.println("<p><font style=color:red>"+errMsg+"</font>");}%>
 			<article class="card-body mx-auto" style="max-width: 500px;">
 				<div class="form-group">
 					<h3>Registration Page</h3>
@@ -23,61 +26,93 @@
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col">
-							<input type="text" name="firstName" pattern="[A-Za-z].{2,}"class="form-control" placeholder="First name" required>
+							<input type="text" name="firstName" pattern="^[a-zA-Z]{3,}$"
+								class="form-control" placeholder="First name" required>
 						</div>
 						<div class="col">
-							<input type="text" name="lastName" pattern="[A-Za-z].{2,}" class="form-control" placeholder="Last name" required>
+							<input type="text" name="lastName" pattern="^[a-zA-Z]{3,}$"
+								class="form-control" placeholder="Last name" required>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<input class="form-control" required type="text" name="email"
-						id="email" placeholder="Email Address"
-						pattern="^[A-Za-z0-9+_.-]+@(.+)$" />
+						id="email" placeholder="Email Address" onkeyup="checkEmail()"
+						pattern="^[A-Za-z0-9+_.-]+@(.+)$" /> <span id="emailMsg"></span>
 					<div class="status" id="status"></div>
 				</div>
 
 				<div class="form-group">
-					<input class="form-control" type="text" name="userName" id="userName"
-						pattern="[A-Za-z].{3,}"  placeholder="Enter User Name" onkeyup="checkUserName()"required />
-						<span id="userNameMsg"></span>
-						
+					<input class="form-control" type="text" name="userName"
+						id="userName" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{5,10}$"
+						placeholder="Enter User Name" onkeyup="checkUserName()" required />
+					<span id="userNameMsg"></span>
 					<div id="errLast"></div>
 				</div>
-
 				<div class="form-group">
 					<input required name="password" type="password"
-						placeholder="Password" class="form-control inputpass" pattern="[a-zA-Z0-9/@$#%^&*()!'].{4,10}"
-						 id="password" />
-						 <em>Note: min 5 characters max 10 characters.</em>
+						placeholder="Password" class="form-control inputpass"
+						pattern="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{5,10}$"
+						id="password" /> <em>Note: min 5 characters max 10
+						characters.</em>
 				</div>
 				<div class="form-group">
 					<input required name="conformPassword" type="password"
-						class="form-control inputpass" pattern="[a-zA-Z0-9/@$#%^&*()!'].{4,10}"
-						placeholder="Conform Password" id="pass2"
-						onkeyup="checkPassword()" /> 
-						<span id="confirmMessage"
-						class="confirmMessage"></span>
+						pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*_=+-]).{5,10}$"
+						class="form-control inputpass" placeholder="Conform Password"
+						id="conformPassword" onkeyup="checkPassword()" /><span id="MSG"></span>
 				</div>
 
 				<div class="form-group">
-					<input class="btn btn-success" type="submit"
-						value="Register">
+					<button class="btn btn-success" id="button" type="submit" disabled>Register</button>
+				</div>
+				<div class="form-group">
+					<label>Already a User?</label> <a href="login.jsp">Login</a>
 				</div>
 			</article>
 		</form>
 		<script>
 		function checkUserName(){
 			let userName=document.querySelector("#userName").value;
+			let MSG=document.getElementById("userNameMsg");
+			let button=document.querySelector("#button");
+			let goodColor="#0f700f";
+			let badColor="#a1200a";
 			let url="UserNameValidationServlet?userName="+userName;
-			fetch(url).then(res=> res.json()).then(res=>{
-				let ifscCode = res;
+			fetch(url).then(res=> res.json()).then(res=>{				
 				if(res!=null){
-					if(res=="valid"){
-						document.getElementById("userNameMsg").innerHTML = "Valid";
+					if(res==true){
+						MSG.style.color=goodColor;
+						MSG.innerHTML = "User name available!!!";
+						button.disabled=false;
+					}
+					else{
+						MSG.style.color=badColor;
+						MSG.innerHTML = "User name already given";
+						button.disabled=true;
 					}
 				}
-		}</script>
+			});
+		}
+		function checkPassword(){
+			let password=document.querySelector("#password").value;
+			let conformPassword=document.querySelector("#conformPassword").value;	
+			let MSG=document.getElementById("MSG");
+			let button=document.querySelector("#button");
+			let goodColor="#0f700f";
+			let badColor="#a1200a";
+			if(password==conformPassword){				
+				MSG.style.color=goodColor;
+				MSG.innerHTML="Password Matched!!!";	
+				button.disabled=false;
+			}
+			else{
+				MSG.style.color=badColor;
+				MSG.innerHTML="Password Doesn't Match";
+				button.disabled=true;
+			}
+		}
+		</script>
 	</main>
 </body>
 </html>

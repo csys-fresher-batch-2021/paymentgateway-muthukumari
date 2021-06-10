@@ -1,41 +1,16 @@
 package in.muthukumari.validator;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import in.muthukumari.dao.CustomerDAO;
 import in.muthukumari.exception.CustomerRepeatedException;
-import in.muthukumari.exception.DBException;
+import in.muthukumari.exception.InvalidException;
+import in.muthukumari.exception.NumberInvalidException;
 import in.muthukumari.model.CustomerBankDetail;
 
 public class CustomerDetailValidator {
 
 	private CustomerDetailValidator() {
 		// Default Constructor
-	}
-
-	/**
-	 * This method used to check the user is already given or not
-	 * 
-	 * @param customer
-	 * @return
-	 * @throws DBException
-	 */
-	public static boolean isUserNotRepeated(CustomerBankDetail customer) throws DBException {
-		// Declaration
-		boolean valid = true;
-		// To get user details
-		List<CustomerBankDetail> customerDetail = CustomerDAO.getCustomrBankDetails();
-
-		for (CustomerBankDetail customerBankDetail : customerDetail) {
-			if ((customerBankDetail.getAccountNumber()) == (customer.getAccountNumber())
-					|| ((customerBankDetail.getAtmNumber()) == (customer.getAtmNumber()))) {
-				valid = false;
-			} else {
-				valid = true;
-			}
-		}
-		return valid;
 	}
 
 	/**
@@ -47,7 +22,7 @@ public class CustomerDetailValidator {
 	public static boolean isValidName(String userName) {
 		boolean isValid = false;
 		String regex = ".*[0-9@$%^=()./#&+-].*";
-		if (userName.length() > 3 && (!userName.matches(regex))) {
+		if (userName.length() > 2 && (!userName.matches(regex))) {
 			isValid = true;
 		}
 		return isValid;
@@ -55,22 +30,59 @@ public class CustomerDetailValidator {
 	}
 
 	/**
+	 * This method used to validate the email
+	 */
+	public static boolean isValidEmail(String email) {
+		boolean isValid = false;
+		String regex = ".*[A-Za-z0-9+_.-]+@(.+).*";
+		if ((email.matches(regex))) {
+			isValid = true;
+		}
+		return isValid;
+
+	}
+
+	/**
+	 * This method use to validate the password
+	 */
+	public static boolean isValidPassword(String password) {
+		boolean isValid = false;
+		String regex = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*_=+-]).{5,10}";
+		if ((password.matches(regex))) {
+			isValid = true;
+		}
+		return isValid;
+	}
+
+	/**
+	 * This method use to validate the username
+	 */
+	public static boolean isValidUserName(String userName) {
+		boolean isValid = false;
+		String regex = "^(?=.*[0-9])(?=.*[a-zA-Z]).{5,10}";
+		if ((userName.matches(regex))) {
+			isValid = true;
+		}
+		return isValid;
+	}
+
+	/**
 	 * This method used to check all the details of the customer
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws DBException
+	 * @throws InvalidException
 	 * @throws CustomerRepeatedException
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws NumberInvalidException
 	 */
 	public static boolean isValidCustomer(CustomerBankDetail customer)
-			throws DBException, ClassNotFoundException, SQLException {
+			throws InvalidException, CustomerRepeatedException, NumberInvalidException {
 		boolean isValidCustomer = true;
 		List<String> errorList = new ArrayList<>();
-		boolean isUserRepeated = CustomerDetailValidator.isUserNotRepeated(customer);
-		String isUserRepeatedStr = Boolean.toString(isUserRepeated);
-		errorList.add(isUserRepeatedStr);
+		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer.getAccountNumber(),
+												customer.getBankName());
+		String isValidAccountNumStr = Boolean.toString(isValidAccountNum);
+		errorList.add(isValidAccountNumStr);
 		boolean isValidName = CustomerDetailValidator.isValidName(customer.getUserName());
 		String isValidNameStr = Boolean.toString(isValidName);
 		errorList.add(isValidNameStr);
@@ -89,12 +101,17 @@ public class CustomerDetailValidator {
 		boolean isValidAtmPinNum = BankDetailValidator.isValidAtmPinNumber(customer);
 		String isValidAtmPinNumStr = Boolean.toString(isValidAtmPinNum);
 		errorList.add(isValidAtmPinNumStr);
-		boolean isValidMobileNum = BankDetailValidator.isValidMobileNumber(customer);
+		boolean isValidMobileNum = BankDetailValidator.isValidMobileNumber(customer.getMobileNumber());
 		String isValidMobileNumStr = Boolean.toString(isValidMobileNum);
 		errorList.add(isValidMobileNumStr);
-		boolean isValidAccNum = BankDetailValidator.isValidAccountNumber(customer);
-		String isValidAccNumStr = Boolean.toString(isValidAccNum);
-		errorList.add(isValidAccNumStr);
+		boolean isRepeatedAccNum = CustomerRepeatedValidator
+				.isRepeatedAccountNumber(customer.getAccountNumber());
+		String isRepeatedAccNumStr = Boolean.toString(isRepeatedAccNum);
+		errorList.add(isRepeatedAccNumStr);
+		boolean isRepeatedAtmNum = CustomerRepeatedValidator
+				.isRepeatedAtmNumber(customer.getAtmNumber());
+		String isRepeatedAtmNumStr = Boolean.toString(isRepeatedAtmNum);
+		errorList.add(isRepeatedAtmNumStr);
 		if (errorList.contains("false")) {
 			isValidCustomer = false;
 		}

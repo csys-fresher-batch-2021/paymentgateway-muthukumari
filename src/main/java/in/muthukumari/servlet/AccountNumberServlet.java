@@ -24,7 +24,9 @@ public class AccountNumberServlet extends HttpServlet {
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
-	 * This servlet used to get the account number and transfer the validation rsult to the jsp page
+	 * This servlet used to get the account number and transfer the validation rsult
+	 * to the jsp page
+	 * 
 	 * @return
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -41,7 +43,7 @@ public class AccountNumberServlet extends HttpServlet {
 		}
 		String bankName = request.getParameter("bankName");
 		customer.setBankName(bankName);
-		String errorMessage;
+		boolean errorMessage;
 		Gson gson = new Gson();
 		boolean isValidAccountNumber = false;
 		try {
@@ -51,25 +53,17 @@ public class AccountNumberServlet extends HttpServlet {
 			logger.info(e.getMessage());
 		}
 		if (isValidAccountNumber) {
-			errorMessage = "Account number validated successfully";			
-			String json = gson.toJson(errorMessage);
-			try {
-				PrintWriter out = response.getWriter();
-				out.print(json);
-				out.flush();
-			} catch (IOException e) {
-				logger.info(e.getMessage());
-			}
+			errorMessage = true;
 		} else {
-			errorMessage ="Invalid Account Number";			
-			String json = gson.toJson(errorMessage);
-			try {
-				PrintWriter out = response.getWriter();
-				out.print(json);
-				out.flush();
-			} catch (IOException e) {
-				logger.info(e.getMessage());
-			}
+			errorMessage = false;
+		}
+		String json = gson.toJson(errorMessage);
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(json);
+			out.flush();
+		} catch (IOException e) {
+			logger.info(e.getMessage());
 		}
 
 	}

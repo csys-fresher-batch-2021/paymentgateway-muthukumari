@@ -12,7 +12,7 @@
 	font-size: 20px;
 	text-align: center;
 	text-shadow: 0 2px #999;
-	color:#08436e;
+	color: #08436e;
 }
 
 .button {
@@ -157,15 +157,16 @@ body {
 		text-align: center;
 	}
 }
+
 caption {
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
 }
 </style>
 <title>Bank List</title>
@@ -173,38 +174,43 @@ caption {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<br/><br/>
-		<h3 class="h2">LIST OF BANKS</h3><br/>
+		<br /> <br />
+		<h3 class="h2">LIST OF BANKS</h3>
+		<br />
 
 		<div class="table-wrapper">
 			<table class="fl-table">
-			<caption>List of Banks</caption>
+				<caption>List of Banks</caption>
 				<thead>
 					<tr>
 						<th scope="col">SNO.</th>
 						<th scope="col">BANK NAME</th>
 						<th scope="col">ACCOUNT CREATION</th>
 					</tr>
-				<tbody>
-					<%
-					Set<String> banks = BankDAO.getBankNameList();
-					int i = 0;
-					for (String bankNameList : banks) {
-						i++;
-					%>
-					<tr>
-						<td><%=i%></td>
-						<td><%=bankNameList%></td>
-						<td><a
-							href="customerbankdetail.jsp?bankName=<%=bankNameList%>"
-							class="button">Create Account</a>
-					</tr>
-					<%
-					}
-					%>
+				<tbody id="bank-table">
 				</tbody>
 			</table>
 		</div>
-	</main>
+		</main>
+		<script>
+		//This metho used to get the bank name list
+		function getBankNameList(){
+		let url = "BankNameListServlet";
+		fetch(url).then(res=> res.json()).then(res=>{
+			let banks = res;
+			let content = "";
+			let i=1;
+			for(let bankList of banks){ 
+				content += "<tr><td>"+i+
+				"</td><td>"+bankList+
+				"</td><td><a class=\"button\"href=\"customerbankdetail.jsp?bankName="+bankList+"\">Create Account</a></td></tr>";
+				i++;
+			}
+			document.querySelector("#bank-table").innerHTML= content;
+			});
+		}
+		getBankNameList();
+		</script>
+	
 </body>
 </html>

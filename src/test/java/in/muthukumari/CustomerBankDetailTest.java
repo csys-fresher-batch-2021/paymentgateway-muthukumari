@@ -1,12 +1,10 @@
 package in.muthukumari;
 
 import static org.junit.Assert.*;
-
-import java.sql.SQLException;
-
 import org.junit.Test;
-
 import in.muthukumari.exception.DBException;
+import in.muthukumari.exception.InvalidException;
+import in.muthukumari.exception.NumberInvalidException;
 import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.validator.BankDetailValidator;
 import in.muthukumari.validator.CustomerDetailValidator;
@@ -36,15 +34,13 @@ public class CustomerBankDetailTest {
 
 	/**
 	 * Valid Account Number
-	 * 
-	 * @throws DBException
-	 * @throws ClassNotFoundException
+	 * @throws NumberInvalidException 
 	 */
 	@Test
-	public void testCase3() throws ClassNotFoundException {
+	public void testCase3() throws NumberInvalidException {
 		customer.setBankName("Indian Bank");
 		customer.setAccountNumber(99876456767876787L);
-		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer);
+		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer.getAccountNumber(),customer.getBankName());
 		assertTrue(isValidAccountNum);
 	}
 
@@ -53,24 +49,22 @@ public class CustomerBankDetailTest {
 	 * 
 	 * @throws DBException
 	 * @throws ClassNotFoundException
+	 * @throws NumberInvalidException 
 	 */
 	@Test
-	public void testCase4() throws ClassNotFoundException {
+	public void testCase4() throws NumberInvalidException {
 		customer.setBankName("Indian Bank");
 		customer.setAccountNumber(99876457876787L);
-		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer);
+		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer.getAccountNumber(),customer.getBankName());
 		assertFalse(isValidAccountNum);
 	}
 
 	/**
 	 * Valid bank name
-	 * 
-	 * @throws DBException
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws InvalidException 
 	 */
 	@Test
-	public void testcase5() throws ClassNotFoundException, SQLException, DBException {
+	public void testcase5() throws InvalidException {
 		customer.setBankName("Indian Bank");
 		boolean isValidBank = BankDetailValidator.isValidBank(customer);
 		assertTrue(isValidBank);
@@ -78,13 +72,10 @@ public class CustomerBankDetailTest {
 
 	/**
 	 * Invalid bank name
-	 * 
-	 * @throws DBException
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws InvalidException 
 	 */
 	@Test
-	public void testcase6() throws ClassNotFoundException, SQLException, DBException {
+	public void testcase6() throws InvalidException  {
 		customer.setBankName("United&Bank");
 		boolean isValidBank = BankDetailValidator.isValidBank(customer);
 		assertFalse(isValidBank);
@@ -135,9 +126,8 @@ public class CustomerBankDetailTest {
 	 */
 	@Test
 	public void testcase11() {
-		customer.setMobileNumber(9878878678L);
-		;
-		boolean isValidMobileNumber = BankDetailValidator.isValidMobileNumber(customer);
+		customer.setMobileNumber(6888888888L);		
+		boolean isValidMobileNumber = BankDetailValidator.isValidMobileNumber(customer.getMobileNumber());
 		assertTrue(isValidMobileNumber);
 	}
 
@@ -146,20 +136,17 @@ public class CustomerBankDetailTest {
 	 */
 	@Test
 	public void testcase12() {
-		customer.setMobileNumber(988888899999938L);
-		;
-		boolean isValidMobileNumber = BankDetailValidator.isValidMobileNumber(customer);
+		customer.setMobileNumber(900000000000L);		
+		boolean isValidMobileNumber = BankDetailValidator.isValidMobileNumber(customer.getMobileNumber());
 		assertFalse(isValidMobileNumber);
 	}
 
 	/**
 	 * Valid ifsc code
-	 * 
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws InvalidException 
 	 */
 	@Test
-	public void testcase13() throws ClassNotFoundException, SQLException {
+	public void testcase13() throws InvalidException {
 		customer.setBankName("Indian Bank");
 		customer.setIfscCode("IDIB000T035");
 		customer.setBranchName("Tirunelveli Town");
@@ -169,12 +156,10 @@ public class CustomerBankDetailTest {
 
 	/**
 	 * Invalid ifsc code
-	 * 
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws InvalidException 
 	 */
 	@Test
-	public void testcase14() throws ClassNotFoundException, SQLException {
+	public void testcase14() throws InvalidException{
 		customer.setBankName("Indian Bank");
 		customer.setIfscCode("IDIB000T034");
 		customer.setBranchName("Tirunelveli Town");
@@ -184,12 +169,10 @@ public class CustomerBankDetailTest {
 
 	/**
 	 * Valid ifsc code
-	 * 
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws InvalidException 
 	 */
 	@Test
-	public void testcase15() throws ClassNotFoundException, SQLException {
+	public void testcase15() throws InvalidException {
 		customer.setBankName("Indian Bank");
 		customer.setBranchName("Tirunelveli Town");
 		boolean isValidBranchName = BankDetailValidator.isValidBranchName(customer);
@@ -198,12 +181,10 @@ public class CustomerBankDetailTest {
 
 	/**
 	 * Invalid ifsc code
-	 * 
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws InvalidException 
 	 */
 	@Test
-	public void testcase16() throws ClassNotFoundException, SQLException {
+	public void testcase16() throws InvalidException {
 		customer.setBankName("Indian Bank");
 		customer.setBranchName("Tirunelveli1");
 		boolean isValidBranchName = BankDetailValidator.isValidBranchName(customer);

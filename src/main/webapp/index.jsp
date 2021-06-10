@@ -13,7 +13,12 @@ h1 {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-
+		<%
+		String infoMsg = request.getParameter("infoMsg");
+		if (infoMsg != null) {
+			out.println("<p><font style=color:green>" + infoMsg + "</font>");
+		}
+		%>
 		<br /> <br /> <br /> <br /> <br /> <br />
 		<p style="text-align: center;">
 			<img
