@@ -106,7 +106,8 @@ public class BankDetailValidator {
 		boolean isValidNum = false;
 		String mobileNumStr = Long.toString(mobilNo);
 		String regex1="([6-9]{1})+([0-9]{9})*";
-		if (mobileNumStr.matches(regex1)) {
+		boolean isValid=mobileNumStr.matches(regex1);
+		if (isValid) {
 			isValidNum = true;
 		}
 		return isValidNum;
