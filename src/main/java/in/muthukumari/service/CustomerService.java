@@ -2,7 +2,9 @@ package in.muthukumari.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import in.muthukumari.dao.CustomerDAO;
+import in.muthukumari.dao.ExistDAO;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.exception.ServiceException;
 import in.muthukumari.exception.ValidatorException;
@@ -18,8 +20,9 @@ public class CustomerService {
 	}
 
 	/**
-	 * This method used to add the customer registration details to the DB
-	 * after the validation pass
+	 * This method used to add the customer registration details to the DB after the
+	 * validation pass
+	 * 
 	 * @param customer
 	 * @return
 	 * @throws ServiceException
@@ -61,4 +64,20 @@ public class CustomerService {
 		return isAdded;
 	}
 
+	/**
+	 * This method used to verify the login details
+	 * 
+	 * @param customer
+	 * @return
+	 * @throws ServiceException
+	 */
+	public static boolean loginUser(Customer customer) throws ServiceException {
+		boolean isVerified = false;		
+		try {
+			isVerified = ExistDAO.isLoginVerified(customer.getUserName(), customer.getPassword());
+		} catch (DBException e) {
+			throw new ServiceException(e.getMessage());
+		}		
+		return isVerified;
+	}
 }
