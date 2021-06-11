@@ -1,4 +1,4 @@
-**####online Payment Gateway App####**
+**####Online Payment Gateway App####**
 
 _Feature 1:_
 
