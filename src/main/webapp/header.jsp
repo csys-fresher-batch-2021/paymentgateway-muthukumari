@@ -28,7 +28,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="#">Hello <%=userName%>&#128075</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="#">Logout</a></li>
+					href="LogoutServlet">Logout</a></li>
 				<%} %>
 			</ul>
 		</div>

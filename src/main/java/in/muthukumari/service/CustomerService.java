@@ -2,6 +2,7 @@ package in.muthukumari.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import in.muthukumari.dao.CustomerDAO;
 import in.muthukumari.dao.ExistDAO;
 import in.muthukumari.exception.DBException;
@@ -71,17 +72,12 @@ public class CustomerService {
 	 * @throws ServiceException
 	 */
 	public static boolean loginUser(Customer customer) throws ServiceException {
-		boolean isVerified = false;
-		boolean isLoggedUser = false;
+		boolean isVerified = false;		
 		try {
-			isLoggedUser = ExistDAO.isLoginVerified(customer.getUserName(), customer.getPassword());
+			isVerified = ExistDAO.isLoginVerified(customer.getUserName(), customer.getPassword());
 		} catch (DBException e) {
 			throw new ServiceException(e.getMessage());
-		}
-		if (isLoggedUser) {
-			isVerified = true;
-		}
+		}		
 		return isVerified;
 	}
-
 }

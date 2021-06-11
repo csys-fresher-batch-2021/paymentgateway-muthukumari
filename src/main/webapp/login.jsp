@@ -35,7 +35,9 @@
 				<%String errMsg=(String)session.getAttribute("errMSG");
 				if(errMsg!=null){
 					out.println("<p><font style=color:red>" + errMsg + "</font>");
+					session.removeAttribute("errMSG");
 				}
+				
 				%>
 			</article>
 		</form>
