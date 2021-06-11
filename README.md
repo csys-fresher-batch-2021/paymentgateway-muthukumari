@@ -22,9 +22,9 @@ Login/Logout
 
 -->username and password validated(if exists allow to the money transfer otherwise not allowed)
 
-Feature 4:
+_Feature 4:_
 
-_Money Transfer_
+Money Transfer
 
 -->Sender details are fixed
 
