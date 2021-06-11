@@ -14,7 +14,7 @@ h1 {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<%
-		String infoMsg = request.getParameter("infoMsg");
+		String infoMsg = request.getParameter("infoMSG");
 		String infoStr= org.owasp.encoder.Encode.forHtml(infoMsg);
 		if (infoStr != null) {
 			out.println("<p><font style=color:green>" + infoStr + "</font>");
@@ -29,7 +29,6 @@ h1 {
 		<h1>
 			Welcome<br /> to<br />Online Money Transfer<br /> <br />
 		</h1>
-
 	</main>
 </body>
 </html>
