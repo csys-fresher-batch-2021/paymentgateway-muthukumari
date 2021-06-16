@@ -16,7 +16,7 @@
 		<%
 		String infoMsg = request.getParameter("infoMsg");
 		String encodedMsg = org.owasp.encoder.Encode.forHtml(infoMsg);
-		if (encodedMsg != null) {
+		if (infoMsg != null) {
 			out.println("<p><font style=color:red>" + encodedMsg + "</font>");
 		}
 		%>

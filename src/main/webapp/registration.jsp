@@ -12,9 +12,9 @@
 	<main class="container-fluid">
 		<form action="RegistrationServlet" method="post">
 			<%
-			String errMsg = request.getParameter("errMsg");	
-			String encodedMsg = org.owasp.encoder.Encode.forHtml(errMsg);			
-			if (encodedMsg != null) {
+			String errMsg = request.getParameter("errMsg");
+			String encodedMsg = org.owasp.encoder.Encode.forHtml(errMsg);
+			if (errMsg != null) {
 				out.println("<p><font style=color:red>" + encodedMsg + "</font>");
 			}
 			%>
