@@ -17,6 +17,7 @@ public class BankDetailService {
 
 	/**
 	 * This method used to get the bank name list
+	 * 
 	 * @return
 	 * @throws ServiceException
 	 */

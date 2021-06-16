@@ -12,10 +12,10 @@
 	<main class="container-fluid">
 		<form action="RegistrationServlet" method="post">
 			<%
-			String errMsg = request.getParameter("errMsg");
-			String errStr = org.owasp.encoder.Encode.forHtml(errMsg);
-			if (errStr != null) {
-				out.println("<p><font style=color:red>" + errStr + "</font>");
+			String errMsg = request.getParameter("errMsg");	
+			String encodedMsg = org.owasp.encoder.Encode.forHtml(errMsg);			
+			if (encodedMsg != null) {
+				out.println("<p><font style=color:red>" + encodedMsg + "</font>");
 			}
 			%>
 			<article class="card-body mx-auto" style="max-width: 500px;">

@@ -9,40 +9,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.google.gson.Gson;
-import in.muthukumari.controller.BankDetailsController;
+
+import in.muthukumari.exception.ServiceException;
+import in.muthukumari.service.BankService;
 
 /**
- * Servlet implementation class getIfscservlet
+ * Servlet implementation class GetBalanceAmountServlet
  */
-@WebServlet("/getIfscServlet")
-public class GetIfscServlet extends HttpServlet {
+@WebServlet("/GetBalanceAmountServlet")
+public class GetBalanceAmountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
-	 * This servlet used to get the ifsc code and transfer it to the jsp page
-	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		BankDetailsController controller = new BankDetailsController();
-		String bankName = request.getParameter("bankName");// get bank name
-		String branchName = request.getParameter("branchName");// get branch name
-		Gson gson = new Gson();
-		String ifsc;
+		String accNumStr = request.getParameter("accNum");
 		try {
-			ifsc = controller.getIfscCode(bankName, branchName);// get ifsc code
-			String json = gson.toJson(ifsc);
+
+			long accNum = Long.parseLong(accNumStr);
+			double amount = BankService.getBalanceAmount(accNum);
+			Gson gson = new Gson();
+			String json = gson.toJson(amount);
 			PrintWriter out = response.getWriter();
 			out.print(json);
 			out.flush();
-		} catch (IOException e) {
+		} catch (ServiceException | NumberFormatException | IOException e) {
 			logger.info(e.getMessage());
 		}
-
 	}
-
 }

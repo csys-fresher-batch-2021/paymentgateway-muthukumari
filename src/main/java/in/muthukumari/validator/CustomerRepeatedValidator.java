@@ -3,6 +3,7 @@ package in.muthukumari.validator;
 import in.muthukumari.dao.ExistDAO;
 import in.muthukumari.exception.DBException;
 import in.muthukumari.exception.ValidatorException;
+import in.muthukumari.model.Recipient;
 
 public class CustomerRepeatedValidator {
 
@@ -15,7 +16,7 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws ValidatorException 
+	 * @throws ValidatorException
 	 */
 	public static boolean isRepeatedAccountNumber(long accountNum) throws ValidatorException {
 		boolean isRepeatedAccNum = true;
@@ -29,15 +30,15 @@ public class CustomerRepeatedValidator {
 		}
 		return isRepeatedAccNum;
 	}
-	
+
 	/**
 	 * This method used to check the account number is already given or not
 	 * 
 	 * @param customer
 	 * @return
-	 * @throws ValidatorException 
+	 * @throws ValidatorException
 	 */
-	public static boolean isRepeatedAtmNumber(long atmNum) throws ValidatorException{
+	public static boolean isRepeatedAtmNumber(long atmNum) throws ValidatorException {
 		boolean isRepeatedAtmNum = true;
 		try {
 			boolean isExists = ExistDAO.isRepeatedAtmNumber(atmNum);
@@ -55,7 +56,7 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param userName
 	 * @return
-	 * @throws ValidatorException 
+	 * @throws ValidatorException
 	 */
 	public static boolean isRepeatedUserName(String userName) throws ValidatorException {
 		boolean isRepeatedUser = false;
@@ -78,7 +79,7 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param email
 	 * @return
-	 * @throws ValidatorException 
+	 * @throws ValidatorException
 	 */
 	public static boolean isRepeatedEmail(String email) throws ValidatorException {
 		boolean isRepeatedEmail = true;
@@ -99,9 +100,9 @@ public class CustomerRepeatedValidator {
 	 * 
 	 * @param userName
 	 * @return
-	 * @throws ValidatorException 
+	 * @throws ValidatorException
 	 */
-	public static boolean isUserNameExists(String userName) throws ValidatorException  {
+	public static boolean isUserNameExists(String userName) throws ValidatorException {
 		boolean isRepeatedUser = false;
 		boolean isExists = false;
 		try {
@@ -113,6 +114,26 @@ public class CustomerRepeatedValidator {
 			throw new ValidatorException("The user name is already given in the DB");
 		}
 		return isRepeatedUser;
+	}
+
+	/**
+	 * This method used to check the sender and recipient account numbers are same
+	 * or not
+	 * 
+	 * @param recipient
+	 * @return
+	 * @throws ValidatorException
+	 */
+	public static boolean isSameAccountNumber(Recipient recipient) throws ValidatorException {
+		boolean isNotSame = false;
+		long senderAccNum = recipient.getSenderAccNum();
+		long recipientAccNum = recipient.getReceiverAccNum();
+		if (senderAccNum != recipientAccNum) {
+			isNotSame = true;
+		} else {
+			throw new ValidatorException("Both the acconut numbrs are same.");
+		}
+		return isNotSame;
 	}
 
 }

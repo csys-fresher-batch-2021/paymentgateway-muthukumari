@@ -72,12 +72,12 @@ public class CustomerService {
 	 * @throws ServiceException
 	 */
 	public static boolean loginUser(Customer customer) throws ServiceException {
-		boolean isVerified = false;		
+		boolean isVerified = false;
 		try {
 			isVerified = ExistDAO.isLoginVerified(customer.getUserName(), customer.getPassword());
 		} catch (DBException e) {
 			throw new ServiceException(e.getMessage());
-		}		
+		}
 		return isVerified;
 	}
 }

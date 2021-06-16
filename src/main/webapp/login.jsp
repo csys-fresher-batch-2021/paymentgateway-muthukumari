@@ -19,8 +19,7 @@
 				<div class="form-group">
 					<input class="form-control" type="text" name="userName"
 						id="userName" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{5,10}$"
-						placeholder="Enter User Name" required />
-					<span id="userNameMsg"></span>
+						placeholder="Enter User Name" required /> <span id="userNameMsg"></span>
 					<div id="errLast"></div>
 				</div>
 				<div class="form-group">
@@ -32,12 +31,14 @@
 				<div class="form-group">
 					<input type="submit" class="btn btn-primary" value="submit" />
 				</div>
+				<div class="form-group">
+					<label>New User?</label> <a href="registration.jsp">Register</a>
+				</div>
 				<%String errMsg=(String)session.getAttribute("errMSG");
 				if(errMsg!=null){
 					out.println("<p><font style=color:red>" + errMsg + "</font>");
 					session.removeAttribute("errMSG");
-				}
-				
+				}				
 				%>
 			</article>
 		</form>

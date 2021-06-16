@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * Servlet implementation class AccountCreationServlet
  */
 @WebServlet("/AccountNumberServlet")
-public class AccountNumberServlet extends HttpServlet {
+public class AccountNumberValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -34,38 +34,28 @@ public class AccountNumberServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		CustomerBankDetail customer = new CustomerBankDetail();
-		try {
-			String accountNumber = request.getParameter("accountNumber");
-			long accountNumberLong = Long.parseLong(accountNumber);
-			customer.setAccountNumber(accountNumberLong);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		String bankName = request.getParameter("bankName");
 		customer.setBankName(bankName);
 		boolean errorMessage;
 		Gson gson = new Gson();
 		boolean isValidAccountNumber = false;
 		try {
+			String accountNumber = request.getParameter("accountNumber");
+			long accountNumberLong = Long.parseLong(accountNumber);
+			customer.setAccountNumber(accountNumberLong);
 			// validate the account number length
 			isValidAccountNumber = BankDetailService.isValidAccountNumber(customer);
-		} catch (ServiceException e) {
-			logger.info(e.getMessage());
-		}
-		if (isValidAccountNumber) {
-			errorMessage = true;
-		} else {
-			errorMessage = false;
-		}
-		String json = gson.toJson(errorMessage);
-		try {
+			if (isValidAccountNumber) {
+				errorMessage = true;
+			} else {
+				errorMessage = false;
+			}
+			String json = gson.toJson(errorMessage);
 			PrintWriter out = response.getWriter();
 			out.print(json);
 			out.flush();
-		} catch (IOException e) {
+		} catch (ServiceException | IOException e) {
 			logger.info(e.getMessage());
 		}
-
 	}
-
 }

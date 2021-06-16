@@ -21,9 +21,10 @@ public class CustomerDetailValidator {
 	 */
 	public static boolean isValidName(String userName) {
 		boolean isValid = false;
-		String regex = "^[a-zA-Z]";
+		String regex = "^[a-zA-Z\\s]*$";
 		if (userName.length() > 2 && (userName.matches(regex))) {
 			isValid = true;
+
 		}
 		return isValid;
 
@@ -80,7 +81,7 @@ public class CustomerDetailValidator {
 		boolean isValidCustomer = true;
 		List<String> errorList = new ArrayList<>();
 		boolean isValidAccountNum = BankDetailValidator.isValidAccountNumber(customer.getAccountNumber(),
-												customer.getBankName());
+				customer.getBankName());
 		String isValidAccountNumStr = Boolean.toString(isValidAccountNum);
 		errorList.add(isValidAccountNumStr);
 		boolean isValidName = CustomerDetailValidator.isValidName(customer.getUserName());
@@ -104,12 +105,10 @@ public class CustomerDetailValidator {
 		boolean isValidMobileNum = BankDetailValidator.isValidMobileNumber(customer.getMobileNumber());
 		String isValidMobileNumStr = Boolean.toString(isValidMobileNum);
 		errorList.add(isValidMobileNumStr);
-		boolean isRepeatedAccNum = CustomerRepeatedValidator
-				.isRepeatedAccountNumber(customer.getAccountNumber());
+		boolean isRepeatedAccNum = CustomerRepeatedValidator.isRepeatedAccountNumber(customer.getAccountNumber());
 		String isRepeatedAccNumStr = Boolean.toString(isRepeatedAccNum);
 		errorList.add(isRepeatedAccNumStr);
-		boolean isRepeatedAtmNum = CustomerRepeatedValidator
-				.isRepeatedAtmNumber(customer.getAtmNumber());
+		boolean isRepeatedAtmNum = CustomerRepeatedValidator.isRepeatedAtmNumber(customer.getAtmNumber());
 		String isRepeatedAtmNumStr = Boolean.toString(isRepeatedAtmNum);
 		errorList.add(isRepeatedAtmNumStr);
 		if (errorList.contains("false")) {

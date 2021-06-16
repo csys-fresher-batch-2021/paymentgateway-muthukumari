@@ -39,12 +39,23 @@ public class CustomerDetailTest {
 	}
 
 	/**
-	 * Valid name
+	 *Invalid name
 	 */
 	@Test
 	public void testcase4() {
-		String name = "123";
+		String name = "123@m";
 		boolean isValid = CustomerDetailValidator.isValidName(name);
 		assertFalse(isValid);
 	}
+	
+	/**
+	 *Valid name
+	 */
+	@Test
+	public void testcase5() {
+		String name = "muthu";
+		boolean isValid = CustomerDetailValidator.isValidName(name);
+		assertTrue(isValid);
+	}
+
 }

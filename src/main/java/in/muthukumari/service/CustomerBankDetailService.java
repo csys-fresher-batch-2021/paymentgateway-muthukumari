@@ -14,11 +14,13 @@ public class CustomerBankDetailService {
 	private CustomerBankDetailService() {
 		// Default Constructor
 	}
+
 	/**
 	 * This method used to add the customer details
+	 * 
 	 * @param customer
 	 * @return
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 */
 	public static boolean addCustomerDetail(CustomerBankDetail customer) throws ServiceException {
 		boolean isAdded = false;
@@ -26,12 +28,11 @@ public class CustomerBankDetailService {
 			if (CustomerDetailValidator.isValidCustomer(customer)) {
 				CustomerDAO.addCustomerBankDetail(customer);
 				isAdded = true;
-			} 
+			}
 		} catch (InvalidException | ValidatorException | NumberInvalidException | DBException e) {
-			
+
 			throw new ServiceException("Unable to add customer");
 		}
 		return isAdded;
 	}
-
 }

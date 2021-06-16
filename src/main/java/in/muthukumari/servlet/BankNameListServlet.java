@@ -23,6 +23,7 @@ import in.muthukumari.service.BankDetailService;
 public class BankNameListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
+
 	/**
 	 * This servlet used to get the bank name list
 	 * 

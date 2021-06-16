@@ -53,12 +53,11 @@ public class RegistrationServlet extends HttpServlet {
 				String infoMsg = "Registered Successfully!!!!";
 				response.sendRedirect("index.jsp?infoMsg=" + infoMsg);
 			} else {
-				String errMsg = "Sorry!! Please enter the valid data";
+				String errMsg = "Sorry!! Please enter the valid data(username or emailid is already given)";
 				response.sendRedirect("registration.jsp?errMsg=" + errMsg);
 			}
 		} catch (IOException | ServiceException e) {
 			logger.info(e.getMessage());
 		}
 	}
-
 }

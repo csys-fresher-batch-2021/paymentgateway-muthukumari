@@ -24,7 +24,7 @@ public class BankDetailValidator {
 	 * @return
 	 * @throws NumberInvalidException
 	 */
-	public static boolean isValidAccountNumber(long accountNum,String bankName) throws NumberInvalidException {
+	public static boolean isValidAccountNumber(long accountNum, String bankName) throws NumberInvalidException {
 
 		boolean isValidAccountNumber = false;
 		String accountNumberStr = Long.toString(accountNum);
@@ -105,7 +105,7 @@ public class BankDetailValidator {
 	public static boolean isValidMobileNumber(long mobilNo) {
 		boolean isValidNum = false;
 		String mobileNumStr = Long.toString(mobilNo);
-		String regex1="^[6-9]+[0-9]{9}";
+		String regex1 = "^[6-9]+[0-9]{9}";
 		if (mobileNumStr.matches(regex1)) {
 			isValidNum = true;
 		}
