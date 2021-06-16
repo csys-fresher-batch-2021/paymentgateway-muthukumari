@@ -19,9 +19,10 @@ h1 {
 			out.println("<p><font style=color:green>" + infoMsg + "</font>");
 			session.removeAttribute("infoMSG");
 		}
-		String infoMSG = request.getParameter("infoMsg");		
+		String infoMSG = request.getParameter("infoMsg");	
+		String encodedMsg = org.owasp.encoder.Encode.forHtml(infoMSG);
 		if (infoMSG != null) {
-			out.println("<p><font style=color:green>" + infoMSG + "</font>");
+			out.println("<p><font style=color:green>" + encodedMsg + "</font>");
 		}
 		%>
 		<br /> <br /> <br /> <br /> <br /> <br />

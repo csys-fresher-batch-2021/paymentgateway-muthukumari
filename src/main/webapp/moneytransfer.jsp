@@ -15,9 +15,10 @@
 	<main class="container-fluid">
 		<form action="UpdateBankDetailServlet">
 			<%
-			String infoMSG = request.getParameter("infoMsg");		
+			String infoMSG = request.getParameter("infoMsg");
+			String encodedMsg = org.owasp.encoder.Encode.forHtml(infoMSG);
 			if (infoMSG != null) {
-				out.println("<p><font style=color:green>" + infoMSG + "</font>");
+				out.println("<p><font style=color:green>" + encodedMsg + "</font>");
 			}
 			%>
 			<article class="card-body mx-auto" style="max-width: 500px;">
