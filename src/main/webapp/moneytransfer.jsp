@@ -15,10 +15,9 @@
 	<main class="container-fluid">
 		<form action="UpdateBankDetailServlet">
 			<%
-			String infoMSG = request.getParameter("infoMsg");
-			String encodedMsg = org.owasp.encoder.Encode.forHtml(infoMSG);			
-			if (encodedMsg != null) {
-				out.println("<p><font style=color:green>" + encodedMsg + "</font>");
+			String infoMSG = request.getParameter("infoMsg");		
+			if (infoMSG != null) {
+				out.println("<p><font style=color:green>" + infoMSG + "</font>");
 			}
 			%>
 			<article class="card-body mx-auto" style="max-width: 500px;">
@@ -168,7 +167,7 @@
 			}
 			getBankNameList();
 			//This method used to get the sender's balance amount
-		function getBalanceAmount(){
+			function getBalanceAmount(){
 			let accNum=document.querySelector("#accNum").value;
 			let url="GetBalanceAmountServlet?accNum="+ accNum;
 			fetch(url).then(res=> res.json()).then(res=>{
