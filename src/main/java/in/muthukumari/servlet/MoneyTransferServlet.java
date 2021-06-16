@@ -35,8 +35,7 @@ public class MoneyTransferServlet extends HttpServlet {
 			List<Long> accNum = BankService.getAccountNumber(userName);
 			if (!accNum.isEmpty()) {
 				session.setAttribute("accNum", accNum);
-				RequestDispatcher rd = request.getRequestDispatcher("moneytransfer.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("moneytransfer.jsp");
 			} else {
 				String infoMsg = "You doesn't create your account!!! So, Please create your account using bank details";
 				response.sendRedirect("banknamelist.jsp?infoMsg=" + infoMsg);

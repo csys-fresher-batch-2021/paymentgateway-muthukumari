@@ -52,7 +52,7 @@ bootstrap.min.js
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
 					<div class="dropdown-menu" aria-labelledby="dropdownId">
 						<a class="dropdown-item" href="MoneyTransferServlet">Money Transfer</a> <a
-							class="dropdown-item" href="CheckBalanceServlet">Check Balance</a> <a
+							class="dropdown-item" href="checkbalance.jsp">Check Balance</a> <a
 							class="dropdown-item" href="#">Deposit</a>
 					</div></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Hello
