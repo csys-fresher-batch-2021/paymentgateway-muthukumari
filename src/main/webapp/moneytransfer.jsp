@@ -55,7 +55,6 @@
 							<%
 							String amount = request.getParameter("amount");
 							String encodedAmount = org.owasp.encoder.Encode.forHtml(amount);			
-							
 							%>
 							<input type="number" name="balanceAmount" id="balanceAmount"
 								value="<%=encodedAmount%>" readonly required>
