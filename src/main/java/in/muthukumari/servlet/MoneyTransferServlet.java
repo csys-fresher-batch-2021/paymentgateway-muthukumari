@@ -31,7 +31,6 @@ public class MoneyTransferServlet extends HttpServlet {
 		String userName = (String) session.getAttribute("userName");
 		try {
 			List<Long> accNum = BankService.getAccountNumber(userName);
-			System.out.println(accNum);
 			if (!accNum.isEmpty()) {
 				session.setAttribute("accNum", accNum);
 				RequestDispatcher rd = request.getRequestDispatcher("moneytransfer.jsp");

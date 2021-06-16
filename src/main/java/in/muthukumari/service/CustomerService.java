@@ -53,7 +53,6 @@ public class CustomerService {
 		boolean isValidPassword = CustomerDetailValidator.isValidPassword(customer.getPassword());
 		errorList.add(isValidPassword);
 		if (errorList.contains(false)) {
-			System.out.println(errorList);
 			isAdded = false;
 		} else {
 			try {

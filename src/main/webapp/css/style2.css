@@ -1,5 +1,5 @@
 .h2 {
-	font-family: Times new roman;
+	font-family: Serif;
 	font-size: 20px;
 	text-align: center;
 	text-shadow: 0 2px #999;
@@ -7,7 +7,7 @@
 }
 
 .button {
-	font-family: Times new roman;
+	font-family: Serif;
 	padding: 5px 19px;
 	font-size: 20px;
 	text-align: center;
@@ -18,7 +18,6 @@
 	border: none;
 	border-radius: 15px;
 	box-shadow: 0 7px #999;
-	padding: 5px 19px;
 }
 
 .button:hover {
@@ -48,7 +47,7 @@ body {
 }
 
 .fl-table {
-	font-family: Times new roman;
+	font-family: Serif;
 	border-radius: 5px;
 	font-size: 30px;
 	font-weight: normal;

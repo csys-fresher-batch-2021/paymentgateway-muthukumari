@@ -74,7 +74,6 @@ button:hover::after, button:focus::after {
 
 body {
 	background: #74ebd5;
-	background: -webkit-linear-gradient(to bottom, #74ebd5, #acb6e5);
 	background: linear-gradient(to bottom, #74ebd5, #acb6e5);
 	font-size: 16px;
 	line-height: 1.2;

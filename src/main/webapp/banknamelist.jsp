@@ -15,8 +15,9 @@
 		<br />
 		<%
 		String infoMsg = request.getParameter("infoMsg");
-		if (infoMsg != null) {
-			out.println("<p><font style=color:red>" + infoMsg + "</font>");
+		String encodedMsg = org.owasp.encoder.Encode.forHtml(infoMsg);
+		if (encodedMsg != null) {
+			out.println("<p><font style=color:red>" + encodedMsg + "</font>");
 		}
 		%>
 		<h3 class="h2">LIST OF BANKS</h3>

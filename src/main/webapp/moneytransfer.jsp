@@ -16,8 +16,9 @@
 		<form action="UpdateBankDetailServlet">
 			<%
 			String infoMSG = request.getParameter("infoMsg");
-			if (infoMSG != null) {
-				out.println("<p><font style=color:green>" + infoMSG + "</font>");
+			String encodedMsg = org.owasp.encoder.Encode.forHtml(infoMSG);			
+			if (encodedMsg != null) {
+				out.println("<p><font style=color:green>" + encodedMsg + "</font>");
 			}
 			%>
 			<article class="card-body mx-auto" style="max-width: 500px;">
@@ -53,9 +54,11 @@
 						<div class="col">
 							<%
 							String amount = request.getParameter("amount");
+							String encodedAmount = org.owasp.encoder.Encode.forHtml(amount);			
+							
 							%>
 							<input type="number" name="balanceAmount" id="balanceAmount"
-								value="<%=amount%>" readonly required>
+								value="<%=encodedAmount%>" readonly required>
 						</div>
 					</div>
 				</div>
