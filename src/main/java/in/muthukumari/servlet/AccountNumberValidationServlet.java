@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * Servlet implementation class AccountCreationServlet
  */
 @WebServlet("/AccountNumberServlet")
-public class AccountNumberServlet extends HttpServlet {
+public class AccountNumberValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -65,7 +65,5 @@ public class AccountNumberServlet extends HttpServlet {
 		} catch (IOException e) {
 			logger.info(e.getMessage());
 		}
-
 	}
-
 }

@@ -14,11 +14,15 @@ h1 {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<%
-		String infoMsg = (String)session.getAttribute("infoMSG");
+		String infoMsg = (String) session.getAttribute("infoMSG");
 		if (infoMsg != null) {
 			out.println("<p><font style=color:green>" + infoMsg + "</font>");
 			session.removeAttribute("infoMSG");
-		}		
+		}
+		String infoMSG = request.getParameter("infoMsg");
+		if (infoMSG != null) {
+			out.println("<p><font style=color:green>" + infoMSG + "</font>");
+		}
 		%>
 		<br /> <br /> <br /> <br /> <br /> <br />
 		<p style="text-align: center;">

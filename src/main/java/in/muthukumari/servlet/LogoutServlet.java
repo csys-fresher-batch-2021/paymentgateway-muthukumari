@@ -20,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
 
 	/**
 	 * This servlet used for customer logout
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

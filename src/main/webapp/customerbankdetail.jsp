@@ -7,120 +7,8 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<style>
-.button {
-	min-width: 120px;
-	min-height: 10px;
-	font-family: 'Nunito', sans-serif;
-	font-size: 15px;
-	text-transform: uppercase;
-	letter-spacing: 1.3px;
-	font-weight: 700;
-	color: #313133;
-	background: #4FD1C5;
-	background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%,
-		rgba(79, 209, 197, 1) 100%);
-	border: none;
-	border-radius: 1000px;
-	box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
-	transition: all 0.3s ease-in-out 0s;
-	cursor: pointer;
-	outline: none;
-	position: relative;
-	padding: 10px;
-}
-
-button::before {
-	content: '';
-	border-radius: 1000px;
-	min-width: calc(120px + 12px);
-	min-height: calc(35px + 12px);
-	border: 6px solid #00FFCB;
-	box-shadow: 0 0 60px rgba(0, 255, 203, .64);
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	opacity: 0;
-	transition: all .3s ease-in-out 0s;
-}
-
-.button:hover, .button:focus {
-	color: #313133;
-	transform: translateY(-6px);
-}
-
-button:hover::before, button:focus::before {
-	opacity: 1;
-}
-
-button::after {
-	content: '';
-	width: 30px;
-	height: 30px;
-	border-radius: 100%;
-	border: 6px solid #00FFCB;
-	position: absolute;
-	z-index: -1;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	animation: ring 1.5s infinite;
-}
-
-button:hover::after, button:focus::after {
-	animation: none;
-	display: none;
-}
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	outline: none;
-	transition: all 0.3s ease;
-	animation-delay: 0s;
-}
-
-body {
-	background: #74ebd5;
-	background: -webkit-linear-gradient(to bottom, #74ebd5, #acb6e5);
-	background: linear-gradient(to bottom, #74ebd5, #acb6e5);
-	font-size: 16px;
-	line-height: 1.2;
-	color: #888;
-}
-
-.pagewrap {
-	max-width: 100%;
-	height: 100vh;
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.form {
-	width: 1000px;
-	height: 580px;
-	top: 0px;
-	display: flex;
-	align-items: center;
-	flex-flow: column wrap;
-	background-color: #ecedee;
-	border-radius: 5px;
-	@media
-	(min-width:600px)
-{
-	max-width:380px;
-}
-
-}
-@media ( min-width : 980px) and (max-width: 1400px) {
-	width:35%;
-}
-</style>
 <title>Customer Bank Detail</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -146,7 +34,7 @@ body {
 
 					<option disabled selected>--------SELECT--------</option>
 					<%
-					BankDetailsController bank=new BankDetailsController();
+					BankDetailsController bank = new BankDetailsController();
 					//Get the branch name list
 					Set<String> branchNameList = bank.getBranchNameList(bankName);
 					int i = 0;
@@ -178,22 +66,25 @@ body {
 					Number :</label> <input type="tel" id="mobileNum" name="mobileNum"
 					placeholder="Mobile number" pattern="^\d{10}$" required> <em>Note:
 					Mobile number must be 10 digits</em><br /> <br /> <label>Balance
-					Amount :</label> <input type="tel" name="balanceAmount"
+					Amount (Rs.)</label> <input type="tel" name="balanceAmount"
 					placeholder="Balance Amount" pattern="[0-9.]{1,}" required>
-				<em>Note: Enter Balance amount in your account</em> <br /> <br />
+				<em>Note: Enter Balance amount in your account(Rs.)</em> <br /> <br />
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />
-				<div class="wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="submit" class="button" id="submit" disabled>submit</button><br/><br/>
-					<p style="text-align:center">If the account number<br/> is not
-						validated successfully,<br/>The button is not clickable</p>
+				<div class="wrap">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="button" id="submit" disabled>submit</button>
+					<br /> <br />
+					<p style="text-align: center">
+						If the account number<br /> is not validated successfully,<br />The
+						button is not clickable
+					</p>
 				</div>
 				<%
 				String errorMsg = request.getParameter("errorMsg");
 				String encodedErrorMsg = org.owasp.encoder.Encode.forHtml(errorMsg);
 				if (errorMsg != null) {
-					out.println("<br/><p style='font-size:25px'>&#128542"
-					+ encodedErrorMsg);
+					out.println("<br/><p style='font-size:25px'>&#128542" + encodedErrorMsg);
 				}
 				%>
 			</form>

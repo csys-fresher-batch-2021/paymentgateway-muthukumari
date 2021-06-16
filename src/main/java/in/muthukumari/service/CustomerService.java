@@ -53,6 +53,7 @@ public class CustomerService {
 		boolean isValidPassword = CustomerDetailValidator.isValidPassword(customer.getPassword());
 		errorList.add(isValidPassword);
 		if (errorList.contains(false)) {
+			System.out.println(errorList);
 			isAdded = false;
 		} else {
 			try {
@@ -72,12 +73,12 @@ public class CustomerService {
 	 * @throws ServiceException
 	 */
 	public static boolean loginUser(Customer customer) throws ServiceException {
-		boolean isVerified = false;		
+		boolean isVerified = false;
 		try {
 			isVerified = ExistDAO.isLoginVerified(customer.getUserName(), customer.getPassword());
 		} catch (DBException e) {
 			throw new ServiceException(e.getMessage());
-		}		
+		}
 		return isVerified;
 	}
 }

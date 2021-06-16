@@ -22,3 +22,11 @@ bankname varchar(20) foreign key(bankname) references banknamelist(bankname));
 create table customerdetails(mobile_no bigint,first_name varchar(20),
 last_name varchar(20), email varchar(50) unique,
 username varchar(10) primary key, password varchar(10));
+
+---Recipient Details---
+create table recipientdetails (
+recipient_bankname varchar(30) not null,
+recipient_accnum bigint primary key,
+balance_amount double precision,
+sender_accnum bigint not null
+);

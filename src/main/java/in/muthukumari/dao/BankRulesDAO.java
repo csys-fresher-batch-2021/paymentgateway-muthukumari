@@ -50,7 +50,5 @@ public class BankRulesDAO {
 			ConnectionUtil.close(rs, pst, con);
 		}
 		return bankNameList;
-
 	}
-
 }

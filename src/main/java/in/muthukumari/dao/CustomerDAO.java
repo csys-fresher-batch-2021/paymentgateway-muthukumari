@@ -84,5 +84,4 @@ public class CustomerDAO {
 			ConnectionUtil.close(pst, connection);
 		}
 	}
-
 }

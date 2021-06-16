@@ -118,7 +118,7 @@ public class ExistDAO {
 	}
 
 	/**
-	 * This method used to chck if the account number is exists or not
+	 * This method used to check if the account number is exists or not
 	 * 
 	 * @return
 	 * @throws DBException

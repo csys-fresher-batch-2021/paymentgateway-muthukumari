@@ -25,19 +25,17 @@ public class UserNameValidationServlet extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		String userName = request.getParameter("userName");
 		boolean isValidName;
-		Gson gson = new Gson();		
+		Gson gson = new Gson();
 		try {
 			boolean errorMessage;
 			isValidName = CustomerRepeatedValidator.isUserNameExists(userName);
 			if (isValidName) {
-				errorMessage =true;
-			}
-			else {
-				errorMessage=false;
+				errorMessage = true;
+			} else {
+				errorMessage = false;
 			}
 			String json = gson.toJson(errorMessage);
 			PrintWriter out = response.getWriter();
@@ -45,6 +43,6 @@ public class UserNameValidationServlet extends HttpServlet {
 			out.flush();
 		} catch (IOException | ValidatorException e) {
 			logger.info(e.getMessage());
-		}		
+		}
 	}
 }
