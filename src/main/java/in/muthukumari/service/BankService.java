@@ -24,7 +24,7 @@ public class BankService {
 		try {
 			accNumList = ExistCustomerDAO.getAccountNumber(mobileNum);
 		} catch (DBException e) {
-			e.printStackTrace();
+			throw new ServiceException(e.getMessage());
 		}
 		return accNumList;
 	}

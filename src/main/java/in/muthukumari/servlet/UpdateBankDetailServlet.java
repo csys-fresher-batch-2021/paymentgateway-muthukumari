@@ -1,6 +1,8 @@
 package in.muthukumari.servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ import in.muthukumari.service.RecipientService;
 @WebServlet("/UpdateBankDetailServlet")
 public class UpdateBankDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -39,7 +42,7 @@ public class UpdateBankDetailServlet extends HttpServlet {
 			balanceAmount = Double.parseDouble(balanceAmountStr);
 			transferAmount = Double.parseDouble(transferAmountStr);
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		Recipient recipient = new Recipient();
 		recipient.setReceiverbank(bankName);
@@ -58,7 +61,7 @@ public class UpdateBankDetailServlet extends HttpServlet {
 				response.sendRedirect("moneytransfer.jsp?infoMsg=" + infoMsg);
 			}
 		} catch (IOException | ServiceException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 	}
 }
