@@ -223,10 +223,6 @@ public class ExistCustomerDAO {
 		} finally {
 			// Step 5: Release the connection
 			ConnectionUtil.close(pst, con);
-			for(CustomerBankDetail c:nameAndAccNumList) {
-			System.out.println("hi"+c.getAccountNumber());
-			System.out.println("h2"+c.getUserName());
-			}
 		}
 		return nameAndAccNumList;
 	}

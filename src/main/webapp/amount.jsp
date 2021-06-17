@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Deposit Amount</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -23,6 +23,7 @@
 				</article>
 				<%
 				String accNum = request.getParameter("accNum");
+				String encodedAccNum = org.owasp.encoder.Encode.forHtml(accNum);
 				%>
 				<div class="form-group">
 					<div class="form-row">
@@ -30,7 +31,7 @@
 							<label>Account Number :</label>
 						</div>
 						<div class="col">
-							<input type="number" name="accNum" value="<%=accNum%>" readonly>
+							<input type="number" name="accNum" value="<%=encodedAccNum%>" readonly>
 						</div>
 					</div>
 				</div>

@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Deposit Page</title>
@@ -60,10 +60,11 @@
 				New</a>
 		</div>
 		<table id="myTable">
+		<caption>Deposit Amount</caption>
 			<tr class="header">
-				<th style="width: 40%;">Account Holders Name</th>
-				<th style="width: 40%;">Account Number</th>
-				<th style="width: 30%;">Deposit</th>
+				<th style="width: 40%;" scope="col">Account Holders Name</th>
+				<th style="width: 40%;" scope="col">Account Number</th>
+				<th style="width: 30%;" scope="col">Deposit</th>
 			</tr>
 			<tbody>
 				<%
