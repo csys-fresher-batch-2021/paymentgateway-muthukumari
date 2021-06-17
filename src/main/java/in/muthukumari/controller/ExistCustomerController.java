@@ -1,27 +1,32 @@
 package in.muthukumari.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import in.muthukumari.dao.ExistCustomerDAO;
 import in.muthukumari.exception.DBException;
+import in.muthukumari.exception.ServiceException;
 import in.muthukumari.model.CustomerBankDetail;
 
 public class ExistCustomerController {
+	final Logger logger = Logger.getLogger(this.getClass().getName());
 
-	private ExistCustomerController() {
-		// Default Constructor
+	public ExistCustomerController() {
+		//Default Constructor
 	}
 
 	/**
-	 * This mthod used to get the customer name and account number list
+	 * This method used to get the customer name and account number list
 	 * 
 	 * @return
+	 * @throws ServiceException 
 	 */
-	public static List<CustomerBankDetail> getNameAndAccNumList() {
+	public List<CustomerBankDetail> getNameAndAccNumList() {
 		List<CustomerBankDetail> nameAndAccNumList = null;
 		try {
 			nameAndAccNumList = ExistCustomerDAO.getNameAndAccNumList();
 		} catch (DBException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 		return nameAndAccNumList;
 	}

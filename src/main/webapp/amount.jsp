@@ -41,14 +41,13 @@
 							<label>Howmuch amount you want to transfer ?</label>
 						</div>
 						<div class="col">
-							<input type="number" name="amount" required min=1>
+							<input type="number" name="amount" required min=1 step=".001" max=10000000 required>
 						</div>
 					</div>
 				</div>
 				<button type="submit" class="btn btn-primary">Deposit</button>
 				&nbsp;
 				<button type="reset" class="btn btn-danger">Cancel</button>
-
 			</article>
 		</form>
 	</main>

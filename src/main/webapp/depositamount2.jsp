@@ -68,7 +68,8 @@
 			</tr>
 			<tbody>
 				<%
-				List<CustomerBankDetail> nameAndAccNumList = ExistCustomerController.getNameAndAccNumList();
+				ExistCustomerController existCustomer=new ExistCustomerController();
+				List<CustomerBankDetail> nameAndAccNumList = existCustomer.getNameAndAccNumList();
 				int i = 0;
 				for (CustomerBankDetail customer : nameAndAccNumList) {
 					i++;

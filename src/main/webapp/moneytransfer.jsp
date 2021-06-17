@@ -95,7 +95,7 @@
 						</div>
 						<div class="col">
 							<input type="number" min="1" name="transferAmount"
-								id="transferAmount" disabled required
+								id="transferAmount" disabled required step=".001"
 								onkeyup="checkBalanceAmount()">
 						</div>
 					</div>

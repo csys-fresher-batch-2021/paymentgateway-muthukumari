@@ -30,11 +30,11 @@
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col">
-							<input type="text" name="firstName" pattern="^[a-zA-Z]{3,}$"
+							<input type="text" name="firstName" pattern="^[a-zA-Z\s]{3,50}$"
 								class="form-control" placeholder="First name" required>
 						</div>
 						<div class="col">
-							<input type="text" name="lastName" pattern="^[a-zA-Z]{3,}$"
+							<input type="text" name="lastName" pattern="^[a-zA-Z\s]{3,50}$"
 								class="form-control" placeholder="Last name" required>
 						</div>
 					</div>

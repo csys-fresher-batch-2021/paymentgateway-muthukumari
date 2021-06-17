@@ -182,6 +182,11 @@ public class CustomerBankDetail {
 		this.mobileNumber = mobileNumber;
 	}
 
+	/**
+	 * Constructor with 2 arguments
+	 * @param name
+	 * @param accNum
+	 */
 	public CustomerBankDetail(String name, long accNum) {
 		super();
 		this.userName = name;
