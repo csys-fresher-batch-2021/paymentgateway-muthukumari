@@ -4,6 +4,10 @@ import lombok.ToString;
 
 @ToString
 public class CustomerBankDetail {
+	
+	public CustomerBankDetail() {
+		// Default Constructor
+	}	
 
 	// Declare variables for storing customer bank details
 	private String userName;
@@ -178,4 +182,10 @@ public class CustomerBankDetail {
 		this.mobileNumber = mobileNumber;
 	}
 
+	public CustomerBankDetail(String name, long accNum) {
+		super();
+		this.userName = name;
+		this.accountNumber = accNum;
+	}
+	
 }
