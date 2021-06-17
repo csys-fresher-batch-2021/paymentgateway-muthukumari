@@ -35,7 +35,7 @@ public class CheckBalanceServlet extends HttpServlet {
 				session.setAttribute("accNum", accNum);
 				response.sendRedirect("checkbalance.jsp");
 			} else {
-				String infoMsg = "Sorry! You doesn't have an account!!! So, Please create your account using bank details";
+				String infoMsg = "Sorry! You don't have an account!!! So, Please create your account using bank details";
 				response.sendRedirect("banknamelist.jsp?infoMsg=" + infoMsg);
 			}
 		} catch (ServiceException | IOException e) {

@@ -153,6 +153,7 @@
 				alert("You are not transfer money");
 			}
 		}
+		//Get the bank name list
 		function getBankNameList(){
 			let url = "BankNameListServlet";
 			fetch(url).then(res=> res.json()).then(res=>{

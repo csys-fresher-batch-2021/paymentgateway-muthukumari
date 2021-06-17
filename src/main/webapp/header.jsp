@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -51,9 +52,9 @@ bootstrap.min.js
 					class="nav-link dropdown-toggle" href="#" id="dropdownId"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
 					<div class="dropdown-menu" aria-labelledby="dropdownId">
-						<a class="dropdown-item" href="MoneyTransferServlet">Money Transfer</a> <a
-							class="dropdown-item" href="CheckBalanceServlet">Check Balance</a> <a
-							class="dropdown-item" href="depositamount2.jsp">Deposit</a>
+						<a class="dropdown-item" href="MoneyTransferServlet">Money
+							Transfer</a> <a class="dropdown-item" href="CheckBalanceServlet">Check
+							Balance</a> <a class="dropdown-item" href="depositamount2.jsp">Deposit</a>
 					</div></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Hello
 						<%=userName%>&#128075
@@ -65,5 +66,7 @@ bootstrap.min.js
 				%>
 			</ul>
 		</div>
+	</nav>
+	<nav>
 	</nav>
 </header>
