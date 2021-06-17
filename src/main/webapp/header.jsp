@@ -54,7 +54,8 @@ bootstrap.min.js
 					<div class="dropdown-menu" aria-labelledby="dropdownId">
 						<a class="dropdown-item" href="MoneyTransferServlet">Money
 							Transfer</a> <a class="dropdown-item" href="CheckBalanceServlet">Check
-							Balance</a> <a class="dropdown-item" href="depositamount2.jsp">Deposit</a>
+							Balance</a> <a class="dropdown-item" href="depositamount.jsp">Deposit</a>
+							
 					</div></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Hello
 						<%=userName%>&#128075
