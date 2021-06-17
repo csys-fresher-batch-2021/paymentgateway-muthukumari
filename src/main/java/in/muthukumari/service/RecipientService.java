@@ -71,20 +71,15 @@ public class RecipientService {
 
 	}
 
-	public static double getBalanceAmountAfterDeposit(Recipient recipient) {
-
-		return (recipient.getBalanceAmount() - recipient.getTransferAmount());
-
-	}
-
 	/**
 	 * This method used to update the amount after deposit
 	 * 
 	 * @param accNum
 	 * @param amount
 	 * @return
+	 * @throws ServiceException
 	 */
-	public static boolean updateAmount(long accNum, double amount) {
+	public static boolean updateAmount(long accNum, double amount) throws ServiceException {
 		boolean isUpdated = false;
 		try {
 			double balanceAmount = balanceAmountAfterDeposit(accNum, amount);
@@ -92,9 +87,8 @@ public class RecipientService {
 			if (isUpdate) {
 				isUpdated = true;
 			}
-		} catch (ServiceException | DBException e) {
-
-			e.printStackTrace();
+		} catch (DBException e) {
+			throw new ServiceException(e.getMessage());
 		}
 		return isUpdated;
 	}
@@ -109,8 +103,8 @@ public class RecipientService {
 	 */
 	public static double balanceAmountAfterDeposit(long accNum, double amount) throws ServiceException {
 		double balanceAmount = BankService.getBalanceAmount(accNum);
-		double balanceAmountAfterDeposit = balanceAmount + amount;
-		return balanceAmountAfterDeposit;
+		return (balanceAmount + amount);
+
 	}
 
 }

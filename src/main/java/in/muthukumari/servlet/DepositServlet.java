@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.muthukumari.exception.ServiceException;
 import in.muthukumari.service.RecipientService;
 
 /**
@@ -42,7 +43,7 @@ public class DepositServlet extends HttpServlet {
 				response.sendRedirect("index.jsp?errMsg=" + errMsg);
 			}
 
-		} catch (NumberFormatException | IOException e) {
+		} catch (NumberFormatException | IOException | ServiceException e) {
 			logger.info(e.getMessage());
 		}
 
