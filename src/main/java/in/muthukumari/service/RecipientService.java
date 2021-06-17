@@ -71,4 +71,40 @@ public class RecipientService {
 
 	}
 
+	/**
+	 * This method used to update the amount after deposit
+	 * 
+	 * @param accNum
+	 * @param amount
+	 * @return
+	 * @throws ServiceException
+	 */
+	public static boolean updateAmount(long accNum, double amount) throws ServiceException {
+		boolean isUpdated = false;
+		try {
+			double balanceAmount = balanceAmountAfterDeposit(accNum, amount);
+			boolean isUpdate = ExistCustomerDAO.updateBalanceAmount(accNum, balanceAmount);
+			if (isUpdate) {
+				isUpdated = true;
+			}
+		} catch (DBException e) {
+			throw new ServiceException(e.getMessage());
+		}
+		return isUpdated;
+	}
+
+	/**
+	 * This method calculate the amount after deposit
+	 * 
+	 * @param accNum
+	 * @param amount
+	 * @return
+	 * @throws ServiceException
+	 */
+	public static double balanceAmountAfterDeposit(long accNum, double amount) throws ServiceException {
+		double balanceAmount = BankService.getBalanceAmount(accNum);
+		return (balanceAmount + amount);
+
+	}
+
 }

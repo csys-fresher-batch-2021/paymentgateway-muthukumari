@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import in.muthukumari.exception.DBException;
+import in.muthukumari.model.CustomerBankDetail;
 import in.muthukumari.util.ConnectionUtil;
 
 public class ExistCustomerDAO {
@@ -18,7 +19,7 @@ public class ExistCustomerDAO {
 	static String sql;
 
 	/**
-	 * This method used to get the mobile number of th
+	 * This method used to get the mobile number of the particular user name
 	 * 
 	 * @param userName
 	 * @return
@@ -191,5 +192,38 @@ public class ExistCustomerDAO {
 			ConnectionUtil.close(pst, con);
 		}
 		return isUpdated;
+	}
+
+	/**
+	 * This method used to get the customer name and account number list
+	 * @return
+	 * @throws DBException
+	 */
+	public static List<CustomerBankDetail> getNameAndAccNumList() throws DBException {		
+		List<CustomerBankDetail> nameAndAccNumList=new ArrayList<>();
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		String sql;
+		try {
+			// Step 1: Get Connection
+			con = ConnectionUtil.getConnection();
+			// Step 2: Query
+			sql = "select customername,account_no from customerbankdetails";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				String	name = rs.getString("customername");				
+				long accNum=rs.getLong("account_no");
+				nameAndAccNumList.add(new CustomerBankDetail(name,accNum));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("Unable to get user details");
+
+		} finally {
+			// Step 5: Release the connection
+			ConnectionUtil.close(pst, con);
+		}
+		return nameAndAccNumList;
 	}
 }

@@ -66,8 +66,8 @@
 					Number :</label> <input type="tel" id="mobileNum" name="mobileNum"
 					placeholder="Mobile number" pattern="^\d{10}$" required> <em>Note:
 					Mobile number must be 10 digits</em><br /> <br /> <label>Balance
-					Amount (Rs.)</label> <input type="tel" name="balanceAmount"
-					placeholder="Balance Amount" pattern="[0-9.]{1,}" required>
+					Amount (Rs.)</label> <input type="number" name="balanceAmount" 
+					placeholder="Balance Amount" max=10000000 min=1 required>
 				<em>Note: Enter Balance amount in your account(Rs.)</em> <br /> <br />
 				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 				<br />

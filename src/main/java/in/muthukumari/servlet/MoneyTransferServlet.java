@@ -3,15 +3,12 @@ package in.muthukumari.servlet;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import in.muthukumari.exception.ServiceException;
 import in.muthukumari.service.BankService;
 
@@ -35,8 +32,7 @@ public class MoneyTransferServlet extends HttpServlet {
 			List<Long> accNum = BankService.getAccountNumber(userName);
 			if (!accNum.isEmpty()) {
 				session.setAttribute("accNum", accNum);
-				RequestDispatcher rd = request.getRequestDispatcher("moneytransfer.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("moneytransfer.jsp");
 			} else {
 				String infoMsg = "You doesn't create your account!!! So, Please create your account using bank details";
 				response.sendRedirect("banknamelist.jsp?infoMsg=" + infoMsg);

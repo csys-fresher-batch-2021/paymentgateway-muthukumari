@@ -95,7 +95,7 @@
 						</div>
 						<div class="col">
 							<input type="number" min="1" name="transferAmount"
-								id="transferAmount" disabled required
+								id="transferAmount" disabled required step=".001"
 								onkeyup="checkBalanceAmount()">
 						</div>
 					</div>
@@ -153,6 +153,7 @@
 				alert("You are not transfer money");
 			}
 		}
+		//Get the bank name list
 		function getBankNameList(){
 			let url = "BankNameListServlet";
 			fetch(url).then(res=> res.json()).then(res=>{

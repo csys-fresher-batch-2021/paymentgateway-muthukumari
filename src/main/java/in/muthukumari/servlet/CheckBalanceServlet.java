@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,15 +33,12 @@ public class CheckBalanceServlet extends HttpServlet {
 			List<Long> accNum = BankService.getAccountNumber(userName);
 			if (!accNum.isEmpty()) {
 				session.setAttribute("accNum", accNum);
-				RequestDispatcher rd = request.getRequestDispatcher("checkbalance.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("checkbalance.jsp");
 			} else {
-				String infoMsg = "You doesn't create your account!!! So, Please create your account using bank details";
+				String infoMsg = "Sorry! You don't have an account!!! So, Please create your account using bank details";
 				response.sendRedirect("banknamelist.jsp?infoMsg=" + infoMsg);
 			}
 		} catch (ServiceException | IOException e) {
 			logger.info(e.getMessage());
-		}
-	}
-
+		}}
 }
