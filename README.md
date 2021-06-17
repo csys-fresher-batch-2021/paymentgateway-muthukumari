@@ -29,3 +29,21 @@ Money Transfer
 -->Sender details are fixed
 
 -->Sender choose the recipient and transfer amount(if sender has a enough amount)
+
+_Feature 5:_
+
+Check Balance
+
+-->User account number is fetched using phone number
+
+-->By selecting account number to user know thir balance amount
+
+_Feature 6:_
+
+Deposit amount
+
+-->Customer selecton a account number and deposit amount(if account already exists)
+
+-->Customer create a account and deposit amount(if account not exists)
+
+-->Search tab used to search the account number
