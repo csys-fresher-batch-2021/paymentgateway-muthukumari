@@ -67,6 +67,4 @@ bootstrap.min.js
 			</ul>
 		</div>
 	</nav>
-	<nav>
-	</nav>
 </header>
