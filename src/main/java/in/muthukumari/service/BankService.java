@@ -59,7 +59,7 @@ public class BankService {
 		try {
 			amount = ExistCustomerDAO.getAmount(accNum);
 		} catch (DBException e) {
-			throw new ServiceException("You don't have th amount in your account");
+			throw new ServiceException("You don't have the amount in your account");
 		}
 		return amount;
 	}

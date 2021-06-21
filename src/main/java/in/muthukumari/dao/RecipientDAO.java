@@ -61,7 +61,7 @@ public class RecipientDAO {
 			// To establish connection
 			connection = ConnectionUtil.getConnection();
 			// SQl commands
-			String sql = "select * from recipientdetails where recipient_accnum=?";
+			String sql = "select recipient_accnum from recipientdetails where recipient_accnum=?";
 			// Execute query
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, accountNum);

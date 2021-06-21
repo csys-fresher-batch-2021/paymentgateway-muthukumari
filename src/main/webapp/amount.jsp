@@ -19,7 +19,7 @@
 						out.println("<p><font style=color:green>" + encodedMsg + "</font>");
 					}
 					%>
-					<h3>*** DEPOSIT***</h3>
+					<h3>*** DEPOSIT ***</h3>
 				</article>
 				<%
 				String accNum = request.getParameter("accNum");
@@ -31,17 +31,19 @@
 							<label>Account Number :</label>
 						</div>
 						<div class="col">
-							<input type="number" name="accNum" value="<%=encodedAccNum%>" readonly>
+							<input type="number" name="accNum" value="<%=encodedAccNum%>"
+								readonly>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col">
-							<label>Howmuch amount you want to transfer ?</label>
+							<label>Howmuch amount you want to transfer ?(Rs.)</label>
 						</div>
 						<div class="col">
-							<input type="number" name="amount" required min=1 step=".001" max=10000000 required autofous>
+							<input type="number" name="amount" placeholder="Enter Amount"
+								required min=1 step=".001" max=10000000 required autofocus>
 						</div>
 					</div>
 				</div>

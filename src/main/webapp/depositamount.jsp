@@ -54,9 +54,10 @@
 		<h3>*****Deposit Amount*****</h3>
 		</article>
 		<input type="text" id="myInput" onkeyup="myFunction()"
-			placeholder="Search By account number..." title="Type in a name">
-		<div class="form-group">
-			<a class="btn btn-primary float-right" href="banknamelist.jsp">+
+			placeholder="Search By Account Number...">
+		<div class="form-group">		
+		<%String infoMsg="Please Create an account"; %>
+			<a class="btn btn-primary float-right" href="banknamelist.jsp?infoMsg=<%=infoMsg%>">+
 				New</a>
 		</div>
 		<table id="myTable">

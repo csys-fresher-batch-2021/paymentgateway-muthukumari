@@ -36,7 +36,7 @@ public class BankDAO {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
 			// Step 2: Query
-			sql = "select * from banknamelist where bankname!=''";
+			sql = "select bankname from banknamelist where bankname!=''";
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			// Step 4: Iterate the result
@@ -70,7 +70,7 @@ public class BankDAO {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
 			// Step 2: Query
-			sql = "select * from branchandifsclist where bankname=?";
+			sql = "select bankname,IFSCcode from branchandifsclist where bankname=?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, bankName);
 			rs = pst.executeQuery();

@@ -33,7 +33,7 @@
 						<div class="col">
 							<select onchange="getBalanceAmount()" id="accNum"
 								name="senderAccNum" required>
-								<option disabled selected>--SELECT--</option>
+								<option disabled selected autofocus>--SELECT--</option>
 								<%
 								List<Long> accNumList = (ArrayList<Long>) session.getAttribute("accNum");
 								for (long accNum : accNumList) {
