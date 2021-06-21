@@ -33,7 +33,7 @@ public class BankRulesDAO {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
 			// Step 2: Query
-			sql = "select * from banknamelist where bankname!=''";
+			sql = "select bankname,accountno_length from banknamelist where bankname!=''";
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			// Step 4: Iterate the result

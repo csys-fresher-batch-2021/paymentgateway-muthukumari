@@ -30,7 +30,7 @@ public class ExistDAO {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
 			// Step 2: Query
-			sql = "select username from customerdetails where exists (select *from customerdetails where customerdetails.username=?)";
+			sql = "select username from customerdetails where exists (select username from customerdetails where customerdetails.username=?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, userName);
 			rs = pst.executeQuery();
@@ -100,7 +100,7 @@ public class ExistDAO {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
 			// Step 2: Query
-			sql = "select email from customerdetails where exists (select *from customerdetails where customerdetails.email=?)";
+			sql = "select email from customerdetails where exists (select email from customerdetails where customerdetails.email=?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, email);
 			rs = pst.executeQuery();
@@ -132,7 +132,7 @@ public class ExistDAO {
 			// To establish connection
 			connection = ConnectionUtil.getConnection();
 			// SQl commands
-			String sql = "select * from customerbankdetails where account_no=?";
+			String sql = "select account_no from customerbankdetails where account_no=?";
 			// Execute query
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, accountNum);
@@ -167,7 +167,7 @@ public class ExistDAO {
 			// To establish connection
 			connection = ConnectionUtil.getConnection();
 			// SQl commands
-			String sql = "select * from customerbankdetails where atm_no=?";
+			String sql = "select atm_no from customerbankdetails where atm_no=?";
 			// Execute query
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, atmNum);

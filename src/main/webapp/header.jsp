@@ -1,7 +1,6 @@
-<%@page import="java.time.LocalDate"%>
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/fontawesome.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/fontawesome.min.css">
+<link rel="stylesheet" href="css/style1.css">
 <!-- 
 jquery.min.js
 bootstrap.min.js
@@ -55,7 +54,7 @@ bootstrap.min.js
 						<a class="dropdown-item" href="MoneyTransferServlet">Money
 							Transfer</a> <a class="dropdown-item" href="CheckBalanceServlet">Check
 							Balance</a> <a class="dropdown-item" href="depositamount.jsp">Deposit</a>
-							
+
 					</div></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Hello
 						<%=userName%>&#128075
