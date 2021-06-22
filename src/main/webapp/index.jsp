@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>MoneyTransferApp</title>
+<title>PaymentGatewayApp</title>
 <STYLE type="text/css">
 h1 {
 	text-align: center

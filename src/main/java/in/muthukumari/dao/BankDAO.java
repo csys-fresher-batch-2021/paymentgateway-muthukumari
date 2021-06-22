@@ -70,7 +70,7 @@ public class BankDAO {
 			// Step 1: Get Connection
 			con = ConnectionUtil.getConnection();
 			// Step 2: Query
-			sql = "select bankname,IFSCcode from branchandifsclist where bankname=?";
+			sql = "select branchname,IFSCcode from branchandifsclist where bankname=?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, bankName);
 			rs = pst.executeQuery();
