@@ -22,7 +22,7 @@ public class CustomerDetailValidator {
 	public static boolean isValidName(String userName) {
 		boolean isValid = false;
 		String regex = "^[a-zA-Z\\s]*$";
-		if (userName.length() > 2 && (userName.matches(regex)) && userName.length() < 51) {
+		if (userName.length() >= 1 && (userName.matches(regex)) && userName.length() < 51) {
 			isValid = true;
 		}
 		return isValid;

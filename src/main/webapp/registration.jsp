@@ -34,7 +34,7 @@
 								class="form-control" placeholder="First name" required>
 						</div>
 						<div class="col">
-							<input type="text" name="lastName" pattern="^[a-zA-Z\s]{3,50}$"
+							<input type="text" name="lastName" pattern="^[a-zA-Z\s]{1,50}$"
 								class="form-control" placeholder="Last name" required>
 						</div>
 					</div>

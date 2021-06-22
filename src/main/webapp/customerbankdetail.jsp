@@ -38,10 +38,10 @@
 					//Get the branch name list
 					Set<String> branchNameList = bank.getBranchNameList(bankName);
 					int i = 0;
-					for (String brachNames : branchNameList) {
+					for (String branchNames : branchNameList) {
 						i++;
 					%>
-					<option><%=brachNames%></option>
+					<option><%=branchNames%></option>
 					<%
 					}
 					%>
