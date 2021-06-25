@@ -12,7 +12,7 @@ create table customerbankdetails(customername varchar(50),
 					 mobile_no bigint not null);
 
 ---Bank Name List---
-create table banknamelist(bankname varchar(20) primary key);	
+create table banknamelist(bankname varchar(20) primary key, accountno_length int not null);
 
 ---Branch and Ifsc Code List---
 create table branchandifsclist(brachname varchar(30), ifsccode varchar(20),
